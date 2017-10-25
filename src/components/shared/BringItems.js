@@ -14,7 +14,6 @@ const BringItems = () => {
       <label htmlFor="clothes">Change of clothes </label>
       <input type="checkbox" id="ointment" name="" />
       <label htmlFor="ointment">Ointment </label>
-      <input type="checkbox" id="other" name="" />
       <label htmlFor="other">Other </label>
       <input type="text" name="" />
     </div>

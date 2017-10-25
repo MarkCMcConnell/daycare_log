@@ -13,19 +13,29 @@ class Parent extends Component {
       ]
     }
   }
+  this.handleChange = this.handleChange.bind(this);
+  this.handleSubmit = this.handleSubmit.bind(this);
+}
+
+handleChange(event) {
+  this.setState({ [event.target.name]: event.target.value });
+}
+
+handleSubmit(event) {
+  console.log(this.state);
+  event.target.preventDefault();
 }
 
 render() {
   return (
     <form>
       <Child data={this.state.data} />
+      <input type="submit" onSubmit={this.handleSubmit} />
     </form>
   );
 }
 
 const Child = (props) => {
-  const dataLabels = [ 'Stuff', 'And', 'Things', 'Labels' ];
-
   const dataForms = props.data.map((data) => {
     return (
       <Grandchild data={data} />
@@ -33,14 +43,32 @@ const Child = (props) => {
   });
 
   return (
-    {dataForms}
+    <div>
+      {dataForms}
+    </div>
   );
 }
 
 const Grandchild = ({key}) => {
+  var dataLabel = '';
+  switch (key) {
+    case 'key1':
+      dataLabel = 'Something 1';
+      break;
+    case 'key2':
+      dataLabel = 'Something 2';
+      break;
+    case 'key3':
+      dataLabel = 'Something 3';
+      break;
+    case 'key4':
+      dataLabel = 'Something 4';
+      break;
+  }
+
   return (
     <div>
-      <label hmtlFor={key} >dataLabel</label>
+      <label hmtlFor={key} >{dataLabel}</label>
       <input id={key} name={key} />
     </div>
   );
