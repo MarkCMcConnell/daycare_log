@@ -1,10 +1,15 @@
 import React from 'react';
+import Meal from './Meal';
 
-const meals = [ "Breakfast", "AM Snack", "Lunch", "PM Snack" ];
+const Meals = (props) => {
+  const mealTimes = props.meals.map((meal) => {
+    return <Meal meal={meal} />
+  });
 
-const Meals = (meals) => {
   return (
-    meals.map(meal => )
+    <div>
+      {mealTimes}
+    </div>
   );
 };
 

@@ -1,24 +1,20 @@
 import React from 'react';
 
-const BowelMovements = () => {
+const BowelMovements = ({bathroom, type}) => {
   return (
     <div>
       <span>Bowel movements for the day</span>
-      <input type="checkbox" id="1" />
-      <label htmlFor="1">1</label>
-      <input type="checkbox" id="2" />
-      <label htmlFor="2">2</label>
-      <input type="checkbox" id="3" />
-      <label htmlFor="3">3</label>
-      <input type="checkbox" id="4" />
-      <label htmlFor="4">4</label>
-      <input type="checkbox" id="hard" />
-      <label htmlFor="hard">Hard</label>
-      <input type="checkbox" id="soft" />
-      <label htmlFor="soft">Soft</label>
-      <input type="checkbox" id="normal" />
-      <label htmlFor="normal">Normal</label>
-
+      <select name='times'>
+        <option value='1'>1</option>
+        <option value='2'>2</option>
+        <option value='3'>3</option>
+        <option value='4'>4</option>
+      </select>
+      <select name='type'>
+        <option value='soft'>Soft</option>
+        <option value='hard'>Hard</option>
+        <option value='normal'>Normal</option>
+      </select>
     </div>
   );
 }

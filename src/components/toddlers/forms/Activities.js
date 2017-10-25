@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Activities = () => {
+const Activities = ({activities}) => {
   return (
     <div>
       <p>What I did today</p>
-      <textarea></textarea>
+      <textarea name={activities}></textarea>
     </div>
   );
 }

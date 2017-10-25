@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
 
+import Today from '../shared/Today';
 import Name from '../shared/Name';
 import Day from '../shared/Day';
 import DiaperChanges from './forms/DiaperChanges';
@@ -16,12 +17,12 @@ class InfantsForm extends Component {
     super(props);
 
     this.state = {
-      {name: ''},
-      {day: ''},
-      {bottles: []},
-      {diapers: []},
-      {naps: []},
-      {bring: []}
+      name: '',
+      day: '',
+      bottles: [],
+      diapers: [],
+      naps: [],
+      bring: []
     }
 
   }
@@ -32,6 +33,7 @@ class InfantsForm extends Component {
         <h1>Infants</h1>
         <Link to='/'> Go back</Link>
         <form>
+          <Today />
           <Name />
           <Day />
           <Bottles />

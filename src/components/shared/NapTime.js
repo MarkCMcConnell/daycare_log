@@ -5,12 +5,12 @@ const NapTime = () => {
     <div>
       <p>Nap Time</p>
       <div>
-        <input type="text" />
-        <input type="text" />
+        <input type="time" name="nap1 " />
+        <input type="time" name="nap2 " />
       </div>
       <div>
-        <input type="text" />
-        <input type="text" />
+        <input type="time" name="nap3 " />
+        <input type="time" name="nap4 " />
       </div>
     </div>
   );
