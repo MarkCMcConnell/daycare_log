@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Name = ({name}) => {
+const Name = ({id, onChange}) => {
   return (
     <div>
-      <label htmlFor={name}>Name </label>
-      <input type="text" id={name} name={name} value={name} />
+      <label htmlFor={id}>Name: </label>
+      <input type="text" id={id} name={id} onChange={onChange} />
     </div>
   );
 }

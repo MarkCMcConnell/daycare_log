@@ -10,7 +10,7 @@ import BringItems from '../shared/BringItems';
 import Submit from '../shared/Submit';
 import Email from '../shared/Email';
 import Meals from './forms/Meals';
-import BowelMovements from './forms/BowelMovements';
+import BathroomTimes from './forms/BathroomTimes';
 import Activities from './forms/Activities';
 
 class ToddlersForm extends Component {
@@ -19,10 +19,18 @@ class ToddlersForm extends Component {
 
     this.state = {
       today: '',
-      name: ''
+      name: '',
       day: '',
-      meals: [ {breakfast: ''}, {amSnack: ''}, {lunch: ''}, {pmSnack: ''} ],
-      // bathroom: '',
+      meals: [
+        {id: 'breakfast', time: 'Breakfast', food: ''},
+        {id: 'amSnack', time: 'AM Snack', food: ''},
+        {id: 'lunch', time: 'Lunch', food: ''},
+        {id: 'pmSnack', time: 'PM Snack', food: ''}
+      ],
+      bathroom: {
+        times: '',
+        type: ''
+      }
       // type: '',
       // naps: [],
       // activities: '',
@@ -30,17 +38,22 @@ class ToddlersForm extends Component {
       // email: ''
     };
 
-    this.handleChange = this.handleChange.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSelectChange = this.handleSelectChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(event) {
+  handleInputChange(event) {
+    this.setState({ [event.target.name]: event.target.value });
+  }
+
+  handleSelectChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
 
   handleSubmit(event) {
     console.log(this.state);
-    event.target.preventDefault();
+    event.preventDefault();
     // this.props.history.push('/');
   }
 
@@ -50,10 +63,13 @@ class ToddlersForm extends Component {
         <h1>Toddlers</h1>
         <Link to='/'>Go Back</Link>
         <form onSubmit={this.handleSubmit}>
-          <Today today={this.state.today} onChange={this.handleChange} />
-          <Name name={this.state.name} onChange={this.handleChange} />
-          <Day day={this.state.day} onChange={this.handleChange} />
-          <Meals meals={this.state.meals} onChange={this.handleChange} />
+          <Today id="today" onChange={this.handleInputChange} />
+          <Name id="name" onChange={this.handleInputChange} />
+          <Day id="day" onChange={this.handleInputChange} />
+          <Meals meals={this.state.meals} onChange={this.handleSelectChange} />
+          <BathroomTimes
+            bathroom={this.state.bathroom}
+            onChange={this.handleChage} />
           <Submit />
         </form>
       </div>

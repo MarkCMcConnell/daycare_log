@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Today = ({day}) => {
+const Today = ({id, onChange}) => {
   return(
     <div>
-      <label htmlFor="dateToday">Date: </label>
-      <input type="date" name="dateToday" id="dateToday" value={day} />
+      <label htmlFor={id}>Today's Date</label>
+      <input type="date" id={id} name={id} onChange={onChange} />
     </div>
   );
 }

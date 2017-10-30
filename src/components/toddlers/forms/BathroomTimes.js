@@ -1,16 +1,16 @@
 import React from 'react';
 
-const BowelMovements = ({bathroom, type}) => {
+const BathroomTimes = ({bathroom, onChange}) => {
   return (
     <div>
       <span>Bowel movements for the day</span>
-      <select name='times'>
+      <select name={bathroom.times} onChange={onChange}>
         <option value='1'>1</option>
         <option value='2'>2</option>
         <option value='3'>3</option>
         <option value='4'>4</option>
       </select>
-      <select name='type'>
+      <select name='type' onChange={onChange}>
         <option value='soft'>Soft</option>
         <option value='hard'>Hard</option>
         <option value='normal'>Normal</option>
@@ -19,4 +19,4 @@ const BowelMovements = ({bathroom, type}) => {
   );
 }
 
-export default BowelMovements;
+export default BathroomTimes;
