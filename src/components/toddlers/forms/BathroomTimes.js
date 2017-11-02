@@ -4,7 +4,7 @@ const BathroomTimes = ({bathroom, onChange}) => {
   return (
     <div>
       <span>Bowel movements for the day</span>
-      <select name={bathroom.times} onChange={onChange}>
+      <select name='times' onChange={onChange}>
         <option value='1'>1</option>
         <option value='2'>2</option>
         <option value='3'>3</option>

@@ -39,7 +39,8 @@ class ToddlersForm extends Component {
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleSelectChange = this.handleSelectChange.bind(this);
+    this.handleMealChange = this.handleMealChange.bind(this);
+    this.handleBathroomChange = this.handleBathroomChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -47,8 +48,21 @@ class ToddlersForm extends Component {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-  handleSelectChange(event) {
-    this.setState({ [event.target.name]: event.target.value });
+  handleMealChange(meal, index) {
+    let newMeals = [ ...this.state.meals ];
+    newMeals[index] = { ...newMeals[index], food: meal};
+    this.setState({meals: newMeals});
+  }
+
+  handleBathroomChange(e) {
+    const bathroom = Object.assign({}, this.state.bathroom);
+    if (e.target.name === 'times') {
+      bathroom.times = e.target.value;
+      this.setState({bathroom});
+    } else {
+      bathroom.type = e.target.value;
+      this.setState({bathroom});
+    }
   }
 
   handleSubmit(event) {
@@ -66,10 +80,10 @@ class ToddlersForm extends Component {
           <Today id="today" onChange={this.handleInputChange} />
           <Name id="name" onChange={this.handleInputChange} />
           <Day id="day" onChange={this.handleInputChange} />
-          <Meals meals={this.state.meals} onChange={this.handleSelectChange} />
+          <Meals meals={this.state.meals} onChange={this.handleMealChange} />
           <BathroomTimes
             bathroom={this.state.bathroom}
-            onChange={this.handleChage} />
+            onChange={this.handleBathroomChange} />
           <Submit />
         </form>
       </div>
