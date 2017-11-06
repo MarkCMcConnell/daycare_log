@@ -14,7 +14,7 @@ module.exports = {
     filename: 'bundle.js'
   },
   resolve: {
-    extensions: ['.jsx', '.js']
+    extensions: ['.json', '.jsx', '.js']
   },
   module: {
     loaders: [
@@ -28,7 +28,15 @@ module.exports = {
         loader: 'babel-loader',
         include: __dirname,
         exclude: /node_modules/
-        }
-      ]
-    }
+      },
+      {
+        loader: 'json-loader',
+        include: /\.json$/
+      },
+      {
+        test: /\.css$/,
+        loaders: [ 'style-loader', 'css-loader' ]
+      }
+    ]
   }
+}
