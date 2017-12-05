@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 
 import DatePicker from '../shared/DatePicker';
 import SingleInput from '../shared/SingleInput';
@@ -14,7 +15,7 @@ class InfantsForm extends Component {
     super(props);
 
     this.state = {
-      today: '',
+      today: moment().format('MM-DD-YYYY'),
       name: '',
       day: '',
       bottles: [
@@ -48,59 +49,94 @@ class InfantsForm extends Component {
     }
 
     this.handleDateChange = this.handleDateChange.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleDiapersChange = this.handleDiapersChange.bind(this);
+    this.handleBottlesChange = this.handleBottlesChange.bind(this);
+    this.handleBottlesTimeChange = this.handleBottlesTimeChange.bind(this);
+    this.handleNapsChange = this.handleNapsChange.bind(this);
+    this.handleNapsTimeChange = this.handleNapsTimeChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleDateChange(selectedDate) {
+    this.setState({today: selectedDate});
   }
 
   handleInputChange(e) {
     // this.setState({ [e.target.name]: e.target.value});
   }
 
-  handleDateChange() {
+  handleDiapersChange(e, index) {
 
   }
 
-  // handleBottlesChange(bottle, index) {
-  //   // Set a copy of the current state
-  //   let newBottle = [...this.state.bottles];
-  //   // Determine whether to update the time or amount key
-  //
-  //   // Update the array of the bottles state and update
-  //   // with new values for time and amount fed
-  //   newBottle[index] = {...newBottle[index], time: }
-  //   // setState of the bottles state object
-  //   this.setState({newBottle});
-  // }
+  handleBottlesChange(bottle, index) {
+    let newBottles = [ ...this.state.bottles ];
+    newBottles[index] = { ...newBottles[index], amount: bottle };
+    this.setState({bottles: newBottles});
+  }
+
+  handleBottlesTimeChange(time, index) {
+    let newBottles = [ ...this.state.bottles ];
+    newBottles[index] = { ...newBottles[index], time: time };
+    this.setState({bottles: newBottles});
+  }
+
+  handleNapsChange(nap, index) {
+    let newNaps = [ ...this.state.naps ];
+    newNaps[index] = { ...newNaps[index], length: nap };
+    this.setState({naps: newNaps});
+  }
+
+  handleNapsTimeChange(time, index) {
+    let newNaps = [ ...this.state.naps ];
+    newNaps[index] = { ...newNaps[index], time: time };
+    this.setState({naps: newNaps});
+  }
+
+  handleSubmit(event) {
+    console.log(this.state);
+    event.preventDefault();
+    // this.props.history.push('/');
+  }
 
   render() {
     return (
       <div>
         <h1>Infants</h1>
         <Link to='/'> Go back</Link>
-        <form>
-          <DatePicker id='today' name='today' label="Today's Date: "
+        <form onSubmit={this.handleSubmit}>
+          <DatePicker id="today" type="text" label="Today's Date: " date={this.state.today}
             onChangeDateTime={this.handleDateChange} />
           <SingleInput id="name" type="text" label="Name: " onChange={this.handleInputChange} />
           <SingleInput id="day" type="text" label="My day was " onChange={this.handleInputChange} />
+
           <InfantsMultipleInputs
             title="Bottles"
             firstLabel="Time: "
             secondLabel="Amount: "
             items={this.state.bottles}
             onChange={this.handleBottlesChange}
+            onChangeDateTime={this.handleBottlesTimeChange}
           />
+
           <Diapers
             title="Diaper Changes"
             firstLabel="Time: "
             secondLabel="Type: "
             items={this.state.diapers}
-            onChange={this.handleBottlesChange}
+            onChange={this.handleDiapersChange}
           />
+
           <InfantsMultipleInputs
             title="Nap Times"
             firstLabel="Time: "
             secondLabel="Length: "
             items={this.state.naps}
-            onChange={this.handleBottlesChange}
+            onChange={this.handleNapsChange}
+            onChangeDateTime={this.handleNapsTimeChange}
           />
+
           <SingleInput id="parentEmail" type="email" label="Parent E-mail: "
             onChange={this.handleInputChange} />
           <SingleInput id="providerEmail" type="email" label="Provider E-mail: "

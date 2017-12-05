@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 
 import SingleInput from '../shared/SingleInput';
 import MultipleInputs from '../shared/MultipleInputs';
 import BathroomTimes from './forms/BathroomTimes';
 import BringItems from '../shared/BringItems';
+import DatePicker from '../shared/DatePicker';
 import Submit from '../shared/Submit';
 
 class ToddlersForm extends Component {
@@ -13,7 +15,7 @@ class ToddlersForm extends Component {
     super(props);
 
     this.state = {
-      today: '',
+      today: moment().format('MM-DD-YYYY'),
       name: '',
       day: '',
       meals: [
@@ -36,11 +38,16 @@ class ToddlersForm extends Component {
       parentEmail: ''
     };
 
+    this.handleDateChange = this.handleDateChange.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleMealChange = this.handleMealChange.bind(this);
     this.handleBathroomChange = this.handleBathroomChange.bind(this);
     this.handleNapsChange = this.handleNapsChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleDateChange(selectedDate) {
+    this.setState({today: selectedDate});
   }
 
   handleInputChange(event) {
@@ -85,7 +92,8 @@ class ToddlersForm extends Component {
         <h1>Toddlers</h1>
         <Link to='/'>Go Back</Link>
         <form onSubmit={this.handleSubmit}>
-          <SingleInput id="today" type="text" label="Today's Date: " onChange={this.handleInputChange} />
+          <DatePicker id="today" type="text" label="Today's Date: " date={this.state.today}
+            onChangeDateTime={this.handleDateChange} />
           <SingleInput id="name" type="text" label="Name: " onChange={this.handleInputChange} />
           <SingleInput id="day" type="text" label="My day was " onChange={this.handleInputChange} />
           <MultipleInputs

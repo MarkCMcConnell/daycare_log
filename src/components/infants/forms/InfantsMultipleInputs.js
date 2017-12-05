@@ -6,27 +6,29 @@ class InfantMultipleInputs extends Component {
   constructor(props) {
     super(props);
 
-    this.handleTimeChange = this.handleTimeChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleTimeFormChange = this.handleTimeFormChange.bind(this);
   }
 
   handleChange(e, index) {
     this.props.onChange(e.target.value, index);
   }
 
-  handleTimeChange(time, index) {
-    
+  handleTimeFormChange(time, index) {
+    let selectedTime = moment(time).format('h:mm a');
+    this.props.onChangeDateTime(selectedTime, index);
   }
 
   render() {
     const inputItems = this.props.items.map((item, index) => {
       return (
         <div key={index}>
-          <label htmlFor={item.id}>{this.props.firstLabel}</label>
-          <TimePicker id={item.id} name={item.name} time={item.time}
-            onChange={this.handleTimeChange}
-            onChangeDateTime={(time) => this.handleTimeChange(time, index)} />
-          <label htmlFor={item.id}>{this.props.secondLabel}</label>
-          <input type='text' id={item.id} name={item}
+          <label htmlFor={index}>{this.props.firstLabel}</label>
+          <TimePicker id={index} time={item.time}
+            onChangeDateTime={(time) => this.handleTimeFormChange(time, index)}
+          />
+          <label htmlFor={index}>{this.props.secondLabel}</label>
+          <input type='text' id={index} name={item}
             onChange={(e) => this.handleChange(e, index)} />
         </div>
       );
