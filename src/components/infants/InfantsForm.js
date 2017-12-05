@@ -66,8 +66,16 @@ class InfantsForm extends Component {
     // this.setState({ [e.target.name]: e.target.value});
   }
 
-  handleDiapersChange(e, index) {
+  handleDiapersChange(diaper, index) {
+    let newDiapers = [ ...this.state.diapers ];
+    newDiapers[index] = { ...newDiapers[index], type: diaper };
+    this.setState({diapers: newDiapers});
+  }
 
+  handleDiapersTimeChange(time, index) {
+    let newDiapers = [ ...this.state.diapers ];
+    newDiapers[index] = { ...newDiapers[index], time: time};
+    this.setState({diapers: newDiapers});
   }
 
   handleBottlesChange(bottle, index) {
@@ -115,6 +123,7 @@ class InfantsForm extends Component {
             title="Bottles"
             firstLabel="Time: "
             secondLabel="Amount: "
+            id="bottles"
             items={this.state.bottles}
             onChange={this.handleBottlesChange}
             onChangeDateTime={this.handleBottlesTimeChange}
@@ -126,12 +135,14 @@ class InfantsForm extends Component {
             secondLabel="Type: "
             items={this.state.diapers}
             onChange={this.handleDiapersChange}
+            onChangeDateTime={this.handleDiapersTimeChange}
           />
 
           <InfantsMultipleInputs
             title="Nap Times"
             firstLabel="Time: "
             secondLabel="Length: "
+            id="naps"
             items={this.state.naps}
             onChange={this.handleNapsChange}
             onChangeDateTime={this.handleNapsTimeChange}
