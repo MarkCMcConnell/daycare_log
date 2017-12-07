@@ -1,23 +1,33 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const BringItems = () => {
-  return (
-    <div>
-      <h3>Please bring the following tomorrow</h3>
-      <input type="checkbox" id="diapers" name="diapers" />
-      <label htmlFor="diapers">Diapers </label>
-      <input type="checkbox" id="wipes" name="wipes" />
-      <label htmlFor="wipes">Wipes </label>
-      <input type="checkbox" id="forumla" name="formula" />
-      <label htmlFor="forumula">Formula </label>
-      <input type="checkbox" id="clothes" name="" />
-      <label htmlFor="clothes">Change of clothes </label>
-      <input type="checkbox" id="ointment" name="" />
-      <label htmlFor="ointment">Ointment </label>
-      <label htmlFor="other">Other </label>
-      <input type="text" name="" />
-    </div>
-  );
+class BringItems extends Component {
+  constructor(props) {
+    super(props);
+
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(e, index) {
+    this.props.onChange(e.target.name, e.target.checked, index);
+  }
+
+  render() {
+    const checkbox = this.props.items.map((item, index) => {
+      return (
+        <div key={index}>
+          <input id={item.type} name={item.type} type="checkbox" onChange={(e) => this.handleChange(e, index)} />
+          <label htmlFor={item.type}>{item.type}</label>
+        </div>
+      );
+    });
+
+    return (
+      <div>
+        <h3>{this.props.title}</h3>
+        {checkbox}
+      </div>
+    );
+  }
 }
 
 

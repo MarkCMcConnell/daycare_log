@@ -33,7 +33,14 @@ class ToddlersForm extends Component {
         {id: 'nap2', time: 'Afternoon', length: ''}
       ],
       activities: '',
-      // bring: [],
+      bringItems: [
+        {type: 'Diapers', isChecked: false},
+        {type: 'Wipes', isChecked: false},
+        {type: 'Forumla', isChecked: false},
+        {type: 'Change of clothes', isChecked: false},
+        {type: 'Ointment', isChecked: false}
+      ],
+      other: '',
       providerEmail: '',
       parentEmail: ''
     };
@@ -43,6 +50,7 @@ class ToddlersForm extends Component {
     this.handleMealChange = this.handleMealChange.bind(this);
     this.handleBathroomChange = this.handleBathroomChange.bind(this);
     this.handleNapsChange = this.handleNapsChange.bind(this);
+    this.handleBringItemsChange = this.handleBringItemsChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -80,10 +88,16 @@ class ToddlersForm extends Component {
     this.setState({naps: newNaps});
   }
 
+  handleBringItemsChange(item, isChecked, index) {
+    console.log(item + ' ' + isChecked + ' ' + index);
+    let newBringItems = [ ...this.state.bringItems ];
+    newBringItems[index] = { ...newBringItems[index], type: item, isChecked: isChecked };
+    this.setState({bringItems: newBringItems});
+  }
+
   handleSubmit(event) {
     console.log(this.state);
     event.preventDefault();
-    // this.props.history.push('/');
   }
 
   render() {
@@ -92,26 +106,66 @@ class ToddlersForm extends Component {
         <h1>Toddlers</h1>
         <Link to='/'>Go Back</Link>
         <form onSubmit={this.handleSubmit}>
-          <DatePicker id="today" type="text" label="Today's Date: " date={this.state.today}
-            onChangeDateTime={this.handleDateChange} />
-          <SingleInput id="name" type="text" label="Name: " onChange={this.handleInputChange} />
-          <SingleInput id="day" type="text" label="My day was " onChange={this.handleInputChange} />
+          <DatePicker
+            id="today"
+            type="text"
+            label="Today's Date: "
+            date={this.state.today}
+            onChangeDateTime={this.handleDateChange}
+          />
+          <SingleInput
+            id="name"
+            type="text"
+            label="Name: "
+            onChange={this.handleInputChange}
+          />
+          <SingleInput
+            id="day"
+            type="text"
+            label="My day was "
+            onChange={this.handleInputChange}
+          />
           <MultipleInputs
             items={this.state.meals}
-            onChange={this.handleMealChange} />
+            onChange={this.handleMealChange}
+          />
           <BathroomTimes
             bathroom={this.state.bathroom}
-            onChange={this.handleBathroomChange} />
+            onChange={this.handleBathroomChange}
+          />
           <MultipleInputs
             items={this.state.naps}
             onChange={this.handleNapsChange}
           />
-          <SingleInput id="activities" type="text" label="What I did today: "
-            onChange={this.handleInputChange} />
-          <SingleInput id="parentEmail" type="email" label="Parent E-mail: "
-            onChange={this.handleInputChange} />
-          <SingleInput id="providerEmail" type="email" label="Provider E-mail: "
-            onChange={this.handleInputChange} />
+          <SingleInput
+            id="activities"
+            type="text"
+            label="What I did today: "
+            onChange={this.handleInputChange}
+          />
+          <BringItems
+            title='Please bring the following tomorrow.'
+            items={this.state.bringItems}
+            onChange={this.handleBringItemsChange}
+          />
+          <SingleInput
+            id='other'
+            type='text'
+            label='Other: '
+            onChange={this.handleInputChange}
+          />
+          <SingleInput
+            id="parentEmail"
+            type="email"
+            label="Parent E-mail: "
+            onChange={this.handleInputChange}
+          />
+          <SingleInput
+            id="providerEmail"
+            type="email"
+            label="Provider E-mail: "
+            onChange={this.handleInputChange}
+          />
           <Submit />
         </form>
       </div>

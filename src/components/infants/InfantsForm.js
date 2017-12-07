@@ -43,27 +43,31 @@ class InfantsForm extends Component {
         { id: 'nap3' , time: '', length: ''},
         { id: 'nap4' , time: '', length: ''}
       ],
-      bring: [],
+      bringItems: [
+        {type: 'Diapers', isChecked: false},
+        {type: 'Wipes', isChecked: false},
+        {type: 'Forumla', isChecked: false},
+        {type: 'Change of clothes', isChecked: false},
+        {type: 'Ointment', isChecked: false}
+      ],
+      other: '',
       parentEmail: '',
       providerEmail: ''
     }
 
     this.handleDateChange = this.handleDateChange.bind(this);
-    this.handleInputChange = this.handleInputChange.bind(this);
     this.handleDiapersChange = this.handleDiapersChange.bind(this);
     this.handleBottlesChange = this.handleBottlesChange.bind(this);
     this.handleBottlesTimeChange = this.handleBottlesTimeChange.bind(this);
     this.handleNapsChange = this.handleNapsChange.bind(this);
     this.handleNapsTimeChange = this.handleNapsTimeChange.bind(this);
+    this.handleBringItemsChange = this.handleBringItemsChange.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleDateChange(selectedDate) {
     this.setState({today: selectedDate});
-  }
-
-  handleInputChange(e) {
-    // this.setState({ [e.target.name]: e.target.value});
   }
 
   handleDiapersChange(diaper, index) {
@@ -102,6 +106,17 @@ class InfantsForm extends Component {
     this.setState({naps: newNaps});
   }
 
+  handleBringItemsChange(item, isChecked, index) {
+    console.log(item + ' ' + isChecked + ' ' + index);
+    let newBringItems = [ ...this.state.bringItems ];
+    newBringItems[index] = { ...newBringItems[index], type: item, isChecked: isChecked };
+    this.setState({bringItems: newBringItems});
+  }
+
+  handleInputChange(event) {
+    this.setState({ [event.target.name]: event.target.value });
+  }
+
   handleSubmit(event) {
     console.log(this.state);
     event.preventDefault();
@@ -114,44 +129,71 @@ class InfantsForm extends Component {
         <h1>Infants</h1>
         <Link to='/'> Go back</Link>
         <form onSubmit={this.handleSubmit}>
-          <DatePicker id="today" type="text" label="Today's Date: " date={this.state.today}
+          <DatePicker
+            id='today'
+            type='text'
+            label="Today's Date: "
+            date={this.state.today}
             onChangeDateTime={this.handleDateChange} />
-          <SingleInput id="name" type="text" label="Name: " onChange={this.handleInputChange} />
-          <SingleInput id="day" type="text" label="My day was " onChange={this.handleInputChange} />
-
+          <SingleInput
+            id='name'
+            type='text'
+            label='Name: '
+            onChange={this.handleInputChange} />
+          <SingleInput
+            id='day'
+            type='text'
+            label='My day was '
+            onChange={this.handleInputChange} />
           <InfantsMultipleInputs
-            title="Bottles"
-            firstLabel="Time: "
-            secondLabel="Amount: "
-            id="bottles"
+            title='Bottles'
+            firstLabel='Time: '
+            secondLabel='Amount: '
+            id='bottles'
             items={this.state.bottles}
             onChange={this.handleBottlesChange}
             onChangeDateTime={this.handleBottlesTimeChange}
           />
-
           <Diapers
-            title="Diaper Changes"
-            firstLabel="Time: "
-            secondLabel="Type: "
+            title='Diaper Changes'
+            firstLabel='Time: '
+            secondLabel='Type: '
             items={this.state.diapers}
             onChange={this.handleDiapersChange}
             onChangeDateTime={this.handleDiapersTimeChange}
           />
-
           <InfantsMultipleInputs
-            title="Nap Times"
-            firstLabel="Time: "
-            secondLabel="Length: "
-            id="naps"
+            title='Nap Times'
+            firstLabel='Time: '
+            secondLabel='Length: '
+            id='naps'
             items={this.state.naps}
             onChange={this.handleNapsChange}
             onChangeDateTime={this.handleNapsTimeChange}
           />
-
-          <SingleInput id="parentEmail" type="email" label="Parent E-mail: "
-            onChange={this.handleInputChange} />
-          <SingleInput id="providerEmail" type="email" label="Provider E-mail: "
-            onChange={this.handleInputChange} />
+          <BringItems
+            title='Please bring the following tomorrow.'
+            items={this.state.bringItems}
+            onChange={this.handleBringItemsChange}
+          />
+          <SingleInput
+            id='other'
+            type='text'
+            label='Other: '
+            onChange={this.handleInputChange}
+          />
+          <SingleInput
+            id='parentEmail'
+            type='email'
+            label='Parent E-mail: '
+            onChange={this.handleInputChange}
+          />
+          <SingleInput
+            id='providerEmail'
+            type='email'
+            label='Provider E-mail: '
+            onChange={this.handleInputChange}
+          />
           <Submit />
         </form>
       </div>
