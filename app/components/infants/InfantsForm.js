@@ -5,7 +5,7 @@ import moment from 'moment';
 
 import DatePicker from '../shared/DatePicker';
 import SingleInput from '../shared/SingleInput';
-import InfantsMultipleInputs from './forms/InfantsMultipleInputs';
+import TimedMultipleInputs from '../shared/TimedMultipleInputs';
 import Diapers from './forms/Diapers';
 import BringItems from '../shared/BringItems';
 import Submit from '../shared/Submit';
@@ -52,7 +52,9 @@ class InfantsForm extends Component {
       ],
       other: '',
       parentEmail: '',
-      providerEmail: ''
+      providerEmail: '',
+      providerUsername: '',
+      providerPassword: ''
     }
 
     this.handleDateChange = this.handleDateChange.bind(this);
@@ -145,7 +147,7 @@ class InfantsForm extends Component {
             type='text'
             label='My day was '
             onChange={this.handleInputChange} />
-          <InfantsMultipleInputs
+          <TimedMultipleInputs
             title='Bottles'
             firstLabel='Time: '
             secondLabel='Amount: '
@@ -162,7 +164,7 @@ class InfantsForm extends Component {
             onChange={this.handleDiapersChange}
             onChangeDateTime={this.handleDiapersTimeChange}
           />
-          <InfantsMultipleInputs
+          <TimedMultipleInputs
             title='Nap Times'
             firstLabel='Time: '
             secondLabel='Length: '
@@ -185,13 +187,25 @@ class InfantsForm extends Component {
           <SingleInput
             id='parentEmail'
             type='email'
-            label='Parent E-mail: '
+            label='Parent Email: '
             onChange={this.handleInputChange}
           />
           <SingleInput
-            id='providerEmail'
-            type='email'
-            label='Provider E-mail: '
+            id="providerEmail"
+            type="email"
+            label="Provider Email: "
+            onChange={this.handleInputChange}
+          />
+          <SingleInput
+            id="providerUsername"
+            type="text"
+            label="Provider Email Username: "
+            onChange={this.handleInputChange}
+          />
+          <SingleInput
+            id="providerPassword"
+            type="text"
+            label="Provider Email Password: "
             onChange={this.handleInputChange}
           />
           <Submit />

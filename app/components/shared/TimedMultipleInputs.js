@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import moment from 'moment';
-import TimePicker from '../../shared/TimePicker'
+import TimePicker from './TimePicker'
 
 class InfantMultipleInputs extends Component {
   constructor(props) {

@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
+import axios from 'axios';
 
 import SingleInput from '../shared/SingleInput';
 import MultipleInputs from '../shared/MultipleInputs';
+import TimedMultipleInputs from '../shared/TimedMultipleInputs';
 import BathroomTimes from './forms/BathroomTimes';
 import BringItems from '../shared/BringItems';
 import DatePicker from '../shared/DatePicker';
@@ -29,8 +31,8 @@ class ToddlersForm extends Component {
         type: ''
       },
       naps: [
-        {id: 'nap1', time: 'Morning', length: ''},
-        {id: 'nap2', time: 'Afternoon', length: ''}
+        {id: 'Morning', time: '', length: ''},
+        {id: 'Afternoon', time: '', length: ''}
       ],
       activities: '',
       bringItems: [
@@ -42,6 +44,8 @@ class ToddlersForm extends Component {
       ],
       other: '',
       providerEmail: '',
+      providerUsername: '',
+      providerPassword: '',
       parentEmail: ''
     };
 
@@ -89,15 +93,21 @@ class ToddlersForm extends Component {
   }
 
   handleBringItemsChange(item, isChecked, index) {
-    console.log(item + ' ' + isChecked + ' ' + index);
     let newBringItems = [ ...this.state.bringItems ];
     newBringItems[index] = { ...newBringItems[index], type: item, isChecked: isChecked };
     this.setState({bringItems: newBringItems});
   }
 
   handleSubmit(event) {
-    console.log(this.state);
     event.preventDefault();
+    let info = this.state;
+    axios.post('http://localhost:3000/sendmail/toddler', info)
+      .then(function(response) {
+        console.log(response);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
   }
 
   render() {
@@ -133,7 +143,11 @@ class ToddlersForm extends Component {
             bathroom={this.state.bathroom}
             onChange={this.handleBathroomChange}
           />
-          <MultipleInputs
+          <TimedMultipleInputs
+            title='Nap Times'
+            firstLabel='Time: '
+            secondLabel='Length: '
+            id='naps'
             items={this.state.naps}
             onChange={this.handleNapsChange}
           />
@@ -157,13 +171,25 @@ class ToddlersForm extends Component {
           <SingleInput
             id="parentEmail"
             type="email"
-            label="Parent E-mail: "
+            label="Parent Email: "
             onChange={this.handleInputChange}
           />
           <SingleInput
             id="providerEmail"
             type="email"
-            label="Provider E-mail: "
+            label="Provider Email: "
+            onChange={this.handleInputChange}
+          />
+          <SingleInput
+            id="providerUsername"
+            type="text"
+            label="Provider Email Username: "
+            onChange={this.handleInputChange}
+          />
+          <SingleInput
+            id="providerPassword"
+            type="text"
+            label="Provider Email Password: "
             onChange={this.handleInputChange}
           />
           <Submit />
