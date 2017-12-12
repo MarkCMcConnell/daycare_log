@@ -54,6 +54,7 @@ class ToddlersForm extends Component {
     this.handleMealChange = this.handleMealChange.bind(this);
     this.handleBathroomChange = this.handleBathroomChange.bind(this);
     this.handleNapsChange = this.handleNapsChange.bind(this);
+    this.handleNapsTimeChange = this.handleNapsTimeChange.bind(this);
     this.handleBringItemsChange = this.handleBringItemsChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -92,6 +93,12 @@ class ToddlersForm extends Component {
     this.setState({naps: newNaps});
   }
 
+  handleNapsTimeChange(time, index) {
+    let newNaps = [ ...this.state.naps ];
+    newNaps[index] = { ...newNaps[index], time: time };
+    this.setState({naps: newNaps});
+  }
+
   handleBringItemsChange(item, isChecked, index) {
     let newBringItems = [ ...this.state.bringItems ];
     newBringItems[index] = { ...newBringItems[index], type: item, isChecked: isChecked };
@@ -100,8 +107,7 @@ class ToddlersForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    let info = this.state;
-    axios.post('http://localhost:3000/sendmail/toddler', info)
+    axios.post('http://localhost:3000/sendmail/toddler', this.state)
       .then(function(response) {
         console.log(response);
       })
@@ -150,6 +156,7 @@ class ToddlersForm extends Component {
             id='naps'
             items={this.state.naps}
             onChange={this.handleNapsChange}
+            onChangeDateTime={this.handleNapsTimeChange}
           />
           <SingleInput
             id="activities"
@@ -188,7 +195,7 @@ class ToddlersForm extends Component {
           />
           <SingleInput
             id="providerPassword"
-            type="text"
+            type="password"
             label="Provider Email Password: "
             onChange={this.handleInputChange}
           />

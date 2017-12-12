@@ -3,6 +3,8 @@ const app = express();
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 const helmet = require('helmet');
+const toddlerEmailBuilder = require('./app/components/toddlerEmailBuilder');
+const infantEmailBuilder = require('./app/components/infantEmailBuilder');
 const port = 3000;
 
 require('dotenv').config();
@@ -26,6 +28,33 @@ app.get('/key', (req, res) => {
   });
 });
 
+app.post('/sendmail/infant', (req, res) => {
+  let transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: req.body.providerEmail,
+      pass: req.body.providerPassword
+    }
+  });
+
+  let htmlEmail = infantEmailBuilder(req.body);
+
+  let mailOptions = {
+    from: req.body.providerEmail,
+    to: req.body.parentEmail,
+    subject: req.body.name + ' - ' + req.body.today,
+    html: htmlEmail
+  }
+
+  transporter.sendMail(mailOptions, (error, info) => {
+    if(error) {
+      console.log(error);
+    } else {
+      console.log('Email sent: ' + info.response);
+    }
+  });
+});
+
 app.post('/sendmail/toddler', (req, res) => {
   let transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -35,12 +64,13 @@ app.post('/sendmail/toddler', (req, res) => {
     }
   });
 
+  let htmlEmail = toddlerEmailBuilder(req.body);
 
   let mailOptions = {
     from: req.body.providerEmail,
     to: req.body.parentEmail,
     subject: req.body.name + ' - ' + req.body.today,
-    text: req.body.activities
+    html: htmlEmail
   };
 
   transporter.sendMail(mailOptions, (error, info) => {

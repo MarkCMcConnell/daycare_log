@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
+import axios from 'axios';
 
 import DatePicker from '../shared/DatePicker';
 import SingleInput from '../shared/SingleInput';
@@ -59,6 +60,7 @@ class InfantsForm extends Component {
 
     this.handleDateChange = this.handleDateChange.bind(this);
     this.handleDiapersChange = this.handleDiapersChange.bind(this);
+    this.handleDiapersTimeChange = this.handleDiapersTimeChange.bind(this);
     this.handleBottlesChange = this.handleBottlesChange.bind(this);
     this.handleBottlesTimeChange = this.handleBottlesTimeChange.bind(this);
     this.handleNapsChange = this.handleNapsChange.bind(this);
@@ -72,47 +74,50 @@ class InfantsForm extends Component {
     this.setState({today: selectedDate});
   }
 
+  handleEventChange(item, index) {
+    let newState = [ ...this.state.item ];
+  }
+
   handleDiapersChange(diaper, index) {
-    let newDiapers = [ ...this.state.diapers ];
-    newDiapers[index] = { ...newDiapers[index], type: diaper };
-    this.setState({diapers: newDiapers});
+    let newState = [ ...this.state.diapers ];
+    newState[index] = { ...newState[index], type: diaper };
+    this.setState({diapers: newState});
   }
 
   handleDiapersTimeChange(time, index) {
-    let newDiapers = [ ...this.state.diapers ];
-    newDiapers[index] = { ...newDiapers[index], time: time};
-    this.setState({diapers: newDiapers});
+    let newState = [ ...this.state.diapers ];
+    newState[index] = { ...newState[index], time: time};
+    this.setState({diapers: newState});
   }
 
   handleBottlesChange(bottle, index) {
-    let newBottles = [ ...this.state.bottles ];
-    newBottles[index] = { ...newBottles[index], amount: bottle };
-    this.setState({bottles: newBottles});
+    let newState = [ ...this.state.bottles ];
+    newState[index] = { ...newState[index], amount: bottle };
+    this.setState({bottles: newState});
   }
 
   handleBottlesTimeChange(time, index) {
-    let newBottles = [ ...this.state.bottles ];
-    newBottles[index] = { ...newBottles[index], time: time };
-    this.setState({bottles: newBottles});
+    let newState = [ ...this.state.bottles ];
+    newState[index] = { ...newState[index], time: time };
+    this.setState({bottles: newState});
   }
 
   handleNapsChange(nap, index) {
-    let newNaps = [ ...this.state.naps ];
-    newNaps[index] = { ...newNaps[index], length: nap };
-    this.setState({naps: newNaps});
+    let newState = [ ...this.state.naps ];
+    newState[index] = { ...newState[index], length: nap };
+    this.setState({naps: newState});
   }
 
   handleNapsTimeChange(time, index) {
-    let newNaps = [ ...this.state.naps ];
-    newNaps[index] = { ...newNaps[index], time: time };
-    this.setState({naps: newNaps});
+    let newState = [ ...this.state.naps ];
+    newState[index] = { ...newState[index], time: time };
+    this.setState({naps: newState});
   }
 
   handleBringItemsChange(item, isChecked, index) {
-    console.log(item + ' ' + isChecked + ' ' + index);
-    let newBringItems = [ ...this.state.bringItems ];
-    newBringItems[index] = { ...newBringItems[index], type: item, isChecked: isChecked };
-    this.setState({bringItems: newBringItems});
+    let newState = [ ...this.state.bringItems ];
+    newState[index] = { ...newState[index], type: item, isChecked: isChecked };
+    this.setState({bringItems: newState});
   }
 
   handleInputChange(event) {
@@ -120,9 +125,14 @@ class InfantsForm extends Component {
   }
 
   handleSubmit(event) {
-    console.log(this.state);
     event.preventDefault();
-    // this.props.history.push('/');
+    axios.post('http://localhost:3000/sendmail/infant', this.state)
+      .then(function(response) {
+        console.log(response);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
   }
 
   render() {
@@ -149,25 +159,20 @@ class InfantsForm extends Component {
             onChange={this.handleInputChange} />
           <TimedMultipleInputs
             title='Bottles'
-            firstLabel='Time: '
-            secondLabel='Amount: '
             id='bottles'
             items={this.state.bottles}
             onChange={this.handleBottlesChange}
             onChangeDateTime={this.handleBottlesTimeChange}
           />
-          <Diapers
-            title='Diaper Changes'
-            firstLabel='Time: '
-            secondLabel='Type: '
+          <TimedMultipleInputs
+            title='Diapers'
+            id='diapers'
             items={this.state.diapers}
             onChange={this.handleDiapersChange}
             onChangeDateTime={this.handleDiapersTimeChange}
           />
           <TimedMultipleInputs
             title='Nap Times'
-            firstLabel='Time: '
-            secondLabel='Length: '
             id='naps'
             items={this.state.naps}
             onChange={this.handleNapsChange}
@@ -204,7 +209,7 @@ class InfantsForm extends Component {
           />
           <SingleInput
             id="providerPassword"
-            type="text"
+            type="password"
             label="Provider Email Password: "
             onChange={this.handleInputChange}
           />
