@@ -20,29 +20,29 @@ class InfantsForm extends Component {
       name: '',
       day: '',
       bottles: [
-        { id: 'bottle1', time: '', amount: ''},
-        { id: 'bottle2', time: '', amount: ''},
-        { id: 'bottle3', time: '', amount: ''},
-        { id: 'bottle4', time: '', amount: ''},
-        { id: 'bottle5', time: '', amount: ''},
-        { id: 'bottle6', time: '', amount: ''}
+        { time: '', amount: ''},
+        { time: '', amount: ''},
+        { time: '', amount: ''},
+        { time: '', amount: ''},
+        { time: '', amount: ''},
+        { time: '', amount: ''}
       ],
       diapers: [
-        { id: 'diaper1', time: '', type: ''},
-        { id: 'diaper2', time: '', type: ''},
-        { id: 'diaper3', time: '', type: ''},
-        { id: 'diaper4', time: '', type: ''},
-        { id: 'diaper5', time: '', type: ''},
-        { id: 'diaper6', time: '', type: ''},
-        { id: 'diaper7', time: '', type: ''},
-        { id: 'diaper8', time: '', type: ''},
-        { id: 'diaper9', time: '', type: ''},
+        { time: '', type: ''},
+        { time: '', type: ''},
+        { time: '', type: ''},
+        { time: '', type: ''},
+        { time: '', type: ''},
+        { time: '', type: ''},
+        { time: '', type: ''},
+        { time: '', type: ''},
+        { time: '', type: ''},
       ],
       naps: [
-        { id: 'nap1' , time: '', length: ''},
-        { id: 'nap2' , time: '', length: ''},
-        { id: 'nap3' , time: '', length: ''},
-        { id: 'nap4' , time: '', length: ''}
+        { time: '', length: ''},
+        { time: '', length: ''},
+        { time: '', length: ''},
+        { time: '', length: ''}
       ],
       bringItems: [
         {type: 'Diapers', isChecked: false},
@@ -167,6 +167,7 @@ class InfantsForm extends Component {
           <TimedMultipleInputs
             title='Diapers'
             id='diapers'
+            time={this.state.diapers.time}
             items={this.state.diapers}
             onChange={this.handleDiapersChange}
             onChangeDateTime={this.handleDiapersTimeChange}
@@ -174,6 +175,7 @@ class InfantsForm extends Component {
           <TimedMultipleInputs
             title='Nap Times'
             id='naps'
+            time={this.state.naps.time}
             items={this.state.naps}
             onChange={this.handleNapsChange}
             onChangeDateTime={this.handleNapsTimeChange}

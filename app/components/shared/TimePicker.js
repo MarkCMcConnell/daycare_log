@@ -7,7 +7,7 @@ const TimePicker = ({id, time, onChangeDateTime }) => {
     <div>
       <Kronos
         time={time}
-        itemId={id}
+        id={id}
         format={'h:mm a'}
         timeStep={5}
         options={{ format: { hour: 'hh:mm' } }}

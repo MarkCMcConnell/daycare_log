@@ -30,11 +30,11 @@ class InfantMultipleInputs extends Component {
             key={index}
             item={item}
             index={index}
-            time={moment().set({'hour': 7, 'minute': 0})}
+            time=''
             firstLabel='Time: '
             secondLabel='Amount: '
             onChange={(e) => this.onChange(e, index)}
-            onChangeDateTime={this.handleTimeFormChange}
+            onChangeDateTime={(time) => this.handleTimeFormChange(time, index)}
           />
         );
       } else if(this.props.id === 'diapers') {
@@ -43,10 +43,10 @@ class InfantMultipleInputs extends Component {
             key={index}
             item={item}
             index={index}
-            time={moment().set({'hour': 7, 'minute': 0})}
+            time=''
             firstLabel='Time: '
             onChange={(e) => this.onChange(e, index)}
-            onChangeDateTime={this.handleTimeFormChange}
+            onChangeDateTime={(time) => this.handleTimeFormChange(time, index)}
           />
         );
       } else {
@@ -55,11 +55,11 @@ class InfantMultipleInputs extends Component {
             key={index}
             item={item}
             index={index}
-            time={moment().set({'hour': 7, 'minute': 0})}
+            time=''
             firstLabel='Time: '
             secondLabel='Length: '
             onChange={(e) => this.onChange(e, index)}
-            onChangeDateTime={this.handleTimeFormChange}
+            onChangeDateTime={(time) => this.handleTimeFormChange(time, index)}
           />
         );
       }

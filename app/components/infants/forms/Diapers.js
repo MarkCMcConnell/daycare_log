@@ -7,9 +7,9 @@ export default function Diapers({ firstLabel, time, index, onChange, onChangeDat
     <div>
       <label htmlFor={index}>{firstLabel}</label>
       <TimePicker id={index} time={time}
-        onChangeDateTime={onChange}
+        onChangeDateTime={onChangeDateTime}
       />
-      <select name='type' onChange={onChangeDateTime}>
+      <select name='type' onChange={onChange}>
         <option value=''></option>
         <option value='wet'>Wet</option>
         <option value='dirty'>Dirty</option>
