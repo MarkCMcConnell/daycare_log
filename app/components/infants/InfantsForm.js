@@ -133,6 +133,7 @@ class InfantsForm extends Component {
       .catch(function(error) {
         console.log(error);
       });
+    this.props.history.push('/');
   }
 
   render() {

@@ -30,10 +30,10 @@ class InfantMultipleInputs extends Component {
             key={index}
             item={item}
             index={index}
-            time=''
+            time={item.time}
             firstLabel='Time: '
             secondLabel='Amount: '
-            onChange={(e) => this.onChange(e, index)}
+            onChange={(e) => this.handleChange(e, index)}
             onChangeDateTime={(time) => this.handleTimeFormChange(time, index)}
           />
         );
@@ -43,9 +43,9 @@ class InfantMultipleInputs extends Component {
             key={index}
             item={item}
             index={index}
-            time=''
+            time={item.time}
             firstLabel='Time: '
-            onChange={(e) => this.onChange(e, index)}
+            onChange={(e) => this.handleChange(e, index)}
             onChangeDateTime={(time) => this.handleTimeFormChange(time, index)}
           />
         );
@@ -55,10 +55,10 @@ class InfantMultipleInputs extends Component {
             key={index}
             item={item}
             index={index}
-            time=''
+            time={item.time}
             firstLabel='Time: '
             secondLabel='Length: '
-            onChange={(e) => this.onChange(e, index)}
+            onChange={(e) => this.handleChange(e, index)}
             onChangeDateTime={(time) => this.handleTimeFormChange(time, index)}
           />
         );
