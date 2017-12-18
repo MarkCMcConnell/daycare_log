@@ -1,42 +1,63 @@
+const webpack = require('webpack');
 const path = require('path');
+const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+// const paths = require('./tools/webpack/paths');
+// const plugins = require('./tools/webpack/plugins');
+// const loaders = require('./tools/webpack/loaders');
 
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
-  template: './app/index.html',
-  filename: 'index.html',
-  inject: 'body'
-});
+let config = {
+    context: path.resolve(__dirname, './'),
+    entry: './src/App.js',
+    // entry: {
+    //   app: paths.APP
+    // },
+    output: {
+      path: path.resolve(__dirname, './public/dist'),
+      filename: '[name].bundle.js'
+    },
+    resolve: {
+      extensions: ['.json', '.jsx', '.js']
+    },
+    module: {
+      rules: [
+        {
+          test: /\.jsx?$/,
+          exclude: /node_modules/,
+          loader: "babel-loader"
+        },
+        {
+          test: /\.scss$/,
+          use: ExtractTextWebpackPlugin.extract({
+            loader: ['css-loader', 'sass-loader'],
+            fallback: 'style-loader'
+          })
 
-module.exports = {
-  entry: './app/App.js',
-  output: {
-    path: path.resolve('dist'),
-    filename: 'bundle.js'
-  },
-  resolve: {
-    extensions: ['.json', '.jsx', '.js']
-  },
-  module: {
-    loaders: [
-      {
-        test: /\.js$/,
-        loader: 'babel-loader',
-        exclude: /node_modules/
-      },
-      {
-        test: /\.jsx$/,
-        loader: 'babel-loader',
-        include: __dirname,
-        exclude: /node_modules/
-      },
-      {
-        loader: 'json-loader',
-        include: /\.json$/
-      },
-      {
-        test: /\.css$/,
-        loaders: [ 'style-loader', 'css-loader' ]
-      }
+        }
+      ]
+    },
+    plugins: [
+      new ExtractTextWebpackPlugin('styles.css'),
+      new webpack.optimize.UglifyJsPlugin()
     ]
+    // module: {
+    //   rules: [
+    //     loaders.BabelLoader,
+    //     loaders.CSSLoader
+    //   ]
+    // },
+    // plugins: [
+    //   plugins.DefinePlugin,,
+    //   plugins.HtmlWebpackPlugin,
+    //   plugins.UglifyJsPlugin
+    // ]
   }
+}
+
+module.exports = config;
+
+if (process.env.NODE_ENV === 'production') {
+  module.exports.plugins.push(
+    new webpack.optimize.UglifyJsPlugin()
+  );
 }
