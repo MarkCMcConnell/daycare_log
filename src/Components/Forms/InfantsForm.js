@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import axios from 'axios';
 
-import DatePicker from '../shared/DatePicker';
-import SingleInput from '../shared/SingleInput';
-import TimedMultipleInputs from '../shared/TimedMultipleInputs';
-import Diapers from './forms/Diapers';
-import BringItems from '../shared/BringItems';
-import Submit from '../shared/Submit';
+import DatePicker from './Shared/DatePicker';
+import SingleInput from './Input/SingleInput';
+import TimedMultipleInputs from './Shared/TimedMultipleInputs';
+import BringItems from './Shared/BringItems';
+import Submit from './Shared/Submit';
 
 class InfantsForm extends Component {
   constructor(props) {
@@ -47,7 +45,7 @@ class InfantsForm extends Component {
       bringItems: [
         {type: 'Diapers', isChecked: false},
         {type: 'Wipes', isChecked: false},
-        {type: 'Forumla', isChecked: false},
+        {type: 'Formula', isChecked: false},
         {type: 'Change of clothes', isChecked: false},
         {type: 'Ointment', isChecked: false}
       ],
@@ -72,10 +70,6 @@ class InfantsForm extends Component {
 
   handleDateChange(selectedDate) {
     this.setState({today: selectedDate});
-  }
-
-  handleEventChange(item, index) {
-    let newState = [ ...this.state.item ];
   }
 
   handleDiapersChange(diaper, index) {

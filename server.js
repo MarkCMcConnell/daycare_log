@@ -3,9 +3,9 @@ const app = express();
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 const helmet = require('helmet');
-const toddlerEmailBuilder = require('./src/components/toddlerEmailBuilder');
-const infantEmailBuilder = require('./src/components/infantEmailBuilder');
-const port = 3000;
+const toddlerEmailBuilder = require('./src/EmailTemplates/toddlerEmailBuilder');
+const infantEmailBuilder = require('./src/EmailTemplates/infantEmailBuilder');
+const port = process.env.PORT || 3000;
 
 require('dotenv').config();
 

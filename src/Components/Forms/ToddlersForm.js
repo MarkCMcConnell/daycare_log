@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import axios from 'axios';
 
-import SingleInput from '../shared/SingleInput';
-import MultipleInputs from '../shared/MultipleInputs';
-import TimedMultipleInputs from '../shared/TimedMultipleInputs';
-import BathroomTimes from './forms/BathroomTimes';
-import BringItems from '../shared/BringItems';
-import DatePicker from '../shared/DatePicker';
-import Submit from '../shared/Submit';
+import SingleInput from './Input/SingleInput';
+import MultipleInputs from './Shared/MultipleInputs';
+import TimedMultipleInputs from './Shared/TimedMultipleInputs';
+import BathroomTimes from './Toddlers/BathroomTimes';
+import BringItems from './Shared/BringItems';
+import DatePicker from './Shared/DatePicker';
+import Submit from './Shared/Submit';
 
 class ToddlersForm extends Component {
   constructor(props) {

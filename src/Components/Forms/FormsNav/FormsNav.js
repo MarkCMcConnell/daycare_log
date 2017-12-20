@@ -1,9 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import InfantsForm from './infants/InfantsForm';
-import ToddlersForm from './toddlers/ToddlersForm';
-
 const FormsIndex = () => {
 
   return(

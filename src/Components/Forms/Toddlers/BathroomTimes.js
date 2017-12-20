@@ -1,6 +1,6 @@
 import React from 'react';
 
-const BathroomTimes = ({bathroom, onChange}) => {
+const BathroomTimes = ({onChange}) => {
   return (
     <div>
       <span>Bowel movements for the day</span>

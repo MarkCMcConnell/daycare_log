@@ -2,62 +2,68 @@ const webpack = require('webpack');
 const path = require('path');
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-// const paths = require('./tools/webpack/paths');
-// const plugins = require('./tools/webpack/plugins');
-// const loaders = require('./tools/webpack/loaders');
+const OptimizeCSSAssets = require('optimize-css-assets-webpack-plugin');
 
-let config = {
+module.exports = env => {
+
+  if (process.env.NODE_ENV === 'prod') {
+    module.exports.plugins.push(
+      new webpack.optimize.UglifyJsPlugin({ uglifyOptions: { ...options } }), // Call JS minifier
+      new OptimizeCSSAssets()  // Call CSS minifier
+    );
+  }
+
+  return {
     context: path.resolve(__dirname, './'),
     entry: './src/App.js',
-    // entry: {
-    //   app: paths.APP
-    // },
     output: {
       path: path.resolve(__dirname, './public/dist'),
-      filename: '[name].bundle.js'
+      filename: 'bundle.js'
     },
     resolve: {
-      extensions: ['.json', '.jsx', '.js']
+      extensions: ['.json', '.jsx', '.js', '.scss', '.css', '.jpeg', '.jpg', '.gif', '.gif'],
+      alias: {
+        images: path.resolve(__dirname, 'src/assets/images')
+      }
     },
     module: {
       rules: [
         {
-          test: /\.jsx?$/,
+          test: /\.(js|jsx)$/,
           exclude: /node_modules/,
           loader: "babel-loader"
         },
         {
           test: /\.scss$/,
-          use: ExtractTextWebpackPlugin.extract({
-            loader: ['css-loader', 'sass-loader'],
+          use: ['css-hot-loader'].concat(ExtractTextWebpackPlugin.extract({
+            use: ['css-loader', 'sass-loader', 'postcss-loader'],
             fallback: 'style-loader'
-          })
-
+          }))
+        },
+        {
+          test: /\.(jpe?g|png|gif|svg)$/i,
+          loaders: ['file-loader?name=src/assets/images/&name=images/[path][name].[ext]', {
+            loader: 'image-webpack-loader',
+            query: {
+              mozjpeg: {
+                progressive: true,
+              },
+              gifsicle: {
+                interlaced: false,
+              },
+              optipng: {
+                optimizationLevel: 4,
+              },
+              pngquant: {
+                quality: '75-90',
+                speed: 3,
+              },
+            },
+          }],
+          exclude: /node_modules/,
+          include: __dirname,
         }
       ]
-    },
-    plugins: [
-      new ExtractTextWebpackPlugin('styles.css'),
-      new webpack.optimize.UglifyJsPlugin()
-    ]
-    // module: {
-    //   rules: [
-    //     loaders.BabelLoader,
-    //     loaders.CSSLoader
-    //   ]
-    // },
-    // plugins: [
-    //   plugins.DefinePlugin,,
-    //   plugins.HtmlWebpackPlugin,
-    //   plugins.UglifyJsPlugin
-    // ]
+    }
   }
-}
-
-module.exports = config;
-
-if (process.env.NODE_ENV === 'production') {
-  module.exports.plugins.push(
-    new webpack.optimize.UglifyJsPlugin()
-  );
 }

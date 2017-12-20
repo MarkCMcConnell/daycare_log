@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import SingleInput from '../Input/SingleInput';
 
 class MultipleInputs extends Component {
   constructor(props) {
@@ -15,8 +16,12 @@ class MultipleInputs extends Component {
     const inputItems = this.props.items.map((item, index) => {
       return (
         <div key={index}>
-          <label htmlFor={item.id}>{item.time}</label>
-          <input type='text' id={item.id} name={item} onChange={(e) => this.handleChange(e, index)} />
+          <SingleInput
+            label={item.time}
+            type='text'
+            name={item}
+            onChange={(e) => this.handleChange(e, index)}
+          />
         </div>
       );
     });

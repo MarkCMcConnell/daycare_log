@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import moment from 'moment';
+import React from 'react';
 import Kronos from 'react-kronos';
 
 const DatePicker = ({id, label, date, onChangeDateTime}) => {
