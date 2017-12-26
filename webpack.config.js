@@ -1,48 +1,72 @@
 const webpack = require('webpack');
 const path = require('path');
-const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const OptimizeCSSAssets = require('optimize-css-assets-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-module.exports = env => {
-
-  if (process.env.NODE_ENV === 'prod') {
-    module.exports.plugins.push(
-      new webpack.optimize.UglifyJsPlugin({ uglifyOptions: { ...options } }), // Call JS minifier
-      new OptimizeCSSAssets()  // Call CSS minifier
-    );
-  }
-
-  return {
-    context: path.resolve(__dirname, './'),
-    entry: './src/App.js',
-    output: {
-      path: path.resolve(__dirname, './public/dist'),
-      filename: 'bundle.js'
-    },
-    resolve: {
-      extensions: ['.json', '.jsx', '.js', '.scss', '.css', '.jpeg', '.jpg', '.gif', '.gif'],
-      alias: {
-        images: path.resolve(__dirname, 'src/assets/images')
-      }
-    },
-    module: {
-      rules: [
-        {
-          test: /\.(js|jsx)$/,
-          exclude: /node_modules/,
-          loader: "babel-loader"
-        },
-        {
-          test: /\.scss$/,
-          use: ['css-hot-loader'].concat(ExtractTextWebpackPlugin.extract({
-            use: ['css-loader', 'sass-loader', 'postcss-loader'],
-            fallback: 'style-loader'
-          }))
-        },
-        {
-          test: /\.(jpe?g|png|gif|svg)$/i,
-          loaders: ['file-loader?name=src/assets/images/&name=images/[path][name].[ext]', {
+module.exports = {
+  entry: [
+    'babel-polyfill',
+    'react-hot-loader/patch',
+    './src/Main.js'
+  ],
+  output: {
+    publicPath: '/src/',
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'js/[name].js'
+  },
+  resolve: {
+    extensions: ['.json', '.jsx', '.js'],
+  },
+  devServer: {
+    contentBase: path.resolve(__dirname, 'dist')
+  },
+  module: {
+    rules: [
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader'
+        }
+      },
+      {
+        test: /\.html$/,
+        use: [
+          {
+            loader: 'html-loader'
+          }
+        ]
+      },
+      {
+        test: /\.css$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          // Calls loaders last to first
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                modules: true,
+                importLoaders: 1,
+                localIdentName: '[name]__[local]__[hash:base64:5]'
+              }
+            },
+            'postcss-loader'
+          ]
+        })
+      },
+      {
+        test: /\.(png|jp(e*)g|gif|svg)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8000, // Convert images < 8kb to base64 string
+              name: 'public/assets/images/[hash]-[name].[ext]'
+            }
+          },
+          {
             loader: 'image-webpack-loader',
             query: {
               mozjpeg: {
@@ -52,18 +76,29 @@ module.exports = env => {
                 interlaced: false,
               },
               optipng: {
-                optimizationLevel: 4,
+                optimizationLevel: 4
               },
               pngquant: {
                 quality: '75-90',
-                speed: 3,
-              },
-            },
-          }],
-          exclude: /node_modules/,
-          include: __dirname,
-        }
-      ]
-    }
-  }
+                speed: 3
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      hash: true,
+      template: './src/index.html',
+      filename: './index.html'
+    }),
+    new ExtractTextPlugin({
+      filename: 'styles.css'
+    }),
+    new CopyWebpackPlugin([
+      {from: 'public/assets/images', to:'images'}
+    ])
+  ]
 }

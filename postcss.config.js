@@ -1,8 +1,13 @@
 module.exports = {
   plugins: {
-    require('autoprefixer'),
     'postcss-import': {},
+    'postcss-mixins': {},
+    'postcss-nested': {},
+    'postcss-simple-vars': {},
+    'postcss-hexrgba': {},
     'postcss-cssnext': {},
-    'cssnano': {}
+    'cssnano': {
+      'autoprefixer': false
+    }
   }
 }

@@ -1,10 +1,11 @@
 import React from 'react';
+import styles from './style.css';
 
 const SingleInput = ({label, type, name, onChange}) => {
   return (
     <div>
-      <label htmlFor={name}>{label}</label>
-      <input type={type} name={name} onChange={onChange} />
+      <label className={styles.singleInput} htmlFor={name}>{label}</label>
+      <input  className={styles.singleInput} type={type} name={name} onChange={onChange} />
     </div>
   );
 }
