@@ -3,18 +3,20 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 // List of Components
-import InfantsForm from './Components/Forms/InfantsForm';
-import ToddlersForm from './Components/Forms/ToddlersForm';
-import FormsNav from './Components/Forms/FormsNav/FormsNav';
+import InfantsForm from './Components/InfantsForm/InfantsForm';
+import ToddlersForm from './Components/ToddlersForm/ToddlersForm';
+import FormsNav from './Components/FormsNav/FormsNav';
+
+import '../public/assets/stylesheets/App.css';
 
 // App routing
 const App = () => {
   return (
     <Router>
       <div>
+        <Route exact path='/' component={ FormsNav } />
         <Route path='/forms/infants' component={ InfantsForm } />
         <Route path='/forms/toddlers' component={ ToddlersForm } />
-        <Route path='/' component={FormsNav} />
       </div>
     </Router>
   );

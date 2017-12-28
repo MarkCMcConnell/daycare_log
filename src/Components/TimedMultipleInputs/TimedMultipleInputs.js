@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 
-import TimePicker from './TimePicker';
-import SelectOptions from '../Select/SelectOptions';
+import TimePicker from '../ReactKronos/TimePicker';
+import SelectOptions from '../SelectOptions/SelectOptions';
 
 class InfantMultipleInputs extends Component {
   constructor(props) {

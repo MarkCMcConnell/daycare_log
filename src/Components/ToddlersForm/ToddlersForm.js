@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom';
 import moment from 'moment';
 import axios from 'axios';
 
-import SingleInput from './Input/SingleInput';
-import MultipleInputs from './Shared/MultipleInputs';
-import TimedMultipleInputs from './Shared/TimedMultipleInputs';
-import BathroomTimes from './Toddlers/BathroomTimes';
-import BringItems from './Shared/BringItems';
-import DatePicker from './Shared/DatePicker';
-import Submit from './Shared/Submit';
+import SingleInput from '../SingleInput/SingleInput';
+import MultipleInputs from '../MultipleInputs/MultipleInputs';
+import TimedMultipleInputs from '../TimedMultipleInputs/TimedMultipleInputs';
+import BathroomTimes from '../BathroomTimes/BathroomTimes';
+import BringItems from '../BringItems/BringItems';
+import DatePicker from '../ReactKronos/DatePicker';
+import Submit from '../Submit/Submit';
 
 class ToddlersForm extends Component {
   constructor(props) {

@@ -5,7 +5,9 @@ module.exports = {
     'postcss-nested': {},
     'postcss-simple-vars': {},
     'postcss-hexrgba': {},
-    'postcss-cssnext': {},
+    'postcss-cssnext': {
+
+    },
     'cssnano': {
       'autoprefixer': false
     }

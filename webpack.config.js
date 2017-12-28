@@ -40,22 +40,23 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract({
+        // Allows hot reloading of CSS file changes.
+        // ExtractTextPlugin pulls CSS out of the bundle and saves to styles.css
+        use: ['css-hot-loader'].concat(ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          // Calls loaders last to first
           use: [
             {
               loader: 'css-loader',
               options: {
                 modules: true,
-                importLoaders: 1,
-                localIdentName: '[name]__[local]__[hash:base64:5]'
+                importLoaders: 1
               }
             },
             'postcss-loader'
           ]
-        })
+        }))
       },
+      // Load and optimize images
       {
         test: /\.(png|jp(e*)g|gif|svg)$/,
         use: [

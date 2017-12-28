@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 import moment from 'moment';
 import axios from 'axios';
 
-import DatePicker from './Shared/DatePicker';
-import SingleInput from './Input/SingleInput';
-import TimedMultipleInputs from './Shared/TimedMultipleInputs';
-import BringItems from './Shared/BringItems';
-import Submit from './Shared/Submit';
+import DatePicker from '../ReactKronos/DatePicker';
+import SingleInput from '../SingleInput/SingleInput';
+import TimedMultipleInputs from '../TimedMultipleInputs/TimedMultipleInputs';
+import BringItems from '../BringItems/BringItems';
+import Submit from '../Submit/Submit';
 
 class InfantsForm extends Component {
   constructor(props) {

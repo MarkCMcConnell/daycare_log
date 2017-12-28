@@ -1,0 +1,14 @@
+/* $mainWhite: #fff;
+$mainBlack: #000;
+$mainGreen: #668d3c;
+$darkGreen: #404f24;
+$mainOrange: #d57500;
+$darkOrange: #8f3b1b; */
+
+:root {
+  --primaryColor: #d57500;
+  --primaryColorDark: #8f3b1b;
+  --secondaryColor: #668d3c;
+  --secondaryColorDark: #404f24;
+  --text: #330000;
+}

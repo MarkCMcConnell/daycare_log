@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import SingleInput from '../Input/SingleInput';
+import SingleInput from '../SingleInput/SingleInput';
 
 class MultipleInputs extends Component {
   constructor(props) {
