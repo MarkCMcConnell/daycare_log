@@ -10,6 +10,8 @@ import TimedMultipleInputs from '../TimedMultipleInputs/TimedMultipleInputs';
 import BathroomTimes from '../BathroomTimes/BathroomTimes';
 import BringItems from '../BringItems/BringItems';
 import DatePicker from '../ReactKronos/DatePicker';
+import Step from '../Step/Step';
+import UserInfo from '../UserInfo/UserInfo';
 import Submit from '../Submit/Submit';
 
 class ToddlersForm extends Component {
@@ -46,7 +48,8 @@ class ToddlersForm extends Component {
       providerEmail: '',
       providerUsername: '',
       providerPassword: '',
-      parentEmail: ''
+      parentEmail: '',
+      step: 1
     };
 
     this.handleDateChange = this.handleDateChange.bind(this);
@@ -57,6 +60,8 @@ class ToddlersForm extends Component {
     this.handleNapsTimeChange = this.handleNapsTimeChange.bind(this);
     this.handleBringItemsChange = this.handleBringItemsChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.prevStep = this.prevStep.bind(this);
+    this.nextStep = this.nextStep.bind(this);
   }
 
   handleDateChange(selectedDate) {
@@ -107,103 +112,172 @@ class ToddlersForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    axios.post('http://localhost:3000/sendmail/toddler', this.state)
-      .then(function(response) {
-        console.log(response);
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-    this.props.history.push('/');
+    console.log(this.state);
+    // axios.post('http://localhost:3000/sendmail/toddler', this.state)
+    //   .then(function(response) {
+    //     console.log(response);
+    //   })
+    //   .catch(function(error) {
+    //     console.log(error);
+    //   });
+    // this.props.history.push('/');
+  }
+
+  prevStep() {
+    this.setState({
+      step: this.state.step - 1
+    });
+  }
+
+  nextStep() {
+    this.setState({
+      step: this.state.step + 1
+    });
+  }
+
+  formStep(currentStep) {
+    switch(this.state.step) {
+      case 1:
+        return (
+          <div>
+            <DatePicker
+              id="today"
+              type="text"
+              label="Today's Date: "
+              date={this.state.today}
+              onChangeDateTime={this.handleDateChange}
+            />
+            <SingleInput
+              id="name"
+              type="text"
+              label="Name: "
+              onChange={this.handleInputChange}
+            />
+            <SingleInput
+              id="parentEmail"
+              type="email"
+              label="Parent Email: "
+              onChange={this.handleInputChange}
+            />
+            <Step id='next' text='Next' onClick={this.nextStep} />
+          </div>
+        );
+      case 2:
+        return (
+          <div>
+            <TextArea
+              label="My day was: "
+              name='myDay'
+              rows='4'
+              cols='40'
+              onChange={this.handleInputChange}
+              prevStep={this.prevStep}
+              nextStep={this.nextStep}
+            />
+          </div>
+        );
+      case 3:
+        return (
+          <div>
+            <MultipleInputs
+              title='Meals'
+              items={this.state.meals}
+              onChange={this.handleMealChange}
+            />
+            <BathroomTimes
+              bathroom={this.state.bathroom}
+              onChange={this.handleBathroomChange}
+            />
+            <Step id='previous' text='Previous' onClick={this.prevStep} />
+            <Step id='next' text='Next' onClick={this.nextStep} />
+          </div>
+        );
+      case 4:
+        return (
+          <div>
+            <TimedMultipleInputs
+              title='Nap Times'
+              id='naps'
+              items={this.state.naps}
+              onChange={this.handleNapsChange}
+              onChangeDateTime={this.handleNapsTimeChange}
+            />
+            <Step id='previous' text='Previous' onClick={this.prevStep} />
+            <Step id='next' text='Next' onClick={this.nextStep} />
+          </div>
+        );
+      case 5:
+        return (
+          <div>
+            <TimedMultipleInputs
+              title='Nap Times'
+              id='naps'
+              items={this.state.naps}
+              onChange={this.hanMultipleChange}
+              onChangeDateTime={this.handleMultipleTimeChange}
+            />
+            <Step id='previous' text='Previous' onClick={this.prevStep} />
+            <Step id='next' text='Next' onClick={this.nextStep} />
+          </div>
+        );
+      case 6:
+        return (
+          <div>
+            <TextArea
+              label='Today I did: '
+              name='myDay'
+              rows='4'
+              cols='40'
+              onChange={this.handleInputChange}
+              prevStep={this.prevStep}
+              nextStep={this.nextStep}
+            />
+          </div>
+        );
+      case 7:
+        return (
+          <div>
+            <BringItems
+              title='Please bring the following tomorrow.'
+              items={this.state.bringItems}
+              onChange={this.handleBringItemsChange}
+            />
+            <SingleInput
+              id='other'
+              type='text'
+              label='Other: '
+              onChange={this.handleInputChange}
+            />
+            <Step id='previous' text='Previous' onClick={this.prevStep} />
+            <Step id='next' text='Next' onClick={this.nextStep} />
+          </div>
+        );
+      case 8:
+        return (
+          <div>
+            <UserInfo
+              onChange={this.handleInputChange}
+            />
+            <Step id='previous' text='Previous' onClick={this.prevStep} />
+            <Step id='next' text='Next' onClick={this.nextStep} />
+          </div>
+        );
+      case 9:
+        return (
+          <Submit id='submit' />
+        );
+      default:
+        break;
+    }
   }
 
   render() {
     return (
       <div>
         <h1>Toddlers</h1>
-        <Link to='/'>Go Back</Link>
+        <Link to='/'>Start Over</Link>
         <form onSubmit={this.handleSubmit}>
-          <DatePicker
-            id="today"
-            type="text"
-            label="Today's Date: "
-            date={this.state.today}
-            onChangeDateTime={this.handleDateChange}
-          />
-          <SingleInput
-            id="name"
-            type="text"
-            label="Name: "
-            onChange={this.handleInputChange}
-          />
-          <label htmlFor='myDay'>My day was:</label>
-          <TextArea
-            label="My day was: "
-            name='myDay'
-            rows='4'
-            cols='40'
-            onChange={this.handleInputChange}
-          />
-          <MultipleInputs
-            title='Meals'
-            items={this.state.meals}
-            onChange={this.handleMealChange}
-          />
-          <BathroomTimes
-            bathroom={this.state.bathroom}
-            onChange={this.handleBathroomChange}
-          />
-          <TimedMultipleInputs
-            title='Nap Times'
-            firstLabel='Time: '
-            secondLabel='Length: '
-            id='naps'
-            items={this.state.naps}
-            onChange={this.handleNapsChange}
-            onChangeDateTime={this.handleNapsTimeChange}
-          />
-          <SingleInput
-            id="activities"
-            type="text"
-            label="What I did today: "
-            onChange={this.handleInputChange}
-          />
-          <BringItems
-            title='Please bring the following tomorrow.'
-            items={this.state.bringItems}
-            onChange={this.handleBringItemsChange}
-          />
-          <SingleInput
-            id='other'
-            type='text'
-            label='Other: '
-            onChange={this.handleInputChange}
-          />
-          <SingleInput
-            id="parentEmail"
-            type="email"
-            label="Parent Email: "
-            onChange={this.handleInputChange}
-          />
-          <SingleInput
-            id="providerEmail"
-            type="email"
-            label="Provider Email: "
-            onChange={this.handleInputChange}
-          />
-          <SingleInput
-            id="providerUsername"
-            type="text"
-            label="Provider Email Username: "
-            onChange={this.handleInputChange}
-          />
-          <SingleInput
-            id="providerPassword"
-            type="password"
-            label="Provider Email Password: "
-            onChange={this.handleInputChange}
-          />
-          <Submit />
+          {this.formStep(this.state.step)}
         </form>
       </div>
     );

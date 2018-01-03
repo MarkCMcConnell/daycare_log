@@ -1,5 +1,4 @@
 import React from 'react';
-import Step from '../Step/Step';
 
 import styles from './SelectOptions.css';
 
@@ -11,13 +10,9 @@ const SelectOptions = ({ options, measurement, name, onChange, nextStep, prevSte
   });
 
   return (
-    <div>
-      <select name={name} onChange={onChange}>
-        {selectOptions}
-      </select>
-      <Step id='previous' text='Previous' onClick={prevStep} />
-      <Step id='next' text='Next' onClick={nextStep} />
-    </div>
+    <select name={name} onChange={onChange}>
+      {selectOptions}
+    </select>
   );
 }
 

@@ -10,7 +10,7 @@ module.exports = {
     './src/Main.js'
   ],
   output: {
-    publicPath: '/src/',
+    publicPath: '/',
     path: path.resolve(__dirname, 'dist'),
     filename: 'js/[name].js'
   },
@@ -18,6 +18,7 @@ module.exports = {
     extensions: ['.json', '.jsx', '.js'],
   },
   devServer: {
+    hot: true,
     historyApiFallback: true,
     contentBase: path.resolve(__dirname, 'dist')
   },
@@ -91,6 +92,8 @@ module.exports = {
     ]
   },
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NamedModulesPlugin(),
     new HtmlWebpackPlugin({
       hash: true,
       template: './src/index.html',

@@ -72,18 +72,6 @@ class InfantsForm extends Component {
     this.nextStep = this.nextStep.bind(this);
   }
 
-  prevStep() {
-    this.setState({
-      step: this.state.step - 1
-    });
-  }
-
-  nextStep() {
-    this.setState({
-      step: this.state.step + 1
-    });
-  }
-
   handleDateChange(selectedDate) {
     this.setState({today: selectedDate});
   }
@@ -142,7 +130,19 @@ class InfantsForm extends Component {
     // this.props.history.push('/');
   }
 
-  render() {
+  prevStep() {
+    this.setState({
+      step: this.state.step - 1
+    });
+  }
+
+  nextStep() {
+    this.setState({
+      step: this.state.step + 1
+    });
+  }
+
+  formStep(currentStep) {
     switch(this.state.step) {
       case 1:
         return (
@@ -154,21 +154,23 @@ class InfantsForm extends Component {
               date={this.state.today}
               onChangeDateTime={this.handleDateChange}
             />
+            <SingleInput
+              id='name'
+              type='text'
+              label='Name: '
+              onChange={this.handleInputChange}
+            />
+            <SingleInput
+              id='parentEmail'
+              name='parentEmail'
+              type='email'
+              label='Parent Email: '
+              onChange={this.handleInputChange}
+            />
             <Step id='next' text='Next' onClick={this.nextStep} />
           </div>
         );
       case 2:
-        return (
-          <SingleInput
-            id='name'
-            type='text'
-            label='Name: '
-            onChange={this.handleInputChange}
-            prevStep={this.prevStep}
-            nextStep={this.nextStep}
-          />
-        );
-      case 3:
         return (
           <TextArea
             label="My day was: "
@@ -181,7 +183,7 @@ class InfantsForm extends Component {
             nextStep={this.nextStep}
           />
         );
-      case 4:
+      case 3:
         return (
           <div>
             <TimedMultipleInputs
@@ -195,7 +197,7 @@ class InfantsForm extends Component {
             <Step id='next' text='Next' onClick={this.nextStep} />
           </div>
         );
-      case 5:
+      case 4:
         return (
           <div>
             <TimedMultipleInputs
@@ -209,7 +211,7 @@ class InfantsForm extends Component {
             <Step id='next' text='Next' onClick={this.nextStep} />
           </div>
         );
-      case 6:
+      case 5:
         return (
           <div>
             <TimedMultipleInputs
@@ -223,7 +225,7 @@ class InfantsForm extends Component {
             <Step id='next' text='Next' onClick={this.nextStep} />
           </div>
         );
-      case 7:
+      case 6:
         return (
           <div>
             <BringItems
@@ -237,23 +239,12 @@ class InfantsForm extends Component {
               type='text'
               label='Other: '
               onChange={this.handleInputChange}
-              prevStep={this.prevStep}
-              nextStep={this.nextStep}
             />
+            <Step id='previous' text='Previous' onClick={this.prevStep} />
+            <Step id='next' text='Next' onClick={this.nextStep} />
           </div>
         );
-      case 8:
-        return (
-          <SingleInput
-            id='parentEmail'
-            type='email'
-            label='Parent Email: '
-            onChange={this.handleInputChange}
-            prevStep={this.prevStep}
-            nextStep={this.nextStep}
-          />
-        );
-      case 9:
+      case 7:
         return (
           <div>
             <UserInfo
@@ -263,13 +254,25 @@ class InfantsForm extends Component {
             <Step id='next' text='Next' onClick={this.nextStep} />
           </div>
         );
-      case 10:
+      case 8:
         return (
           <Submit id='submit' />
         );
       default:
         break;
     }
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>Infants</h1>
+        <Link to='/'>Start Over</Link>
+        <form onSubmit={this.handleSubmit}>
+          {this.formStep(this.state.step)}
+        </form>
+      </div>
+    );
   }
 }
 

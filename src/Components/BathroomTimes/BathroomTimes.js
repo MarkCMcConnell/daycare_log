@@ -18,8 +18,6 @@ const BathroomTimes = ({onChange, prevStep, nextStep}) => {
         <option value='hard'>Hard</option>
         <option value='normal'>Normal</option>
       </select>
-      <Step id='previous' text='Previous' onClick={prevStep} />
-      <Step id='next' text='Next' onClick={nextStep} />
     </div>
   );
 }
