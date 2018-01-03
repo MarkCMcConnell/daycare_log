@@ -1,0 +1,6 @@
+@import '../../../public/assets/stylesheets/App.css';
+
+.stepBtn {
+  composes: btn from '../Submit/Submit.css';
+  text-align: center;
+}

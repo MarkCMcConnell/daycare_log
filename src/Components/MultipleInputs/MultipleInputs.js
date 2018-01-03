@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import SingleInput from '../SingleInput/SingleInput';
+import Step from '../Step/Step';
+
+import styles from './MultipleInputs.css';
 
 class MultipleInputs extends Component {
   constructor(props) {
@@ -29,6 +32,8 @@ class MultipleInputs extends Component {
     return (
       <div>
         {inputItems}
+        <Step id='previous' text='Previous' onClick={this.props.prevStep} />
+        <Step id='next' text='Next' onClick={this.props.nextStep} />
       </div>
     );
   }

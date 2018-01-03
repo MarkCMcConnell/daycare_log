@@ -1,6 +1,9 @@
 import React from 'react';
+import Step from '../Step/Step';
 
-export default function SelectOptions({ options, measurement, name, onChange }) {
+import styles from './SelectOptions.css';
+
+const SelectOptions = ({ options, measurement, name, onChange, nextStep, prevStep }) => {
   let selectOptions = options.map((option, index) => {
     return (
       <option key={index} value={option + measurement}>{option + measurement}</option>
@@ -8,8 +11,14 @@ export default function SelectOptions({ options, measurement, name, onChange }) 
   });
 
   return (
-    <select name={name} onChange={onChange}>
-      {selectOptions}
-    </select>
-  )
+    <div>
+      <select name={name} onChange={onChange}>
+        {selectOptions}
+      </select>
+      <Step id='previous' text='Previous' onClick={prevStep} />
+      <Step id='next' text='Next' onClick={nextStep} />
+    </div>
+  );
 }
+
+export default SelectOptions;

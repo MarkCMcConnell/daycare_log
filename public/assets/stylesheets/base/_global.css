@@ -9,6 +9,9 @@ body {
   background-color: #f7f7f7;
   line-height: 1.5;
   font-weight: 400;
+  /* Designed for mobile use only */
+  max-width: 640px;
+  margin: 0 auto;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -27,4 +30,8 @@ a {
 
 ul {
   list-style: none;
+}
+
+.isHidden {
+  display: none;
 }

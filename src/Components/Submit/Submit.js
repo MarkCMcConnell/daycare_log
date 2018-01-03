@@ -9,7 +9,7 @@ const Submit = () => {
       <input
         className={styles.btn}
         type="submit"
-        value="Submit"
+        value="Send"
       />
     </div>
   );

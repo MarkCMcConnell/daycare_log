@@ -18,19 +18,17 @@ const FormsNav = () => {
       <nav>
         <ul className={styles.nav}>
           <li className={styles.navItem}>
-            <h3>Infants</h3>
             <Link
               className={styles.navLink}
               to='/forms/infants'>
-              &#8592;
+              Infants
             </Link>
           </li>
           <li className={styles.navItem}>
-            <h3>Toddlers</h3>
             <Link
               className={styles.navLink}
               to='/forms/toddlers'>
-              &#8594;
+              Toddlers
             </Link>
           </li>
         </ul>

@@ -6,7 +6,6 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: [
-    'babel-polyfill',
     'react-hot-loader/patch',
     './src/Main.js'
   ],
@@ -19,6 +18,7 @@ module.exports = {
     extensions: ['.json', '.jsx', '.js'],
   },
   devServer: {
+    historyApiFallback: true,
     contentBase: path.resolve(__dirname, 'dist')
   },
   module: {
@@ -49,7 +49,8 @@ module.exports = {
               loader: 'css-loader',
               options: {
                 modules: true,
-                importLoaders: 1
+                importLoaders: 1,
+                localIdentName: '[name]__[local]__[hash:base64:5]'
               }
             },
             'postcss-loader'

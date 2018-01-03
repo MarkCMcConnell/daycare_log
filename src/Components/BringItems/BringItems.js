@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import styles from './BringItems.css';
+
 class BringItems extends Component {
   constructor(props) {
     super(props);

@@ -4,6 +4,7 @@ import moment from 'moment';
 import axios from 'axios';
 
 import SingleInput from '../SingleInput/SingleInput';
+import TextArea from '../TextArea/TextArea';
 import MultipleInputs from '../MultipleInputs/MultipleInputs';
 import TimedMultipleInputs from '../TimedMultipleInputs/TimedMultipleInputs';
 import BathroomTimes from '../BathroomTimes/BathroomTimes';
@@ -135,13 +136,16 @@ class ToddlersForm extends Component {
             label="Name: "
             onChange={this.handleInputChange}
           />
-          <SingleInput
-            id="day"
-            type="text"
-            label="My day was "
+          <label htmlFor='myDay'>My day was:</label>
+          <TextArea
+            label="My day was: "
+            name='myDay'
+            rows='4'
+            cols='40'
             onChange={this.handleInputChange}
           />
           <MultipleInputs
+            title='Meals'
             items={this.state.meals}
             onChange={this.handleMealChange}
           />

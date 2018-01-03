@@ -4,6 +4,8 @@ import moment from 'moment';
 import TimePicker from '../ReactKronos/TimePicker';
 import SelectOptions from '../SelectOptions/SelectOptions';
 
+import styles from './TimedMultipleInputs.css';
+
 class InfantMultipleInputs extends Component {
   constructor(props) {
     super(props);
@@ -12,13 +14,13 @@ class InfantMultipleInputs extends Component {
     this.handleTimeFormChange = this.handleTimeFormChange.bind(this);
   }
 
-  handleChange(e, index) {
-    this.props.onChange(e.target.value, index);
+  handleChange(e, index, id) {
+    this.props.onChange(e.target.value, index, id);
   }
 
-  handleTimeFormChange(time, index) {
+  handleTimeFormChange(time, index, id) {
     let selectedTime = moment(time).format('h:mm a');
-    this.props.onChangeDateTime(selectedTime, index);
+    this.props.onChangeDateTime(selectedTime, index, id);
   }
 
   render() {
@@ -30,32 +32,32 @@ class InfantMultipleInputs extends Component {
           <div key={index}>
             <label htmlFor={index}>Time: </label>
             <TimePicker id={index} time={item.time}
-              onChangeDateTime={(time) => this.handleTimeFormChange(time, index)}
+              onChangeDateTime={(time) => this.handleTimeFormChange(time, index, this.props.id)}
             />
             <label htmlFor={index}>Amount: </label>
             <SelectOptions
               options={optionsArr}
               measurement='oz'
               name={item}
-              onChange={(e) => this.handleChange(e, index)}
+              onChange={(e) => this.handleChange(e, index, this.props.id)}
             />
           </div>
         );
       } else if(this.props.id === 'diapers') {
         let optionsArr = ['', 'wet', 'dirty'];
-
+//TODO Change label for SelectOptions to match the type
         return (
           <div key={index}>
             <label htmlFor={index}>Time: </label>
             <TimePicker id={index} time={item.time}
-              onChangeDateTime={(time) => this.handleTimeFormChange(time, index)}
+              onChangeDateTime={(time) => this.handleTimeFormChange(time, index, this.props.id)}
             />
             <label htmlFor={index}>Amount: </label>
             <SelectOptions
               options={optionsArr}
               measurement=''
               name={item}
-              onChange={(e) => this.handleChange(e, index)}
+              onChange={(e) => this.handleChange(e, index, this.props.id)}
             />
           </div>
         );
@@ -67,14 +69,14 @@ class InfantMultipleInputs extends Component {
           <div key={index}>
             <label htmlFor={index}>Time: </label>
             <TimePicker id={index} time={item.time}
-              onChangeDateTime={(time) => this.handleTimeFormChange(time, index)}
+              onChangeDateTime={(time) => this.handleTimeFormChange(time, index, this.props.id)}
             />
             <label htmlFor={index}>Amount: </label>
             <SelectOptions
               options={optionsArr}
               measurement=''
               name={item}
-              onChange={(e) => this.handleChange(e, index)}
+              onChange={(e) => this.handleChange(e, index, this.props.id)}
             />
           </div>
         );
