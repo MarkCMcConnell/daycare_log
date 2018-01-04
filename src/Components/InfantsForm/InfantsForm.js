@@ -1,51 +1,51 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import moment from 'moment';
-import axios from 'axios';
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import moment from 'moment'
+import axios from 'axios'
 
-import DatePicker from '../ReactKronos/DatePicker';
-import SingleInput from '../SingleInput/SingleInput';
-import TextArea from '../TextArea/TextArea';
-import TimedMultipleInputs from '../TimedMultipleInputs/TimedMultipleInputs';
-import BringItems from '../BringItems/BringItems';
-import UserInfo from '../UserInfo/UserInfo';
-import Step from '../Step/Step';
-import Submit from '../Submit/Submit';
+import DatePicker from '../ReactKronos/DatePicker'
+import SingleInput from '../SingleInput/SingleInput'
+import TextArea from '../TextArea/TextArea'
+import TimedMultipleInputs from '../TimedMultipleInputs/TimedMultipleInputs'
+import BringItems from '../BringItems/BringItems'
+import UserInfo from '../UserInfo/UserInfo'
+import Step from '../Step/Step'
+import Submit from '../Submit/Submit'
 
-import styles from './InfantsForm.css';
+import styles from './InfantsForm.css'
 
 class InfantsForm extends Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
 
     this.state = {
       today: moment().format('MM-DD-YYYY'),
       name: '',
       day: '',
       bottles: [
-        { time: '', amount: ''},
-        { time: '', amount: ''},
-        { time: '', amount: ''},
-        { time: '', amount: ''},
-        { time: '', amount: ''},
-        { time: '', amount: ''}
+        { time: '', amount: '' },
+        { time: '', amount: '' },
+        { time: '', amount: '' },
+        { time: '', amount: '' },
+        { time: '', amount: '' },
+        { time: '', amount: '' }
       ],
       diapers: [
-        { time: '', type: ''},
-        { time: '', type: ''},
-        { time: '', type: ''},
-        { time: '', type: ''},
-        { time: '', type: ''},
-        { time: '', type: ''},
-        { time: '', type: ''},
-        { time: '', type: ''},
-        { time: '', type: ''},
+        { time: '', type: '' },
+        { time: '', type: '' },
+        { time: '', type: '' },
+        { time: '', type: '' },
+        { time: '', type: '' },
+        { time: '', type: '' },
+        { time: '', type: '' },
+        { time: '', type: '' },
+        { time: '', type: '' }
       ],
       naps: [
-        { time: '', length: ''},
-        { time: '', length: ''},
-        { time: '', length: ''},
-        { time: '', length: ''}
+        { time: '', length: '' },
+        { time: '', length: '' },
+        { time: '', length: '' },
+        { time: '', length: '' }
       ],
       bringItems: [
         {type: 'Diapers', isChecked: false},
@@ -62,64 +62,64 @@ class InfantsForm extends Component {
       step: 1
     }
 
-    this.handleDateChange = this.handleDateChange.bind(this);
-    this.handleMultipleChange = this.handleMultipleChange.bind(this);
-    this.handleMultipleTimeChange = this.handleMultipleTimeChange.bind(this);
-    this.handleBringItemsChange = this.handleBringItemsChange.bind(this);
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.prevStep = this.prevStep.bind(this);
-    this.nextStep = this.nextStep.bind(this);
+    this.handleDateChange = this.handleDateChange.bind(this)
+    this.handleMultipleChange = this.handleMultipleChange.bind(this)
+    this.handleMultipleTimeChange = this.handleMultipleTimeChange.bind(this)
+    this.handleBringItemsChange = this.handleBringItemsChange.bind(this)
+    this.handleInputChange = this.handleInputChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.prevStep = this.prevStep.bind(this)
+    this.nextStep = this.nextStep.bind(this)
   }
 
-  handleDateChange(selectedDate) {
-    this.setState({today: selectedDate});
+  handleDateChange (selectedDate) {
+    this.setState({today: selectedDate})
   }
 
-  handleMultipleChange(item, index, id) {
-    if(id === 'bottles') {
-      let newState = [ ...this.state.bottles ];
-      newState[index] = { ...newState[index], amount: item };
-      this.setState({bottles: newState});
+  handleMultipleChange (item, index, id) {
+    if (id === 'bottles') {
+      let newState = [ ...this.state.bottles ]
+      newState[index] = { ...newState[index], amount: item }
+      this.setState({bottles: newState})
     } else if (id === 'diapers') {
-      let newState = [ ...this.state.diapers ];
-      newState[index] = { ...newState[index], type: item };
-      this.setState({diapers: newState});
+      let newState = [ ...this.state.diapers ]
+      newState[index] = { ...newState[index], type: item }
+      this.setState({diapers: newState})
     } else {
-      let newState = [ ...this.state.naps ];
-      newState[index] = { ...newState[index], length: item };
-      this.setState({naps: newState});
+      let newState = [ ...this.state.naps ]
+      newState[index] = { ...newState[index], length: item }
+      this.setState({naps: newState})
     }
   }
 
-  handleMultipleTimeChange(time, index, id) {
-    if(id === 'bottles') {
-      let newState = [ ...this.state.bottles ];
-      newState[index] = { ...newState[index], time: time };
-      this.setState({bottles: newState});
+  handleMultipleTimeChange (time, index, id) {
+    if (id === 'bottles') {
+      let newState = [ ...this.state.bottles ]
+      newState[index] = { ...newState[index], time: time }
+      this.setState({bottles: newState})
     } else if (id === 'diapers') {
-      let newState = [ ...this.state.diapers ];
-      newState[index] = { ...newState[index], time: time };
-      this.setState({diapers: newState});
+      let newState = [ ...this.state.diapers ]
+      newState[index] = { ...newState[index], time: time }
+      this.setState({diapers: newState})
     } else {
-      let newState = [ ...this.state.naps ];
-      newState[index] = { ...newState[index], time: time };
-      this.setState({naps: newState});
+      let newState = [ ...this.state.naps ]
+      newState[index] = { ...newState[index], time: time }
+      this.setState({naps: newState})
     }
   }
 
-  handleBringItemsChange(item, isChecked, index) {
-    let newState = [ ...this.state.bringItems ];
-    newState[index] = { ...newState[index], type: item, isChecked: isChecked };
-    this.setState({bringItems: newState});
+  handleBringItemsChange (item, isChecked, index) {
+    let newState = [ ...this.state.bringItems ]
+    newState[index] = { ...newState[index], type: item, isChecked: isChecked }
+    this.setState({bringItems: newState})
   }
 
-  handleInputChange(event) {
-    this.setState({ [event.target.name]: event.target.value });
+  handleInputChange (event) {
+    this.setState({ [event.target.name]: event.target.value })
   }
 
-  handleSubmit(event) {
-    event.preventDefault();
+  handleSubmit (event) {
+    event.preventDefault()
     // axios.post('http://localhost:3000/sendmail/infant', this.state)
     //   .then(function(response) {
     //     console.log(response);
@@ -130,20 +130,20 @@ class InfantsForm extends Component {
     // this.props.history.push('/');
   }
 
-  prevStep() {
+  prevStep () {
     this.setState({
       step: this.state.step - 1
-    });
+    })
   }
 
-  nextStep() {
+  nextStep () {
     this.setState({
       step: this.state.step + 1
-    });
+    })
   }
 
-  formStep(currentStep) {
-    switch(this.state.step) {
+  formStep (currentStep) {
+    switch (this.state.step) {
       case 1:
         return (
           <div>
@@ -169,11 +169,11 @@ class InfantsForm extends Component {
             />
             <Step id='next' text='Next' onClick={this.nextStep} />
           </div>
-        );
+        )
       case 2:
         return (
           <TextArea
-            label="My day was: "
+            label='My day was: '
             id='myDay'
             name='myDay'
             rows='4'
@@ -182,7 +182,7 @@ class InfantsForm extends Component {
             prevStep={this.prevStep}
             nextStep={this.nextStep}
           />
-        );
+        )
       case 3:
         return (
           <div>
@@ -196,7 +196,7 @@ class InfantsForm extends Component {
             <Step id='previous' text='Previous' onClick={this.prevStep} />
             <Step id='next' text='Next' onClick={this.nextStep} />
           </div>
-        );
+        )
       case 4:
         return (
           <div>
@@ -210,7 +210,7 @@ class InfantsForm extends Component {
             <Step id='previous' text='Previous' onClick={this.prevStep} />
             <Step id='next' text='Next' onClick={this.nextStep} />
           </div>
-        );
+        )
       case 5:
         return (
           <div>
@@ -224,7 +224,7 @@ class InfantsForm extends Component {
             <Step id='previous' text='Previous' onClick={this.prevStep} />
             <Step id='next' text='Next' onClick={this.nextStep} />
           </div>
-        );
+        )
       case 6:
         return (
           <div>
@@ -243,7 +243,7 @@ class InfantsForm extends Component {
             <Step id='previous' text='Previous' onClick={this.prevStep} />
             <Step id='next' text='Next' onClick={this.nextStep} />
           </div>
-        );
+        )
       case 7:
         return (
           <div>
@@ -253,17 +253,17 @@ class InfantsForm extends Component {
             <Step id='previous' text='Previous' onClick={this.prevStep} />
             <Step id='next' text='Next' onClick={this.nextStep} />
           </div>
-        );
+        )
       case 8:
         return (
           <Submit id='submit' />
-        );
+        )
       default:
-        break;
+        break
     }
   }
 
-  render() {
+  render () {
     return (
       <div>
         <h1>Infants</h1>
@@ -272,8 +272,8 @@ class InfantsForm extends Component {
           {this.formStep(this.state.step)}
         </form>
       </div>
-    );
+    )
   }
 }
 
-export default InfantsForm;
+export default InfantsForm

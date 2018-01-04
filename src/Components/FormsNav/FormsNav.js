@@ -1,14 +1,13 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react'
+import { Link } from 'react-router-dom'
 
-import styles from './FormsNav.css';
+import styles from './FormsNav.css'
 
 const FormsNav = () => {
-
-  return(
+  return (
     <div className={styles.container}>
-      <div className={styles.borderTop}></div>
-      <div className={styles.topThin}></div>
+      <div className={styles.borderTop} />
+      <div className={styles.topThin} />
       <header className={styles.header}>
         <div className={styles.textContainer}>
           <h1 className={styles.titleText}>Daycare</h1>
@@ -34,7 +33,7 @@ const FormsNav = () => {
         </ul>
       </nav>
     </div>
-  );
+  )
 }
 
-export default FormsNav;
+export default FormsNav

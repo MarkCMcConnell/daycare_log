@@ -1,7 +1,7 @@
-import React from 'react';
-import Kronos from 'react-kronos';
+import React from 'react'
+import Kronos from 'react-kronos'
 
-const DatePicker = ({id, label, date, onChangeDateTime}) => {
+const DatePicker = ({ id, label, date, onChangeDateTime }) => {
   return (
     <div>
       <label htmlFor={id}>{label}</label>
@@ -12,7 +12,7 @@ const DatePicker = ({id, label, date, onChangeDateTime}) => {
         onChangeDateTime={onChangeDateTime}
       />
     </div>
-  );
+  )
 }
 
-export default DatePicker;
+export default DatePicker

@@ -1,0 +1,12 @@
+{
+  "extends": ["standard", "standard-react"],
+  "parser": "babel-eslint",
+  "rules": {
+    "react/prop-types": 0,
+  },
+  "globals": {
+    "env": false,
+    "localStorage": false,
+    "fetch": false
+  }
+}

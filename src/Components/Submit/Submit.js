@@ -1,18 +1,18 @@
-import React from 'react';
+import React from 'react'
 
 // Import stylesheet
-import styles from './Submit.css';
+import styles from './Submit.css'
 
 const Submit = () => {
   return (
     <div>
       <input
         className={styles.btn}
-        type="submit"
-        value="Send"
+        type='submit'
+        value='Send'
       />
     </div>
-  );
+  )
 }
 
-export default Submit;
+export default Submit

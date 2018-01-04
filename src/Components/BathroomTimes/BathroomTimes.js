@@ -1,7 +1,6 @@
-import React from 'react';
-import Step from '../Step/Step';
+import React from 'react'
 
-import styles from './BathroomTimes.css';
+import styles from './BathroomTimes.css'
 
 const BathroomTimes = ({onChange, prevStep, nextStep}) => {
   return (
@@ -19,7 +18,7 @@ const BathroomTimes = ({onChange, prevStep, nextStep}) => {
         <option value='normal'>Normal</option>
       </select>
     </div>
-  );
+  )
 }
 
-export default BathroomTimes;
+export default BathroomTimes

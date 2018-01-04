@@ -1,7 +1,7 @@
-import React from 'react';
-import Kronos from 'react-kronos';
+import React from 'react'
+import Kronos from 'react-kronos'
 
-const TimePicker = ({id, time, onChangeDateTime }) => {
+const TimePicker = ({ id, time, onChangeDateTime }) => {
   return (
     <div>
       <Kronos
@@ -13,7 +13,7 @@ const TimePicker = ({id, time, onChangeDateTime }) => {
         onChangeDateTime={onChangeDateTime}
       />
     </div>
-  );
+  )
 }
 
-export default TimePicker;
+export default TimePicker

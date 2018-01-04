@@ -7,12 +7,12 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = {
   entry: [
     'react-hot-loader/patch',
-    './src/Main.js'
+    './src/Main.js',
   ],
   output: {
     publicPath: '/',
     path: path.resolve(__dirname, 'dist'),
-    filename: 'js/[name].js'
+    filename: 'js/[name].js',
   },
   resolve: {
     extensions: ['.json', '.jsx', '.js'],
@@ -20,7 +20,7 @@ module.exports = {
   devServer: {
     hot: true,
     historyApiFallback: true,
-    contentBase: path.resolve(__dirname, 'dist')
+    contentBase: path.resolve(__dirname, 'dist'),
   },
   module: {
     rules: [
@@ -28,16 +28,16 @@ module.exports = {
         test: /\.jsx?$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader'
-        }
+          loaders: ['babel-loader', 'eslint-loader'],
+        },
       },
       {
         test: /\.html$/,
         use: [
           {
-            loader: 'html-loader'
-          }
-        ]
+            loader: 'html-loader',
+          },
+        ],
       },
       {
         test: /\.css$/,
@@ -51,12 +51,12 @@ module.exports = {
               options: {
                 modules: true,
                 importLoaders: 1,
-                localIdentName: '[name]__[local]__[hash:base64:5]'
-              }
+                localIdentName: '[name]__[local]__[hash:base64:5]',
+              },
             },
-            'postcss-loader'
-          ]
-        }))
+            'postcss-loader',
+          ],
+        })),
       },
       // Load and optimize images
       {
@@ -66,8 +66,8 @@ module.exports = {
             loader: 'url-loader',
             options: {
               limit: 8000, // Convert images < 8kb to base64 string
-              name: 'public/assets/images/[hash]-[name].[ext]'
-            }
+              name: 'public/assets/images/[hash]-[name].[ext]',
+            },
           },
           {
             loader: 'image-webpack-loader',
@@ -79,17 +79,17 @@ module.exports = {
                 interlaced: false,
               },
               optipng: {
-                optimizationLevel: 4
+                optimizationLevel: 4,
               },
               pngquant: {
                 quality: '75-90',
-                speed: 3
-              }
-            }
-          }
-        ]
-      }
-    ]
+                speed: 3,
+              },
+            },
+          },
+        ],
+      },
+    ],
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
@@ -97,13 +97,13 @@ module.exports = {
     new HtmlWebpackPlugin({
       hash: true,
       template: './src/index.html',
-      filename: './index.html'
+      filename: './index.html',
     }),
     new ExtractTextPlugin({
-      filename: 'styles.css'
+      filename: 'styles.css',
     }),
     new CopyWebpackPlugin([
-      {from: 'public/assets/images', to:'images'}
-    ])
-  ]
-}
+      { from: 'public/assets/images', to: 'images' },
+    ]),
+  ],
+};

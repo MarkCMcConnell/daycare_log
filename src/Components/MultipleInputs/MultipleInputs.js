@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
-import SingleInput from '../SingleInput/SingleInput';
+import React, { Component } from 'react'
+import SingleInput from '../SingleInput/SingleInput'
 
-import styles from './MultipleInputs.css';
+import styles from './MultipleInputs.css'
 
 class MultipleInputs extends Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
 
-    this.handleChange = this.handleChange.bind(this);
+    this.handleChange = this.handleChange.bind(this)
   }
 
-  handleChange(e, index) {
-    this.props.onChange(e.target.value, index);
+  handleChange (e, index) {
+    this.props.onChange(e.target.value, index)
   }
 
   render () {
@@ -25,15 +25,15 @@ class MultipleInputs extends Component {
             onChange={(e) => this.handleChange(e, index)}
           />
         </div>
-      );
-    });
+      )
+    })
 
     return (
       <div>
         {inputItems}
       </div>
-    );
+    )
   }
 }
 
-export default MultipleInputs;
+export default MultipleInputs
