@@ -6,7 +6,7 @@ const SingleInput = ({label, type, name, onChange}) => {
   return (
     <div>
       <label className={styles.inputLabel} htmlFor={name}>{label}</label>
-      <input className={styles.inputLine} type={type} name={name} onChange={onChange} />
+      <input className={styles.inputField} type={type} name={name} onChange={onChange} />
     </div>
   )
 }

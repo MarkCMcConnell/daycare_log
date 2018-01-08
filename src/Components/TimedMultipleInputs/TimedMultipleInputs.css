@@ -1,1 +1,25 @@
 @import '../../../public/assets/stylesheets/App.css';
+
+.mainContainer {
+  width: 100%;
+  text-align: center;
+}
+
+.inputContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  & label {
+    display: block;
+  }
+}
+
+.doubleSize {
+  max-width: calc((200% / 3) - 5px);
+  flex: 2 0 auto;
+}
+
+.singleSize {
+  flex: 1 0 auto;
+}

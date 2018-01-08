@@ -15,8 +15,10 @@ module.exports = {
             primaryColorDark: '#8f3b1b',
             secondaryColor: '#668d3c',
             secondaryColorDark: '#404f24',
+            secondaryColorLight: '#bdd09f',
             text: '#300',
-            darkText: '#444'
+            darkText: '#444',
+            whiteText: '#fff'
           }
         }
       }

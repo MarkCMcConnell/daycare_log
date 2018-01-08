@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Button from '../Button/Button'
 
 import styles from './FormsNav.css'
 
@@ -17,17 +18,13 @@ const FormsNav = () => {
       <nav>
         <ul className={styles.nav}>
           <li className={styles.navItem}>
-            <Link
-              className={styles.navLink}
-              to='/forms/infants'>
-              Infants
+            <Link to='/forms/infants'>
+              <Button text='Infants' />
             </Link>
           </li>
           <li className={styles.navItem}>
-            <Link
-              className={styles.navLink}
-              to='/forms/toddlers'>
-              Toddlers
+            <Link to='/forms/toddlers'>
+              <Button text='Toddlers' />
             </Link>
           </li>
         </ul>

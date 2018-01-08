@@ -1,9 +1,10 @@
 @import '../../../public/assets/stylesheets/App.css';
 
 .inputLabel {
-
+  display: block;
+  margin-bottom: .5rem;
 }
 
-.inputLine {
-
+.inputField {
+  display: block;
 }

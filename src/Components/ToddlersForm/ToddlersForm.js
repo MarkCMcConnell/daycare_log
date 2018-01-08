@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
+import axios from 'axios'
 
 import SingleInput from '../SingleInput/SingleInput'
+import DatePicker from '../DayPicker/DayPicker'
 import TextArea from '../TextArea/TextArea'
 import MultipleInputs from '../MultipleInputs/MultipleInputs'
 import TimedMultipleInputs from '../TimedMultipleInputs/TimedMultipleInputs'
 import BathroomTimes from '../BathroomTimes/BathroomTimes'
 import BringItems from '../BringItems/BringItems'
-import DatePicker from '../ReactKronos/DatePicker'
-import Step from '../Step/Step'
+import Button from '../Button/Button'
 import UserInfo from '../UserInfo/UserInfo'
 import Submit from '../Submit/Submit'
 
@@ -158,7 +159,7 @@ class ToddlersForm extends Component {
               label='Parent Email: '
               onChange={this.handleInputChange}
             />
-            <Step id='next' text='Next' onClick={this.nextStep} />
+            <Button id='next' text='Next' onClick={this.nextStep} />
           </div>
         )
       case 2:
@@ -170,8 +171,6 @@ class ToddlersForm extends Component {
               rows='4'
               cols='40'
               onChange={this.handleInputChange}
-              prevStep={this.prevStep}
-              nextStep={this.nextStep}
             />
           </div>
         )
@@ -187,8 +186,8 @@ class ToddlersForm extends Component {
               bathroom={this.state.bathroom}
               onChange={this.handleBathroomChange}
             />
-            <Step id='previous' text='Previous' onClick={this.prevStep} />
-            <Step id='next' text='Next' onClick={this.nextStep} />
+            <Button id='previous' text='Previous' onClick={this.prevStep} />
+            <Button id='next' text='Next' onClick={this.nextStep} />
           </div>
         )
       case 4:
@@ -201,8 +200,8 @@ class ToddlersForm extends Component {
               onChange={this.handleNapsChange}
               onChangeDateTime={this.handleNapsTimeChange}
             />
-            <Step id='previous' text='Previous' onClick={this.prevStep} />
-            <Step id='next' text='Next' onClick={this.nextStep} />
+            <Button id='previous' text='Previous' onClick={this.prevStep} />
+            <Button id='next' text='Next' onClick={this.nextStep} />
           </div>
         )
       case 5:
@@ -215,8 +214,8 @@ class ToddlersForm extends Component {
               onChange={this.hanMultipleChange}
               onChangeDateTime={this.handleMultipleTimeChange}
             />
-            <Step id='previous' text='Previous' onClick={this.prevStep} />
-            <Step id='next' text='Next' onClick={this.nextStep} />
+            <Button id='previous' text='Previous' onClick={this.prevStep} />
+            <Button id='next' text='Next' onClick={this.nextStep} />
           </div>
         )
       case 6:
@@ -228,9 +227,9 @@ class ToddlersForm extends Component {
               rows='4'
               cols='40'
               onChange={this.handleInputChange}
-              prevStep={this.prevStep}
-              nextStep={this.nextStep}
             />
+            <Button id='previous' text='Previous' onClick={this.prevStep} />
+            <Button id='next' text='Next' onClick={this.nextStep} />
           </div>
         )
       case 7:
@@ -247,8 +246,8 @@ class ToddlersForm extends Component {
               label='Other: '
               onChange={this.handleInputChange}
             />
-            <Step id='previous' text='Previous' onClick={this.prevStep} />
-            <Step id='next' text='Next' onClick={this.nextStep} />
+            <Button id='previous' text='Previous' onClick={this.prevStep} />
+            <Button id='next' text='Next' onClick={this.nextStep} />
           </div>
         )
       case 8:
@@ -257,8 +256,8 @@ class ToddlersForm extends Component {
             <UserInfo
               onChange={this.handleInputChange}
             />
-            <Step id='previous' text='Previous' onClick={this.prevStep} />
-            <Step id='next' text='Next' onClick={this.nextStep} />
+            <Button id='previous' text='Previous' onClick={this.prevStep} />
+            <Button id='next' text='Next' onClick={this.nextStep} />
           </div>
         )
       case 9:

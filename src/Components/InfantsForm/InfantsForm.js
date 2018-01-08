@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom'
 import moment from 'moment'
 import axios from 'axios'
 
-import DatePicker from '../ReactKronos/DatePicker'
+import DatePicker from '../DayPicker/DayPicker'
 import SingleInput from '../SingleInput/SingleInput'
 import TextArea from '../TextArea/TextArea'
 import TimedMultipleInputs from '../TimedMultipleInputs/TimedMultipleInputs'
 import BringItems from '../BringItems/BringItems'
 import UserInfo from '../UserInfo/UserInfo'
-import Step from '../Step/Step'
+import Button from '../Button/Button'
 import Submit from '../Submit/Submit'
 
 import styles from './InfantsForm.css'
@@ -31,7 +31,6 @@ class InfantsForm extends Component {
         { time: '', amount: '' }
       ],
       diapers: [
-        { time: '', type: '' },
         { time: '', type: '' },
         { time: '', type: '' },
         { time: '', type: '' },
@@ -146,88 +145,114 @@ class InfantsForm extends Component {
     switch (this.state.step) {
       case 1:
         return (
-          <div>
+          <div className={styles.formItems}>
             <DatePicker
               id='today'
-              type='text'
-              label="Today's Date: "
               date={this.state.today}
-              onChangeDateTime={this.handleDateChange}
+              onChange={this.handleDateChange}
             />
             <SingleInput
               id='name'
               type='text'
-              label='Name: '
+              label="Child's name"
               onChange={this.handleInputChange}
             />
             <SingleInput
               id='parentEmail'
               name='parentEmail'
               type='email'
-              label='Parent Email: '
+              label="Parent's Email"
               onChange={this.handleInputChange}
             />
-            <Step id='next' text='Next' onClick={this.nextStep} />
+            <Button id='next' text='Next' onClick={this.nextStep} />
           </div>
         )
       case 2:
         return (
-          <TextArea
-            label='My day was: '
-            id='myDay'
-            name='myDay'
-            rows='4'
-            cols='40'
-            onChange={this.handleInputChange}
-            prevStep={this.prevStep}
-            nextStep={this.nextStep}
-          />
+          <div className={styles.formItems}>
+            <TextArea
+              label='My day was: '
+              id='myDay'
+              name='myDay'
+              rows='4'
+              onChange={this.handleInputChange}
+            />
+            <ul className={styles.navLinks}>
+              <li className={styles.navItem}>
+                <Button id='previous' text='Previous' onClick={this.prevStep} />
+              </li>
+              <li className={styles.navItem}>
+                <Button id='next' text='Next' onClick={this.nextStep} />
+              </li>
+            </ul>
+          </div>
         )
       case 3:
         return (
-          <div>
+          <div className={styles.formItems}>
             <TimedMultipleInputs
               title='Bottles'
               id='bottles'
+              selectLabel='Amount'
               items={this.state.bottles}
               onChange={this.handleMultipleChange}
-              onChangeDateTime={this.handleMultipleTimeChange}
+              onChangeTime={this.handleMultipleTimeChange}
             />
-            <Step id='previous' text='Previous' onClick={this.prevStep} />
-            <Step id='next' text='Next' onClick={this.nextStep} />
+            <ul className={styles.navLinks}>
+              <li className={styles.navItem}>
+                <Button id='previous' text='Previous' onClick={this.prevStep} />
+              </li>
+              <li className={styles.navItem}>
+                <Button id='next' text='Next' onClick={this.nextStep} />
+              </li>
+            </ul>
           </div>
         )
       case 4:
         return (
-          <div>
+          <div className={styles.formItems}>
             <TimedMultipleInputs
               title='Diapers'
               id='diapers'
+              selectLabel='Type'
               items={this.state.diapers}
               onChange={this.handleMultipleChange}
               onChangeDateTime={this.handleMultipleTimeChange}
             />
-            <Step id='previous' text='Previous' onClick={this.prevStep} />
-            <Step id='next' text='Next' onClick={this.nextStep} />
+            <ul className={styles.navLinks}>
+              <li className={styles.navItem}>
+                <Button id='previous' text='Previous' onClick={this.prevStep} />
+              </li>
+              <li className={styles.navItem}>
+                <Button id='next' text='Next' onClick={this.nextStep} />
+              </li>
+            </ul>
           </div>
         )
       case 5:
         return (
-          <div>
+          <div className={styles.formItems}>
             <TimedMultipleInputs
               title='Nap Times'
               id='naps'
+              selectLabel='Length'
               items={this.state.naps}
               onChange={this.hanMultipleChange}
               onChangeDateTime={this.handleMultipleTimeChange}
             />
-            <Step id='previous' text='Previous' onClick={this.prevStep} />
-            <Step id='next' text='Next' onClick={this.nextStep} />
+            <ul className={styles.navLinks}>
+              <li className={styles.navItem}>
+                <Button id='previous' text='Previous' onClick={this.prevStep} />
+              </li>
+              <li className={styles.navItem}>
+                <Button id='next' text='Next' onClick={this.nextStep} />
+              </li>
+            </ul>
           </div>
         )
       case 6:
         return (
-          <div>
+          <div className={styles.formItems}>
             <BringItems
               title='Please bring the following tomorrow.'
               id='bringItems'
@@ -240,23 +265,37 @@ class InfantsForm extends Component {
               label='Other: '
               onChange={this.handleInputChange}
             />
-            <Step id='previous' text='Previous' onClick={this.prevStep} />
-            <Step id='next' text='Next' onClick={this.nextStep} />
+            <ul className={styles.navLinks}>
+              <li className={styles.navItem}>
+                <Button id='previous' text='Previous' onClick={this.prevStep} />
+              </li>
+              <li className={styles.navItem}>
+                <Button id='next' text='Next' onClick={this.nextStep} />
+              </li>
+            </ul>
           </div>
         )
       case 7:
         return (
-          <div>
+          <div className={styles.formItems}>
             <UserInfo
               onChange={this.handleInputChange}
             />
-            <Step id='previous' text='Previous' onClick={this.prevStep} />
-            <Step id='next' text='Next' onClick={this.nextStep} />
+            <ul className={styles.navLinks}>
+              <li className={styles.navItem}>
+                <Button id='previous' text='Previous' onClick={this.prevStep} />
+              </li>
+              <li className={styles.navItem}>
+                <Button id='next' text='Next' onClick={this.nextStep} />
+              </li>
+            </ul>
           </div>
         )
       case 8:
         return (
-          <Submit id='submit' />
+          <div className={styles.formItems}>
+            <Submit id='submit' />
+          </div>
         )
       default:
         break
@@ -265,12 +304,16 @@ class InfantsForm extends Component {
 
   render () {
     return (
-      <div>
-        <h1>Infants</h1>
-        <Link to='/'>Start Over</Link>
-        <form onSubmit={this.handleSubmit}>
-          {this.formStep(this.state.step)}
-        </form>
+      <div className={styles.container}>
+        <Link className={styles.backButton} to='/'>Start Over</Link>
+        <div className={styles.borderTop} />
+        <div className={styles.topThin} />
+        <section className={styles.header}>
+          <h3>Infants</h3>
+          <form onSubmit={this.handleSubmit}>
+            {this.formStep(this.state.step)}
+          </form>
+        </section>
       </div>
     )
   }

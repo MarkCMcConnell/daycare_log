@@ -5,7 +5,7 @@
 body {
   font-family: 'Lato', sans-serif;
   font-size: 18px;
-  color: var(--text);
+  color: var(--darkText);
   background-color: #f7f7f7;
   line-height: 1.5;
   font-weight: 400;
@@ -32,6 +32,25 @@ ul {
   list-style: none;
 }
 
-.isHidden {
-  display: none;
+button {
+  border: none;
 }
+
+input {
+  border: none;
+  border-radius: 5px;
+  border-bottom: 2px solid var(--primaryColor);
+
+  &:focus {
+    outline: none;
+    background-color: var(--secondaryColorLight);
+    color: var(--text);
+  }
+}
+
+.card {
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.12), 0 0 4px 0 rgba(0, 0, 0, 0.08);
+}
+/* .isHidden {
+  display: none;
+} */

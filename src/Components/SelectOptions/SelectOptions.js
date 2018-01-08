@@ -10,7 +10,7 @@ const SelectOptions = ({ options, measurement, name, onChange, nextStep, prevSte
   })
 
   return (
-    <select name={name} onChange={onChange}>
+    <select className={styles.sizing} name={name} onChange={onChange}>
       {selectOptions}
     </select>
   )

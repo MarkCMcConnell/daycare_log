@@ -24,15 +24,6 @@
   align-self: center;
 }
 
-.mainSection {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  flex: 1 0 auto;
-  text-align: center;
-}
-
 .nav {
   position: absolute;
   bottom: 20%;
@@ -48,18 +39,6 @@
   text-align: center;
 }
 
-.navLink {
-  display: block;
-  width: 8rem;
-  padding: .5rem 1.5rem;
-  font-size: 1.2rem;
-  color: #fff;
-  background-color: var(--primaryColor);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-  border-radius: 10px;
-  text-decoration: none;
-}
-
 .borderTop {
   position: absolute;
   top: 0;
@@ -67,6 +46,9 @@
   height: 50%;
   width: 100%;
   background-color: var(--secondaryColor);
+  /* background-image: url('../../../public/assets/images/background-painting.jpg');
+  background-repeat: no-repeat;
+  background-size: cover; */
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
   transform: skewY(-10deg);
   transform-origin: bottom left;
