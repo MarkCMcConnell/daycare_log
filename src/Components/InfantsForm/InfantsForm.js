@@ -119,14 +119,14 @@ class InfantsForm extends Component {
 
   handleSubmit (event) {
     event.preventDefault()
-    // axios.post('http://localhost:3000/sendmail/infant', this.state)
-    //   .then(function(response) {
-    //     console.log(response);
-    //   })
-    //   .catch(function(error) {
-    //     console.log(error);
-    //   });
-    // this.props.history.push('/');
+    axios.post('http://localhost:3000/sendmail/infant', this.state)
+      .then(function (response) {
+        console.log(response)
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
+    this.props.history.push('/')
   }
 
   prevStep () {
