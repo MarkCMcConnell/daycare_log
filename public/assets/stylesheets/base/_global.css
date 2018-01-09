@@ -40,6 +40,7 @@ input {
   border: none;
   border-radius: 5px;
   border-bottom: 2px solid var(--primaryColor);
+  text-align: center;
 
   &:focus {
     outline: none;

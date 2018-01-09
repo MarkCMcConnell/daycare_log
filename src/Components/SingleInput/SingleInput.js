@@ -4,7 +4,7 @@ import styles from './SingleInput.css'
 
 const SingleInput = ({label, type, name, onChange}) => {
   return (
-    <div>
+    <div className={styles.gridItem}>
       <label className={styles.inputLabel} htmlFor={name}>{label}</label>
       <input className={styles.inputField} type={type} name={name} onChange={onChange} />
     </div>

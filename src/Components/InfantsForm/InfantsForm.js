@@ -145,19 +145,22 @@ class InfantsForm extends Component {
     switch (this.state.step) {
       case 1:
         return (
-          <div className={styles.formItems}>
+          <div className={styles.gridContainer1x1}>
             <DatePicker
+              className={styles.gridItem}
               id='today'
               date={this.state.today}
               onChange={this.handleDateChange}
             />
             <SingleInput
+              className={styles.gridItem}
               id='name'
               type='text'
               label="Child's name"
               onChange={this.handleInputChange}
             />
             <SingleInput
+              className={styles.gridItem}
               id='parentEmail'
               name='parentEmail'
               type='email'
@@ -169,7 +172,7 @@ class InfantsForm extends Component {
         )
       case 2:
         return (
-          <div className={styles.formItems}>
+          <div className={styles.gridContainer1x1}>
             <TextArea
               label='My day was: '
               id='myDay'
@@ -177,77 +180,64 @@ class InfantsForm extends Component {
               rows='4'
               onChange={this.handleInputChange}
             />
-            <ul className={styles.navLinks}>
-              <li className={styles.navItem}>
-                <Button id='previous' text='Previous' onClick={this.prevStep} />
-              </li>
-              <li className={styles.navItem}>
-                <Button id='next' text='Next' onClick={this.nextStep} />
-              </li>
-            </ul>
+            <div className={styles.gridContainer2x1}>
+              <Button id='previous' text='Previous' onClick={this.prevStep} />
+              <Button id='next' text='Next' onClick={this.nextStep} />
+            </div>
           </div>
         )
       case 3:
         return (
-          <div className={styles.formItems}>
+          <div>
             <TimedMultipleInputs
               title='Bottles'
               id='bottles'
+              rows={6}
               selectLabel='Amount'
               items={this.state.bottles}
               onChange={this.handleMultipleChange}
               onChangeTime={this.handleMultipleTimeChange}
             />
-            <ul className={styles.navLinks}>
-              <li className={styles.navItem}>
-                <Button id='previous' text='Previous' onClick={this.prevStep} />
-              </li>
-              <li className={styles.navItem}>
-                <Button id='next' text='Next' onClick={this.nextStep} />
-              </li>
-            </ul>
+            <div className={styles.gridContainer2x1}>
+              <Button id='previous' text='Previous' onClick={this.prevStep} />
+              <Button id='next' text='Next' onClick={this.nextStep} />
+            </div>
           </div>
         )
       case 4:
         return (
-          <div className={styles.formItems}>
+          <div>
             <TimedMultipleInputs
               title='Diapers'
               id='diapers'
+              rows={8}
               selectLabel='Type'
               items={this.state.diapers}
               onChange={this.handleMultipleChange}
               onChangeDateTime={this.handleMultipleTimeChange}
             />
-            <ul className={styles.navLinks}>
-              <li className={styles.navItem}>
-                <Button id='previous' text='Previous' onClick={this.prevStep} />
-              </li>
-              <li className={styles.navItem}>
-                <Button id='next' text='Next' onClick={this.nextStep} />
-              </li>
-            </ul>
+            <div className={styles.gridContainer2x1}>
+              <Button id='previous' text='Previous' onClick={this.prevStep} />
+              <Button id='next' text='Next' onClick={this.nextStep} />
+            </div>
           </div>
         )
       case 5:
         return (
-          <div className={styles.formItems}>
+          <div>
             <TimedMultipleInputs
               title='Nap Times'
               id='naps'
+              rows={4}
               selectLabel='Length'
               items={this.state.naps}
               onChange={this.hanMultipleChange}
               onChangeDateTime={this.handleMultipleTimeChange}
             />
-            <ul className={styles.navLinks}>
-              <li className={styles.navItem}>
-                <Button id='previous' text='Previous' onClick={this.prevStep} />
-              </li>
-              <li className={styles.navItem}>
-                <Button id='next' text='Next' onClick={this.nextStep} />
-              </li>
-            </ul>
+            <div className={styles.gridContainer2x1}>
+              <Button id='previous' text='Previous' onClick={this.prevStep} />
+              <Button id='next' text='Next' onClick={this.nextStep} />
+            </div>
           </div>
         )
       case 6:
@@ -265,14 +255,10 @@ class InfantsForm extends Component {
               label='Other: '
               onChange={this.handleInputChange}
             />
-            <ul className={styles.navLinks}>
-              <li className={styles.navItem}>
-                <Button id='previous' text='Previous' onClick={this.prevStep} />
-              </li>
-              <li className={styles.navItem}>
-                <Button id='next' text='Next' onClick={this.nextStep} />
-              </li>
-            </ul>
+            <div className={styles.gridContainer2x1}>
+              <Button id='previous' text='Previous' onClick={this.prevStep} />
+              <Button id='next' text='Next' onClick={this.nextStep} />
+            </div>
           </div>
         )
       case 7:
@@ -281,14 +267,10 @@ class InfantsForm extends Component {
             <UserInfo
               onChange={this.handleInputChange}
             />
-            <ul className={styles.navLinks}>
-              <li className={styles.navItem}>
-                <Button id='previous' text='Previous' onClick={this.prevStep} />
-              </li>
-              <li className={styles.navItem}>
-                <Button id='next' text='Next' onClick={this.nextStep} />
-              </li>
-            </ul>
+            <div className={styles.gridContainer2x1}>
+              <Button id='previous' text='Previous' onClick={this.prevStep} />
+              <Button id='next' text='Next' onClick={this.nextStep} />
+            </div>
           </div>
         )
       case 8:
@@ -309,7 +291,8 @@ class InfantsForm extends Component {
         <div className={styles.borderTop} />
         <div className={styles.topThin} />
         <section className={styles.header}>
-          <h3>Infants</h3>
+          <h2 className={styles.txt}>Infants</h2>
+          <h4 className={styles.txt}>{this.state.step} / 8</h4>
           <form onSubmit={this.handleSubmit}>
             {this.formStep(this.state.step)}
           </form>

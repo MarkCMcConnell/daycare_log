@@ -1,7 +1,8 @@
-.pickerLabel {
-  display: block;
-}
+@import '../../../public/assets/stylesheets/App.css';
+@import '../InfantsForm/InfantsForm.css';
 
-.pickerInput {
-  display: block;
+.inputItem {
+  & input:placeholder-shown {
+    text-align: center;
+  }
 }

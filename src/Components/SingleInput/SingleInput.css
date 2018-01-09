@@ -2,9 +2,13 @@
 
 .inputLabel {
   display: block;
-  margin-bottom: .5rem;
 }
 
 .inputField {
   display: block;
+  text-align: center;
+  width: 15rem;
+  background-color: transparent;
+  color: var(--primaryColor);
+  padding: .25rem;
 }

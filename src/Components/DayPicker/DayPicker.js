@@ -18,10 +18,10 @@ class DatePicker extends Component {
 
   render () {
     return (
-      <div>
-        <label className={styles.pickerLabel} htmlFor={this.props.id}>Today's Date: </label>
+      <div className={styles.gridItem}>
+        <label htmlFor={this.props.id}>Today's Date: </label>
         <DayPickerInput
-          className={styles.pickerInput}
+          className={styles.inputItem}
           id={this.props.id}
           onDayClick={this.handleDayChange}
           formatDate={formatDate}

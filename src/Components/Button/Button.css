@@ -1,3 +1,6 @@
+@import '../../../public/assets/stylesheets/App.css';
+@import '../InfantsForm/InfantsForm.css';
+
 .btn {
   width: 8rem;
   padding: .5rem 1.5rem;

@@ -9,39 +9,13 @@
   color: #fff;
 }
 
-.formItems {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-
-  & label {
-    margin-top: 1.25rem;
-  }
-
-  & input {
-    text-align: center;
-    width: 15rem;
-    background-color: transparent;
-    color: var(--primaryColor);
-    margin-top: .125rem;
-    margin-bottom: 1.25rem;
-    padding: .25rem;
-  }
-}
-
 .header {
   top: 50%;
   height: auto;
   width: 80%;
 }
 
-.navLinks {
-  display: flex;
-  margin: 0;
-  padding: 0;
-}
-
-.spacing {
-  margin: 1.5rem 0;
+.txt {
+  margin: 0.25rem;
+  text-align: center;
 }
