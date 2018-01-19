@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import moment from 'moment'
 
-import Time from '../TimePicker/TimePicker'
+import TimeSlider from '../TimeSlider/TimeSlider'
 import SelectOptions from '../SelectOptions/SelectOptions'
 
 import styles from './TimedMultipleInputs.css'
@@ -10,18 +9,18 @@ class InfantMultipleInputs extends Component {
   constructor (props) {
     super(props)
 
-    this.handleChange = this.handleChange.bind(this)
-    this.handleTimeFormChange = this.handleTimeFormChange.bind(this)
+    this.handleTimeChange = this.handleTimeChange.bind(this)
+  }
+
+  handleTimeChange (time, index, id) {
+    /* Update onChangeTime prop from parent form */
+    this.props.onChangeTime(time, index, id)
   }
 
   handleChange (e, index, id) {
     this.props.onChange(e.target.value, index, id)
   }
 
-  handleTimeFormChange (time, index, id) {
-    let selectedTime = moment(time).format('h:mm a')
-    this.props.onChangeTime(selectedTime, index, id)
-  }
 
   render () {
     const inputItems = this.props.items.map((item, index) => {
@@ -29,13 +28,12 @@ class InfantMultipleInputs extends Component {
         let optionsArr = [0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10]
 
         return [
-          <div key='time'>
-            <label htmlFor={index}>Time: </label>
-            <Time id={index} time={item.time}
-              onChangeTime={(time) => this.handleTimeFormChange(time, index, this.props.id)}
+          <div key='1'>
+            <TimeSlider id={index}
+              onTimeChange={this.handleTimeChange}
             />
           </div>,
-          <div key='amount'>
+          <div key='2'>
             <label htmlFor={index}>{this.props.selectLabel}</label>
             <SelectOptions
               options={optionsArr}
@@ -50,9 +48,8 @@ class InfantMultipleInputs extends Component {
         // TODO Change label for SelectOptions to match the type
         return [
           <div key='1'>
-            <label htmlFor={index}>Time: </label>
-            <Time id={index} time={item.time}
-              onChangeTime={(time) => this.handleTimeFormChange(time, index, this.props.id)}
+            <TimeSlider id={index} time={item.time}
+              onTimeChange={this.handleTimeChange}
             />
           </div>,
           <div key='2'>
@@ -66,13 +63,12 @@ class InfantMultipleInputs extends Component {
           </div>
         ]
       } else {
-        let optionsArr = ['30 minutes', '45 minutes', '1 hour', '1.25 hours',
+        let optionsArr = ['30 mins', '45 mins', '1 hour', '1.25 hours',
           '1.5 hours', '1.75 hours', '2 hours', '2.25 hours', '2.5 hours', '2.75 hours', '3 hours']
         return [
           <div key='1'>
-            <label htmlFor={index}>Time: </label>
-            <Time id={index} time={item.time}
-              onChangeTime={(time) => this.handleTimeFormChange(time, index, this.props.id)}
+            <TimeSlider id={index} time={item.time}
+              onTimeChange={this.handleTimeChange}
             />
           </div>,
           <div key='2'>

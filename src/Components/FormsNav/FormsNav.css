@@ -2,13 +2,12 @@
 
 .container {
   position: relative;
+  height: 100vh;
 }
 
 .header {
-  position: absolute;
+  @mixin centered;
   top: 45%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   height: 30%;
   width: 60%;
   background-color: #fff;
@@ -53,7 +52,7 @@
   transform-origin: bottom left;
 }
 
-.topThin {
+.borderTopThin {
   position: absolute;
   top: 0;
   z-index: -2;

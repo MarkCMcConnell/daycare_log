@@ -2,11 +2,15 @@ import React from 'react'
 
 import styles from './Button.css'
 
-const Button = ({ text, onClick }) => {
+const Button = ({ text, type, onClick }) => {
   return (
-    <div className={styles.gridItem}>
-      <button className={styles.btn} onClick={onClick}>{text}</button>
-    </div>
+    <button
+      type={type}
+      className={styles.btn}
+      onClick={onClick}
+    >
+      {text}
+    </button>
   )
 }
 

@@ -10,7 +10,7 @@ body {
   line-height: 1.5;
   font-weight: 400;
   /* Designed for mobile use only */
-  max-width: 640px;
+  max-width: 440px;
   margin: 0 auto;
 }
 
@@ -38,14 +38,13 @@ button {
 
 input {
   border: none;
-  border-radius: 5px;
-  border-bottom: 2px solid var(--primaryColor);
+  border-bottom: 2px solid var(--secondaryColorDark);
   text-align: center;
+  transition: .2s;
 
   &:focus {
     outline: none;
-    background-color: var(--secondaryColorLight);
-    color: var(--text);
+    border-bottom: 2px solid var(--primaryColor);
   }
 }
 

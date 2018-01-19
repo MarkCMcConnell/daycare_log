@@ -5,17 +5,119 @@
   position: absolute;
   top: .5rem;
   left: .5rem;
-  z-index: 10;
+  z-index: 5;
   color: #fff;
 }
 
-.header {
-  top: 50%;
-  height: auto;
-  width: 80%;
+.borderTop {
+  height: 50vh;
 }
 
-.txt {
+.borderTopThin {
+  height: 55vh;
+}
+
+.formsContainer {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: 10vh repeat(3, 1fr);
+  grid-gap: 5px 5px;
+  align-items: center;
+  justify-items: center;
+  /* position: relative; */
+  height: 100%;
+  width: 100%;
+}
+
+.formsHeader {
+  grid-row: 2 / 5;
+  grid-column: 2 / 10;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 3rem 1.5rem auto 4rem;
+  grid-row-gap: .25em;
+  align-items: center;
+  justify-items: center;
+  width: 100%;
+  background-color: var(--whiteText);
+}
+
+.titleText {
+  grid-row: 1;
   margin: 0.25rem;
   text-align: center;
+}
+
+.stepText{
+  grid-row: 2;
+  margin: 0.125rem;
+  text-align: center;
+}
+
+.formField {
+  grid-row: 3;
+  width: 100%;
+}
+
+.navControl {
+  grid-row: 4;
+  justify-self: center;
+}
+
+/* Grid classes */
+.gridContainer1x1 {
+  display: grid;
+  grid-gap: 10px 15px;
+  align-items: center;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  align-items: center;
+  justify-items: center;
+}
+
+.gridContainer1x2 {
+  composes: gridContainer1x1;
+  grid-template-rows: 4fr 1fr;
+}
+
+.gridContainer2x1 {
+  composes: gridContainer1x1;
+  grid-template-columns: 2fr 1fr;
+}
+
+.gridContainerEven2x1 {
+  composes: gridContainer1x1;
+  grid-template-columns: 1fr 1fr;
+}
+
+.gridContainer2x4 {
+  display: grid;
+  grid-gap: 10px 15px;
+  align-items: center;
+  grid-template-columns: 1.5fr 1fr;
+  grid-template-rows: repeat(4, 1fr);
+}
+
+.gridContainer2x6 {
+  display: grid;
+  grid-gap: 10px 15px;
+  align-items: center;
+  grid-template-columns: 1.5fr 1fr;
+  grid-template-rows: repeat(6, 1fr);
+}
+
+.gridContainer2x8 {
+  display: grid;
+  grid-gap: 10px 15px;
+  align-items: center;
+  grid-template-columns: 1.5fr 1fr;
+  grid-template-rows: repeat(8, 1fr);
+}
+
+.gridItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1 0 auto;
 }

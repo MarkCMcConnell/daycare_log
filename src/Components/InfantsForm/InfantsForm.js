@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
-import axios from 'axios'
+// import axios from 'axios'
+
+import TimeSlider from '../TimeSlider/TimeSlider'
 
 import DatePicker from '../DayPicker/DayPicker'
 import SingleInput from '../SingleInput/SingleInput'
@@ -75,6 +77,7 @@ class InfantsForm extends Component {
     this.setState({today: selectedDate})
   }
 
+  //TODO Modify to have this.state.[item] and generalize the key for nested object
   handleMultipleChange (item, index, id) {
     if (id === 'bottles') {
       let newState = [ ...this.state.bottles ]
@@ -119,14 +122,14 @@ class InfantsForm extends Component {
 
   handleSubmit (event) {
     event.preventDefault()
-    axios.post('http://localhost:3000/sendmail/infant', this.state)
-      .then(function (response) {
-        console.log(response)
-      })
-      .catch(function (error) {
-        console.log(error)
-      })
-    this.props.history.push('/')
+    // axios.post('http://localhost:3000/sendmail/infant', this.state)
+    //   .then(function (response) {
+    //     console.log(response)
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error)
+    //   })
+    // this.props.history.push('/')
   }
 
   prevStep () {
@@ -156,7 +159,7 @@ class InfantsForm extends Component {
               className={styles.gridItem}
               id='name'
               type='text'
-              label="Child's name"
+              label='Child&#39;s name'
               onChange={this.handleInputChange}
             />
             <SingleInput
@@ -164,10 +167,9 @@ class InfantsForm extends Component {
               id='parentEmail'
               name='parentEmail'
               type='email'
-              label="Parent's Email"
+              label='Parent&#39;s Email'
               onChange={this.handleInputChange}
             />
-            <Button id='next' text='Next' onClick={this.nextStep} />
           </div>
         )
       case 2:
@@ -177,13 +179,10 @@ class InfantsForm extends Component {
               label='My day was: '
               id='myDay'
               name='myDay'
-              rows='4'
+              rows='8'
+              cols='25'
               onChange={this.handleInputChange}
             />
-            <div className={styles.gridContainer2x1}>
-              <Button id='previous' text='Previous' onClick={this.prevStep} />
-              <Button id='next' text='Next' onClick={this.nextStep} />
-            </div>
           </div>
         )
       case 3:
@@ -198,10 +197,6 @@ class InfantsForm extends Component {
               onChange={this.handleMultipleChange}
               onChangeTime={this.handleMultipleTimeChange}
             />
-            <div className={styles.gridContainer2x1}>
-              <Button id='previous' text='Previous' onClick={this.prevStep} />
-              <Button id='next' text='Next' onClick={this.nextStep} />
-            </div>
           </div>
         )
       case 4:
@@ -214,12 +209,8 @@ class InfantsForm extends Component {
               selectLabel='Type'
               items={this.state.diapers}
               onChange={this.handleMultipleChange}
-              onChangeDateTime={this.handleMultipleTimeChange}
+              onChangeTime={this.handleMultipleTimeChange}
             />
-            <div className={styles.gridContainer2x1}>
-              <Button id='previous' text='Previous' onClick={this.prevStep} />
-              <Button id='next' text='Next' onClick={this.nextStep} />
-            </div>
           </div>
         )
       case 5:
@@ -232,17 +223,13 @@ class InfantsForm extends Component {
               selectLabel='Length'
               items={this.state.naps}
               onChange={this.hanMultipleChange}
-              onChangeDateTime={this.handleMultipleTimeChange}
+              onChangeTime={this.handleMultipleTimeChange}
             />
-            <div className={styles.gridContainer2x1}>
-              <Button id='previous' text='Previous' onClick={this.prevStep} />
-              <Button id='next' text='Next' onClick={this.nextStep} />
-            </div>
           </div>
         )
       case 6:
         return (
-          <div className={styles.formItems}>
+          <div className={styles.gridContainer1x2}>
             <BringItems
               title='Please bring the following tomorrow.'
               id='bringItems'
@@ -255,28 +242,20 @@ class InfantsForm extends Component {
               label='Other: '
               onChange={this.handleInputChange}
             />
-            <div className={styles.gridContainer2x1}>
-              <Button id='previous' text='Previous' onClick={this.prevStep} />
-              <Button id='next' text='Next' onClick={this.nextStep} />
-            </div>
           </div>
         )
       case 7:
         return (
-          <div className={styles.formItems}>
+          <div>
             <UserInfo
               onChange={this.handleInputChange}
             />
-            <div className={styles.gridContainer2x1}>
-              <Button id='previous' text='Previous' onClick={this.prevStep} />
-              <Button id='next' text='Next' onClick={this.nextStep} />
-            </div>
           </div>
         )
       case 8:
         return (
           <div className={styles.formItems}>
-            <Submit id='submit' />
+            <Button type='submit' text='Send' />
           </div>
         )
       default:
@@ -285,17 +264,32 @@ class InfantsForm extends Component {
   }
 
   render () {
+    const step = this.state.step
+
+    let nav = null
+    if (step === 1) {
+      nav = <div className={`${styles.gridContainer1x1} ${styles.navControl}`}>
+        <Button id='next' text='Next' onClick={this.nextStep} />
+      </div>
+    } else if (step > 1 && step < 8) {
+      nav = <div className={`${styles.gridContainerEven2x1} ${styles.navControl}`}>
+        <Button id='previous' text='Previous' onClick={this.prevStep} />
+        <Button id='next' text='Next' onClick={this.nextStep} />
+      </div>
+    }
+
     return (
-      <div className={styles.container}>
+      <div className={styles.formsContainer}>
         <Link className={styles.backButton} to='/'>Start Over</Link>
         <div className={styles.borderTop} />
-        <div className={styles.topThin} />
-        <section className={styles.header}>
-          <h2 className={styles.txt}>Infants</h2>
-          <h4 className={styles.txt}>{this.state.step} / 8</h4>
-          <form onSubmit={this.handleSubmit}>
+        <div className={styles.borderTopThin} />
+        <section className={styles.formsHeader}>
+          <h2 className={styles.titleText}>Infants</h2>
+          <h4 className={styles.stepText}>{this.state.step} / 8</h4>
+          <form className={styles.formField} onSubmit={this.handleSubmit}>
             {this.formStep(this.state.step)}
           </form>
+          {nav}
         </section>
       </div>
     )

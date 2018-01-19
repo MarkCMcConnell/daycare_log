@@ -6,7 +6,12 @@ const SingleInput = ({label, type, name, onChange}) => {
   return (
     <div className={styles.gridItem}>
       <label className={styles.inputLabel} htmlFor={name}>{label}</label>
-      <input className={styles.inputField} type={type} name={name} onChange={onChange} />
+      <input
+        className={styles.inputField}
+        type={type}
+        name={name}
+        onChange={onChange}
+      />
     </div>
   )
 }

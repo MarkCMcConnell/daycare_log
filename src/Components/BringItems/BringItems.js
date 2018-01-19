@@ -15,8 +15,9 @@ class BringItems extends Component {
 
   render () {
     const checkbox = this.props.items.map((item, index) => {
+      let gridItem = `gridItem${index}`
       return (
-        <div key={index}>
+        <div className={gridItem} key={index}>
           <input id={item.type} name={item.type} type='checkbox' onChange={(e) => this.handleChange(e, index)} />
           <label htmlFor={item.type}>{item.type}</label>
         </div>
@@ -24,8 +25,8 @@ class BringItems extends Component {
     })
 
     return (
-      <div>
-        <h3>{this.props.title}</h3>
+      <div className={styles.container}>
+        <h3 className={styles.titleText}>{this.props.title}</h3>
         {checkbox}
       </div>
     )

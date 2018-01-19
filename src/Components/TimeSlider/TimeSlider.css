@@ -1,0 +1,59 @@
+@import '../../../public/assets/stylesheets/App.css';
+
+.container {
+
+}
+
+.btn {
+  composes: btn from '../Button/Button.css';
+  background: transparent;
+  border: 2px solid var(--primaryColor);
+  color: var(--text);
+  padding: .25rem .25rem;
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 60%;
+  transform: translate(-50%, -50%);
+  z-index: 12;
+  width: 70%;
+  display: grid;
+  grid-template-columns: 10% 80% 10%;
+  grid-template-rows: .5rem 3rem repeat(2, 6rem) 3rem 2rem .5rem;
+  grid-row-gap: 5px;
+  color: var(--text);
+  background-color: var(--whiteText);
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.time {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+}
+
+.hourSlider {
+  grid-column: 2 / 3;
+  grid-row: 3 / 4;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: space-around;
+}
+
+.minuteSlider {
+  grid-column: 2 / 3;
+  grid-row: 4 / 5;
+}
+
+.meridiem {
+  grid-column: 2 / 3;
+  grid-row: 5 / 6;
+}
+
+.closeBtn {
+  grid-column: 2 / 3;
+  grid-row: 6 / 7;
+  cursor: pointer;
+}

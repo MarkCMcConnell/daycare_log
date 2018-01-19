@@ -2,10 +2,10 @@ import React from 'react'
 
 import styles from './SelectOptions.css'
 
-const SelectOptions = ({ options, measurement, name, onChange, nextStep, prevStep }) => {
+const SelectOptions = ({ options, measurement, name, onChange }) => {
   let selectOptions = options.map((option, index) => {
     return (
-      <option key={index} value={option + measurement}>{option + measurement}</option>
+      <option className={styles.optionTxt} key={index} value={option + measurement}>{option + measurement}</option>
     )
   })
 

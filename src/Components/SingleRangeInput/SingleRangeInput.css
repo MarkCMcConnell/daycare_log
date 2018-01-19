@@ -1,0 +1,64 @@
+@import '../../../public/assets/stylesheets/App.css';
+
+.sliderContainer {
+  width: 100%;
+  color: var(--text);
+
+  & label {
+    margin-bottom: .5rem;
+  }
+}
+
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: .5rem;
+  outline: none;
+  border-radius: 5px;
+  border: .2px solid var(--darkText);
+  background: var(--secondaryColor);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+
+  @mixin atMedium {
+    opacity: .6;
+    transition: opacity .2s;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    border: 4px solid var(--primaryColor);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    background-color: #fff;
+    cursor: pointer;
+  }
+
+  &::-moz-range-thumb {
+    -webkit-appearance: none;
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 50%;
+    border: 2px solid var(--primaryColor);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    background-color: #fff;
+    cursor: pointer;
+  }
+
+  &::-ms-track {
+    width: 100%;
+    background: transparent;
+    border: transparent;
+    color: transparent;
+  }
+}
