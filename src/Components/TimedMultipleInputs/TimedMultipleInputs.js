@@ -12,76 +12,35 @@ class InfantMultipleInputs extends Component {
     this.handleTimeChange = this.handleTimeChange.bind(this)
   }
 
-  handleTimeChange (time, index, id) {
+  handleTimeChange (time, index, id, key) {
     /* Update onChangeTime prop from parent form */
-    this.props.onChangeTime(time, index, id)
+    this.props.onChangeTime(time, index, id, key)
   }
 
-  handleChange (e, index, id) {
-    this.props.onChange(e.target.value, index, id)
+  handleChange (e, index, id, key) {
+    this.props.onChange(e.target.value, index, id, key)
   }
 
 
   render () {
     const inputItems = this.props.items.map((item, index) => {
-      if (this.props.id === 'bottles') {
-        let optionsArr = [0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10]
-
-        return [
-          <div key='1'>
-            <TimeSlider id={index}
-              onTimeChange={this.handleTimeChange}
-            />
-          </div>,
-          <div key='2'>
-            <label htmlFor={index}>{this.props.selectLabel}</label>
-            <SelectOptions
-              options={optionsArr}
-              measurement='oz'
-              name={item}
-              onChange={(e) => this.handleChange(e, index, this.props.id)}
-            />
-          </div>
-        ]
-      } else if (this.props.id === 'diapers') {
-        let optionsArr = ['', 'wet', 'dirty']
-        // TODO Change label for SelectOptions to match the type
-        return [
-          <div key='1'>
-            <TimeSlider id={index} time={item.time}
-              onTimeChange={this.handleTimeChange}
-            />
-          </div>,
-          <div key='2'>
-            <label htmlFor={index}>{this.props.selectLabel}</label>
-            <SelectOptions
-              options={optionsArr}
-              measurement=''
-              name={item}
-              onChange={(e) => this.handleChange(e, index, this.props.id)}
-            />
-          </div>
-        ]
-      } else {
-        let optionsArr = ['30 mins', '45 mins', '1 hour', '1.25 hours',
-          '1.5 hours', '1.75 hours', '2 hours', '2.25 hours', '2.5 hours', '2.75 hours', '3 hours']
-        return [
-          <div key='1'>
-            <TimeSlider id={index} time={item.time}
-              onTimeChange={this.handleTimeChange}
-            />
-          </div>,
-          <div key='2'>
-            <label htmlFor={index}>{this.props.selectLabel}</label>
-            <SelectOptions
-              options={optionsArr}
-              measurement=''
-              name={item}
-              onChange={(e) => this.handleChange(e, index, this.props.id)}
-            />
-          </div>
-        ]
-      }
+      const { id, selectLabel, optionsArr } = this.props
+      return [
+        <div key='1'>
+          <TimeSlider
+            id={id}
+            onTimeChange={this.handleTimeChange}
+          />
+        </div>,
+        <div key='2'>
+          <label htmlFor={index}>{selectLabel}</label>
+          <SelectOptions
+            options={optionsArr}
+            name={item}
+            onChange={(e) => this.handleChange(e, index, id, selectLabel)}
+          />
+        </div>
+      ]
     })
 
     return (

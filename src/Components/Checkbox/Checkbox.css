@@ -1,0 +1,50 @@
+.gridItem0 {
+  display: flex;
+  align-items: center;
+  grid-row: 2 / 3;
+  grid-column: 1 / 2;
+}
+
+.gridItem1 {
+  composes: gridItem0;
+  grid-column: 2 / 2;
+}
+
+.gridItem2 {
+  composes: gridItem0;
+  grid-row: 3 / 4;
+}
+
+.gridItem3 {
+  composes: gridItem1;
+  grid-row: 3 / 4;
+}
+
+.gridItem4 {
+  composes: gridItem0;
+  grid-row: 4 / 5;
+}
+
+.checkboxInput {
+  display: none;
+}
+
+.checkboxLabel {
+  display: inline-block;
+  background-color: var(--secondaryColorLight);
+  color: var(--whiteText);
+  text-align: center;
+  width:7rem;
+  padding: 0.5em 1em;
+  border: 0.05em solid rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.isChecked {
+  background-color: var(--primaryColor);
+}

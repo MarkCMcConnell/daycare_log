@@ -32,6 +32,9 @@ class InfantsForm extends Component {
         { time: '', amount: '' },
         { time: '', amount: '' }
       ],
+      bottlesOptions: ['0.5oz', '1oz', '1.5oz', '2oz', '2.5oz', '3oz', '3.5oz',
+        '4oz', '4.5oz', '5oz', '5.5oz', '6oz', '6.5oz', '7oz', '7.5oz', '8oz',
+        '8.5oz', '9oz', '9.5oz', '10oz'],
       diapers: [
         { time: '', type: '' },
         { time: '', type: '' },
@@ -42,17 +45,20 @@ class InfantsForm extends Component {
         { time: '', type: '' },
         { time: '', type: '' }
       ],
+      diapersOptions: ['', 'wet', 'dirty'],
       naps: [
         { time: '', length: '' },
         { time: '', length: '' },
         { time: '', length: '' },
         { time: '', length: '' }
       ],
+      napsOptions: ['30 mins', '45 mins', '1 hour', '1.25 hours', '1.5 hours',
+        '1.75 hours', '2 hours', '2.25 hours', '2.5 hours', '2.75 hours', '3 hours'],
       bringItems: [
         {type: 'Diapers', isChecked: false},
         {type: 'Wipes', isChecked: false},
         {type: 'Formula', isChecked: false},
-        {type: 'Change of clothes', isChecked: false},
+        {type: 'Clothes', isChecked: false},
         {type: 'Ointment', isChecked: false}
       ],
       other: '',
@@ -65,7 +71,7 @@ class InfantsForm extends Component {
 
     this.handleDateChange = this.handleDateChange.bind(this)
     this.handleMultipleChange = this.handleMultipleChange.bind(this)
-    this.handleMultipleTimeChange = this.handleMultipleTimeChange.bind(this)
+    // this.handleMultipleTimeChange = this.handleMultipleTimeChange.bind(this)
     this.handleBringItemsChange = this.handleBringItemsChange.bind(this)
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -78,37 +84,42 @@ class InfantsForm extends Component {
   }
 
   //TODO Modify to have this.state.[item] and generalize the key for nested object
-  handleMultipleChange (item, index, id) {
-    if (id === 'bottles') {
-      let newState = [ ...this.state.bottles ]
-      newState[index] = { ...newState[index], amount: item }
-      this.setState({bottles: newState})
-    } else if (id === 'diapers') {
-      let newState = [ ...this.state.diapers ]
-      newState[index] = { ...newState[index], type: item }
-      this.setState({diapers: newState})
-    } else {
-      let newState = [ ...this.state.naps ]
-      newState[index] = { ...newState[index], length: item }
-      this.setState({naps: newState})
-    }
+  handleMultipleChange (item, index, id, key) {
+    let newState = [ ...this.state[id] ]
+    newState[index] = { ...newState[index], [key]: item }
+    this.setState({ [id]: newState})
   }
-
-  handleMultipleTimeChange (time, index, id) {
-    if (id === 'bottles') {
-      let newState = [ ...this.state.bottles ]
-      newState[index] = { ...newState[index], time: time }
-      this.setState({bottles: newState})
-    } else if (id === 'diapers') {
-      let newState = [ ...this.state.diapers ]
-      newState[index] = { ...newState[index], time: time }
-      this.setState({diapers: newState})
-    } else {
-      let newState = [ ...this.state.naps ]
-      newState[index] = { ...newState[index], time: time }
-      this.setState({naps: newState})
-    }
-  }
+  //
+  //   if (id === 'bottles') {
+  //     let newState = [ ...this.state.bottles ]
+  //     newState[index] = { ...newState[index], amount: item }
+  //     this.setState({bottles: newState})
+  //   } else if (id === 'diapers') {
+  //     let newState = [ ...this.state.diapers ]
+  //     newState[index] = { ...newState[index], type: item }
+  //     this.setState({diapers: newState})
+  //   } else {
+  //     let newState = [ ...this.state.naps ]
+  //     newState[index] = { ...newState[index], length: item }
+  //     this.setState({naps: newState})
+  //   }
+  // }
+  //
+  // handleMultipleTimeChange (time, index, id) {
+    // if (id === 'bottles') {
+    //   let newState = [ ...this.state.bottles ]
+    //   newState[index] = { ...newState[index], time: time }
+    //   this.setState({bottles: newState})
+    // } else if (id === 'diapers') {
+    //   let newState = [ ...this.state.diapers ]
+    //   newState[index] = { ...newState[index], time: time }
+    //   this.setState({diapers: newState})
+    // } else {
+    //   let newState = [ ...this.state.naps ]
+    //   newState[index] = { ...newState[index], time: time }
+    //   this.setState({naps: newState})
+    // }
+  // }
 
   handleBringItemsChange (item, isChecked, index) {
     let newState = [ ...this.state.bringItems ]
@@ -194,8 +205,9 @@ class InfantsForm extends Component {
               rows={6}
               selectLabel='Amount'
               items={this.state.bottles}
+              optionsArr={this.state.bottlesOptions}
               onChange={this.handleMultipleChange}
-              onChangeTime={this.handleMultipleTimeChange}
+              onChangeTime={this.handleMultipleChange}
             />
           </div>
         )
@@ -208,8 +220,9 @@ class InfantsForm extends Component {
               rows={8}
               selectLabel='Type'
               items={this.state.diapers}
+              optionsArr={this.state.diapersOptions}
               onChange={this.handleMultipleChange}
-              onChangeTime={this.handleMultipleTimeChange}
+              onChangeTime={this.handleMultipleChange}
             />
           </div>
         )
@@ -222,8 +235,9 @@ class InfantsForm extends Component {
               rows={4}
               selectLabel='Length'
               items={this.state.naps}
-              onChange={this.hanMultipleChange}
-              onChangeTime={this.handleMultipleTimeChange}
+              optionsArr={this.state.napsOptions}
+              onChange={this.handleMultipleChange}
+              onChangeTime={this.handleMultipleChange}
             />
           </div>
         )
@@ -231,7 +245,7 @@ class InfantsForm extends Component {
         return (
           <div className={styles.gridContainer1x2}>
             <BringItems
-              title='Please bring the following tomorrow.'
+              title='Please bring the following tomorrow:'
               id='bringItems'
               items={this.state.bringItems}
               onChange={this.handleBringItemsChange}

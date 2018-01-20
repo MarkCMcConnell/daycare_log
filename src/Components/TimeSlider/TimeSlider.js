@@ -39,15 +39,16 @@ export default class TimeSlider extends Component {
     this.setState({ [key]: value }, () => {
       /* Concatenate state into a string for time and update this.state.time */
       let time = this.state.hour + ':' + this.state.minute + ' ' + this.state.meridiem
-      this.setState({ time: time })
     })
   }
 
   handleTimeChange () {
+    const { index, id } = this.props
     /* Set showModal to false to hide the overlay when user selects close */
     this.setState({ showModal: false })
-    /* Update sendTime prop from parent with current time */
-    this.props.onTimeChange(this.state.time)
+    /* Update onTimeChange prop from parent with current time */
+    this.props.onTimeChange(this.state.time, index, id, 'time')
+    this.setState({ time: '7:30 AM' })
   }
 
   showModal () {
