@@ -6,9 +6,9 @@ const SelectOptions = ({ options, measurement, name, onChange }) => {
   let selectOptions = options.map((option, index) => {
     return (
       <option
-        className={styles.optionTxt}
+        className={styles.optionText}
         key={index}
-        value={option}
+        value={option.toLowerCase()}
       >
         {option}
       </option>
@@ -16,7 +16,7 @@ const SelectOptions = ({ options, measurement, name, onChange }) => {
   })
 
   return (
-    <select className={styles.sizing} name={name} onChange={onChange}>
+    <select className={styles.selectBox} name={name} onChange={onChange}>
       {selectOptions}
     </select>
   )

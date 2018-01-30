@@ -1,8 +1,7 @@
-@import '../../../public/assets/stylesheets/App.css';
-
 .inputLabel {
   display: block;
   text-align: center;
+  padding-top: .5rem;
 }
 
 .inputField {

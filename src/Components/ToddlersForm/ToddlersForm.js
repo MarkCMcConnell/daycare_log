@@ -9,10 +9,9 @@ import TextArea from '../TextArea/TextArea'
 import MultipleInputs from '../MultipleInputs/MultipleInputs'
 import TimedMultipleInputs from '../TimedMultipleInputs/TimedMultipleInputs'
 import BathroomTimes from '../BathroomTimes/BathroomTimes'
-import BringItems from '../BringItems/BringItems'
+import SuppliesList from '../SuppliesList/SuppliesList'
 import Button from '../Button/Button'
 import UserInfo from '../UserInfo/UserInfo'
-import Submit from '../Submit/Submit'
 
 class ToddlersForm extends Component {
   constructor (props) {
@@ -262,7 +261,7 @@ class ToddlersForm extends Component {
         )
       case 9:
         return (
-          <Submit id='submit' />
+          <button type='submit' />
         )
       default:
         break

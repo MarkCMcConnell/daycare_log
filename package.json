@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack-dev-server --config './webpack/webpack.config.js'",
+    "link": "eslint '**/*.{js, jsx}' --quiet",
     "build": "webpack --env production --progress",
     "start": "webpack-dev-server --env development --progress --colors",
     "server-start": "node server.js"

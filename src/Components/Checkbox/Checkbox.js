@@ -14,7 +14,7 @@ class Checkbox extends Component {
   }
 
   handleClick (e) {
-    this.setState({ isActive: e.target.value })
+    this.setState({ isActive: e.target.checked })
   }
 
   render () {
@@ -27,16 +27,16 @@ class Checkbox extends Component {
           id={id}
           className={styles.checkboxInput}
           type='checkbox'
+          name={id}
           value={id}
           checked={this.state.isActive}
           onChange={onChange}
           onClick={this.handleClick}
         />
         <label
-        className={this.state.isActive
-          ? `${styles.checkboxLabel} ${styles.isChecked}`
-          : `${styles.checkboxLabel}`
-        }
+          className={this.state.isActive
+            ? `${styles.checkboxLabel} ${styles.isChecked}`
+            : `${styles.checkboxLabel}`}
           htmlFor={id}
         >
           {id}

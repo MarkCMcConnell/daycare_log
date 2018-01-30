@@ -1,19 +1,19 @@
+/* Base imports */
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
 // import axios from 'axios'
 
-import TimeSlider from '../TimeSlider/TimeSlider'
-
-import DatePicker from '../DayPicker/DayPicker'
-import SingleInput from '../SingleInput/SingleInput'
-import TextArea from '../TextArea/TextArea'
-import TimedMultipleInputs from '../TimedMultipleInputs/TimedMultipleInputs'
-import BringItems from '../BringItems/BringItems'
+/* Component imports */
+import GeneralInfo from '../GeneralInfo/GeneralInfo'
+import DailyActivities from '../DailyActivities/DailyActivities'
+import SuppliesRequest from '../SuppliesRequest/SuppliesRequest'
+import TimesAndOptions from '../TimesAndOptions/TimesAndOptions'
 import UserInfo from '../UserInfo/UserInfo'
+import Confirmation from '../Confirmation/Confirmation'
 import Button from '../Button/Button'
-import Submit from '../Submit/Submit'
 
+/* CSS import */
 import styles from './InfantsForm.css'
 
 class InfantsForm extends Component {
@@ -32,7 +32,7 @@ class InfantsForm extends Component {
         { time: '', amount: '' },
         { time: '', amount: '' }
       ],
-      bottlesOptions: ['0.5oz', '1oz', '1.5oz', '2oz', '2.5oz', '3oz', '3.5oz',
+      bottlesOptions: ['', '0.5oz', '1oz', '1.5oz', '2oz', '2.5oz', '3oz', '3.5oz',
         '4oz', '4.5oz', '5oz', '5.5oz', '6oz', '6.5oz', '7oz', '7.5oz', '8oz',
         '8.5oz', '9oz', '9.5oz', '10oz'],
       diapers: [
@@ -52,9 +52,9 @@ class InfantsForm extends Component {
         { time: '', length: '' },
         { time: '', length: '' }
       ],
-      napsOptions: ['30 mins', '45 mins', '1 hour', '1.25 hours', '1.5 hours',
+      napsOptions: ['', '30 mins', '45 mins', '1 hour', '1.25 hours', '1.5 hours',
         '1.75 hours', '2 hours', '2.25 hours', '2.5 hours', '2.75 hours', '3 hours'],
-      bringItems: [
+      suppliesList: [
         {type: 'Diapers', isChecked: false},
         {type: 'Wipes', isChecked: false},
         {type: 'Formula', isChecked: false},
@@ -71,8 +71,7 @@ class InfantsForm extends Component {
 
     this.handleDateChange = this.handleDateChange.bind(this)
     this.handleMultipleChange = this.handleMultipleChange.bind(this)
-    // this.handleMultipleTimeChange = this.handleMultipleTimeChange.bind(this)
-    this.handleBringItemsChange = this.handleBringItemsChange.bind(this)
+    this.handleSuppliesListChange = this.handleSuppliesListChange.bind(this)
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.prevStep = this.prevStep.bind(this)
@@ -83,52 +82,20 @@ class InfantsForm extends Component {
     this.setState({today: selectedDate})
   }
 
-  //TODO Modify to have this.state.[item] and generalize the key for nested object
+  handleInputChange (event) {
+    this.setState({ [event.target.name]: event.target.value })
+  }
+
   handleMultipleChange (item, index, id, key) {
     let newState = [ ...this.state[id] ]
     newState[index] = { ...newState[index], [key]: item }
-    this.setState({ [id]: newState})
+    this.setState({ [id]: newState })
   }
-  //
-  //   if (id === 'bottles') {
-  //     let newState = [ ...this.state.bottles ]
-  //     newState[index] = { ...newState[index], amount: item }
-  //     this.setState({bottles: newState})
-  //   } else if (id === 'diapers') {
-  //     let newState = [ ...this.state.diapers ]
-  //     newState[index] = { ...newState[index], type: item }
-  //     this.setState({diapers: newState})
-  //   } else {
-  //     let newState = [ ...this.state.naps ]
-  //     newState[index] = { ...newState[index], length: item }
-  //     this.setState({naps: newState})
-  //   }
-  // }
-  //
-  // handleMultipleTimeChange (time, index, id) {
-    // if (id === 'bottles') {
-    //   let newState = [ ...this.state.bottles ]
-    //   newState[index] = { ...newState[index], time: time }
-    //   this.setState({bottles: newState})
-    // } else if (id === 'diapers') {
-    //   let newState = [ ...this.state.diapers ]
-    //   newState[index] = { ...newState[index], time: time }
-    //   this.setState({diapers: newState})
-    // } else {
-    //   let newState = [ ...this.state.naps ]
-    //   newState[index] = { ...newState[index], time: time }
-    //   this.setState({naps: newState})
-    // }
-  // }
 
-  handleBringItemsChange (item, isChecked, index) {
-    let newState = [ ...this.state.bringItems ]
+  handleSuppliesListChange (item, isChecked, index) {
+    let newState = [ ...this.state.suppliesList ]
     newState[index] = { ...newState[index], type: item, isChecked: isChecked }
-    this.setState({bringItems: newState})
-  }
-
-  handleInputChange (event) {
-    this.setState({ [event.target.name]: event.target.value })
+    this.setState({suppliesList: newState})
   }
 
   handleSubmit (event) {
@@ -143,134 +110,107 @@ class InfantsForm extends Component {
     // this.props.history.push('/')
   }
 
-  prevStep () {
-    this.setState({
-      step: this.state.step - 1
-    })
-  }
-
   nextStep () {
     this.setState({
       step: this.state.step + 1
     })
   }
 
+  prevStep () {
+    this.setState({
+      step: this.state.step - 1
+    })
+  }
+
+  /* TODO Refactor to work for both infants and toddlers based on state set by
+    props passed from FormsNav */
   formStep (currentStep) {
     switch (this.state.step) {
       case 1:
         return (
-          <div className={styles.gridContainer1x1}>
-            <DatePicker
-              className={styles.gridItem}
-              id='today'
-              date={this.state.today}
-              onChange={this.handleDateChange}
-            />
-            <SingleInput
-              className={styles.gridItem}
-              id='name'
-              type='text'
-              label='Child&#39;s name'
-              onChange={this.handleInputChange}
-            />
-            <SingleInput
-              className={styles.gridItem}
-              id='parentEmail'
-              name='parentEmail'
-              type='email'
-              label='Parent&#39;s Email'
-              onChange={this.handleInputChange}
-            />
-          </div>
+          <GeneralInfo
+            date={this.state.today}
+            onChange={this.handleInputChange}
+            onDateChange={this.handleDateChange}
+          />
         )
       case 2:
         return (
-          <div className={styles.gridContainer1x1}>
-            <TextArea
-              label='My day was: '
-              id='myDay'
-              name='myDay'
-              rows='8'
-              cols='25'
-              onChange={this.handleInputChange}
-            />
-          </div>
+          <DailyActivities
+            name='day'
+            onChange={this.handleInputChange}
+          />
         )
       case 3:
         return (
-          <div>
-            <TimedMultipleInputs
-              title='Bottles'
-              id='bottles'
-              rows={6}
-              selectLabel='Amount'
-              items={this.state.bottles}
-              optionsArr={this.state.bottlesOptions}
-              onChange={this.handleMultipleChange}
-              onChangeTime={this.handleMultipleChange}
-            />
-          </div>
+          <TimesAndOptions
+            title='Bottles'
+            id='bottles'
+            rows={6}
+            selectLabel='Amount'
+            items={this.state.bottles}
+            optionsArr={this.state.bottlesOptions}
+            onChange={this.handleMultipleChange}
+            onChangeTime={this.handleMultipleChange}
+          />
         )
       case 4:
         return (
-          <div>
-            <TimedMultipleInputs
-              title='Diapers'
-              id='diapers'
-              rows={8}
-              selectLabel='Type'
-              items={this.state.diapers}
-              optionsArr={this.state.diapersOptions}
-              onChange={this.handleMultipleChange}
-              onChangeTime={this.handleMultipleChange}
-            />
-          </div>
+          <TimesAndOptions
+            title='Diapers'
+            id='diapers'
+            rows={8}
+            selectLabel='Type'
+            items={this.state.diapers}
+            optionsArr={this.state.diapersOptions}
+            onChange={this.handleMultipleChange}
+            onChangeTime={this.handleMultipleChange}
+          />
         )
       case 5:
         return (
-          <div>
-            <TimedMultipleInputs
-              title='Nap Times'
-              id='naps'
-              rows={4}
-              selectLabel='Length'
-              items={this.state.naps}
-              optionsArr={this.state.napsOptions}
-              onChange={this.handleMultipleChange}
-              onChangeTime={this.handleMultipleChange}
-            />
-          </div>
+          <TimesAndOptions
+            title='Naps'
+            id='naps'
+            rows={4}
+            selectLabel='Length'
+            items={this.state.naps}
+            optionsArr={this.state.napsOptions}
+            onChange={this.handleMultipleChange}
+            onChangeTime={this.handleMultipleChange}
+          />
         )
       case 6:
         return (
-          <div className={styles.gridContainer1x2}>
-            <BringItems
-              title='Please bring the following tomorrow:'
-              id='bringItems'
-              items={this.state.bringItems}
-              onChange={this.handleBringItemsChange}
-            />
-            <SingleInput
-              id='other'
-              type='text'
-              label='Other: '
-              onChange={this.handleInputChange}
-            />
-          </div>
+          <SuppliesRequest
+            id='suppliesList'
+            items={this.state.suppliesList}
+            onChange={this.handleInputChange}
+            onListChange={this.handleSuppliesListChange}
+          />
         )
       case 7:
         return (
-          <div>
-            <UserInfo
-              onChange={this.handleInputChange}
-            />
-          </div>
+          <UserInfo
+            onChange={this.handleInputChange}
+          />
         )
       case 8:
+        const {
+          today, name, parentEmail, day, bottles, diapers, naps, suppliesList, other
+        } = this.state
         return (
-          <div className={styles.formItems}>
-            <Button type='submit' text='Send' />
-          </div>
+          <Confirmation
+            today={today}
+            name={name}
+            parentEmail={parentEmail}
+            day={day}
+            bottles={bottles}
+            diapers={diapers}
+            naps={naps}
+            suppliesList={suppliesList}
+            other={other}
+          />
         )
       default:
         break
@@ -279,8 +219,8 @@ class InfantsForm extends Component {
 
   render () {
     const step = this.state.step
-
     let nav = null
+
     if (step === 1) {
       nav = <div className={`${styles.gridContainer1x1} ${styles.navControl}`}>
         <Button id='next' text='Next' onClick={this.nextStep} />
@@ -290,11 +230,16 @@ class InfantsForm extends Component {
         <Button id='previous' text='Previous' onClick={this.prevStep} />
         <Button id='next' text='Next' onClick={this.nextStep} />
       </div>
+    } else {
+      nav = <div className={`${styles.gridContainerEven2x1} ${styles.navControl}`}>
+        <Button id='previous' text='Previous' onClick={this.prevStep} />
+        <Button type='submit' text='Send' />
+      </div>
     }
 
     return (
       <div className={styles.formsContainer}>
-        <Link className={styles.backButton} to='/'>Start Over</Link>
+        <Link className={styles.backButton} to='/'>&larr;</Link>
         <div className={styles.borderTop} />
         <div className={styles.borderTopThin} />
         <section className={styles.formsHeader}>

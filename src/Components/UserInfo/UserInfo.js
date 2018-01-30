@@ -8,8 +8,9 @@ const UserInfo = ({ onChange }) => {
   // TODO Validation methods
 
   return (
-    <div>
+    <div className={styles.gridContainer1x1}>
       <SingleInput
+        className={styles.gridItem}
         id='providerEmail'
         name='providerEmail'
         type='email'
@@ -17,6 +18,7 @@ const UserInfo = ({ onChange }) => {
         onChange={onChange}
       />
       <SingleInput
+        className={styles.gridItem}
         id='providerUsername'
         name='providerUsername'
         type='text'
@@ -24,6 +26,7 @@ const UserInfo = ({ onChange }) => {
         onChange={onChange}
       />
       <SingleInput
+        className={styles.gridItem}
         id='providerPassword'
         name='providerPassword'
         type='password'

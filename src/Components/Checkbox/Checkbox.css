@@ -1,6 +1,6 @@
 .gridItem0 {
-  display: flex;
-  align-items: center;
+  /* display: flex;
+  align-items: center; */
   grid-row: 2 / 3;
   grid-column: 1 / 2;
 }
@@ -34,7 +34,7 @@
   background-color: var(--secondaryColorLight);
   color: var(--whiteText);
   text-align: center;
-  width:7rem;
+  width: 7rem;
   padding: 0.5em 1em;
   border: 0.05em solid rgba(0, 0, 0, 0.15);
   border-radius: 5px;

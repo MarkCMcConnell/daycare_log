@@ -67,7 +67,7 @@
 /* Grid classes */
 .gridContainer1x1 {
   display: grid;
-  grid-gap: 10px 15px;
+  grid-gap: 10px 20px;
   align-items: center;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
@@ -112,12 +112,4 @@
   align-items: center;
   grid-template-columns: 1.5fr 1fr;
   grid-template-rows: repeat(8, 1fr);
-}
-
-.gridItem {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  flex: 1 0 auto;
 }

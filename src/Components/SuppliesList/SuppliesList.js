@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import Checkbox from '../Checkbox/Checkbox'
 
-import styles from './BringItems.css'
+import styles from './SuppliesList.css'
 
 class BringItems extends Component {
   constructor (props) {
@@ -12,12 +12,11 @@ class BringItems extends Component {
   }
 
   handleChange (e, index) {
-    this.props.onChange(e.target.name, e.target.checked, index)
+    this.props.onListChange(e.target.name, e.target.checked, index)
   }
 
   render () {
     const checkbox = this.props.items.map((item, index) => {
-
       return (
         <Checkbox
           id={item.type}

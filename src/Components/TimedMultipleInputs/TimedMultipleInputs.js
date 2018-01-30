@@ -5,7 +5,7 @@ import SelectOptions from '../SelectOptions/SelectOptions'
 
 import styles from './TimedMultipleInputs.css'
 
-class InfantMultipleInputs extends Component {
+class TimedMultipleInputs extends Component {
   constructor (props) {
     super(props)
 
@@ -18,25 +18,32 @@ class InfantMultipleInputs extends Component {
   }
 
   handleChange (e, index, id, key) {
+    /* Convert key to lowercase to match form state key */
+    key = key.toLowerCase()
+    /* Update onChange prop to pass to parent component */
     this.props.onChange(e.target.value, index, id, key)
   }
-
 
   render () {
     const inputItems = this.props.items.map((item, index) => {
       const { id, selectLabel, optionsArr } = this.props
+
       return [
         <div key='1'>
           <TimeSlider
             id={id}
+            index={index}
+            hour='7'
+            minutes='30'
+            meridiem='AM'
+            time='7:30 AM'
             onTimeChange={this.handleTimeChange}
           />
         </div>,
         <div key='2'>
-          <label htmlFor={index}>{selectLabel}</label>
           <SelectOptions
             options={optionsArr}
-            name={item}
+            name={selectLabel}
             onChange={(e) => this.handleChange(e, index, id, selectLabel)}
           />
         </div>
@@ -45,9 +52,14 @@ class InfantMultipleInputs extends Component {
 
     return (
       <section className={styles.mainContainer}>
-        <h3>{this.props.title}</h3>
+
+        <h2 className={styles.heading}>{this.props.title}</h2>
+        <div className={styles.gridContainerEven2x1}>
+          <h3 className={styles.heading}>Time</h3>
+          <h3 className={styles.heading}>{this.props.selectLabel}</h3>
+        </div>
         {
-          (this.props.rows === 8)
+          this.props.rows === 8
             ? <div className={styles.gridContainer2x8}>{inputItems}</div>
             : (this.props.rows === 6)
               ? <div className={styles.gridContainer2x6}>{inputItems}</div>
@@ -58,4 +70,4 @@ class InfantMultipleInputs extends Component {
   }
 }
 
-export default InfantMultipleInputs
+export default TimedMultipleInputs

@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
-import moment from 'moment'
 
-// Import SingleRangeSlide for the individual sliders
+/* Import custom components */
 import SingleRangeInput from '../SingleRangeInput/SingleRangeInput'
-// Import TwoRadioButtons for the meridiem selectors
 import TwoRadioButtons from '../TwoRadioButtons/TwoRadioButtons'
-
+/* Import CSS styles */
 import styles from './TimeSlider.css'
 
 export default class TimeSlider extends Component {
@@ -13,10 +11,10 @@ export default class TimeSlider extends Component {
     super(props)
 
     this.state = {
-      hour: '7',
-      minute: '30',
-      meridiem: 'AM',
-      time: '7:30 AM',
+      hour: this.props.hour,
+      minutes: this.props.minutes,
+      meridiem: this.props.meridiem,
+      time: this.props.time,
       showModal: false
     }
 
@@ -29,7 +27,7 @@ export default class TimeSlider extends Component {
     const key = e.target.name
     let value = e.target.value
     /* If key is minute, convert any value less than 10 to 'mm' format  */
-    if (key === 'minute' && value < 10) {
+    if (key === 'minutes' && value < 10) {
       value = `0${value}`
     }
     /* Update state by computing the key returned by e.target.name that is passed
@@ -38,7 +36,8 @@ export default class TimeSlider extends Component {
        on screen */
     this.setState({ [key]: value }, () => {
       /* Concatenate state into a string for time and update this.state.time */
-      let time = this.state.hour + ':' + this.state.minute + ' ' + this.state.meridiem
+      let time = this.state.hour + ':' + this.state.minutes + ' ' + this.state.meridiem
+      this.setState({ time: time })
     })
   }
 
@@ -48,7 +47,6 @@ export default class TimeSlider extends Component {
     this.setState({ showModal: false })
     /* Update onTimeChange prop from parent with current time */
     this.props.onTimeChange(this.state.time, index, id, 'time')
-    this.setState({ time: '7:30 AM' })
   }
 
   showModal () {
@@ -64,7 +62,7 @@ export default class TimeSlider extends Component {
           className={styles.btn}
           onClick={this.showModal}
         >
-            {this.state.time}
+          {this.state.time}
         </h3>
         { this.state.showModal &&
           <div className={styles.modal}>
@@ -83,8 +81,8 @@ export default class TimeSlider extends Component {
             </div>
             <div className={styles.minuteSlider}>
               <SingleRangeInput
-                id='minute'
-                name='minute'
+                id='minutes'
+                name='minutes'
                 label='Minutes'
                 min={0}
                 max={55}

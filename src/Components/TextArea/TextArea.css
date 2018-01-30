@@ -1,7 +1,13 @@
-@import '../../../public/assets/stylesheets/App.css';
+.gridItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1 0 auto;
+}
 
 .sizing {
-  width: 100%;
+  width: 90%;
   height: 100%;
   padding: .25em;
   border: none;

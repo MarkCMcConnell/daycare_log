@@ -1,0 +1,29 @@
+.container {
+  width: 80%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(12, 1f4);
+  grid-row-gap: 5px;
+  justify-items: left;
+}
+
+.details {
+  font-size: .8em;
+}
+
+.subheading {
+  padding: 0;
+  margin-left: 0;
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+  font-size: 1.2em;
+}
+
+h3,
+p,
+ul {
+  padding: 0;
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}

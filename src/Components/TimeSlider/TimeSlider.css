@@ -1,13 +1,7 @@
-@import '../../../public/assets/stylesheets/App.css';
-
-.container {
-
-}
-
 .btn {
   composes: btn from '../Button/Button.css';
   background: transparent;
-  border: 2px solid var(--primaryColor);
+  border: none;
   color: var(--text);
   padding: .25rem .25rem;
 }

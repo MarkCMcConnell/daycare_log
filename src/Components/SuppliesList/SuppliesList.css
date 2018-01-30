@@ -1,9 +1,7 @@
-@import '../../../public/assets/stylesheets/App.css';
-
 .container {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 4rem repeat(2, 3rem) 3rem;
+  grid-template-rows: 2.5rem repeat(2, 3rem) 3rem;
   grid-row-gap: .5em;
   justify-items: center;
 }
@@ -11,5 +9,4 @@
 .titleText {
   grid-column: 1 / span 2;
   grid-row: 1 / 2;
-  padding-left: 2rem;
 }
