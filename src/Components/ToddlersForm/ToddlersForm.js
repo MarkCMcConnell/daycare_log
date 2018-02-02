@@ -217,55 +217,8 @@ class ToddlersForm extends Component {
             <Button id='next' text='Next' onClick={this.nextStep} />
           </div>
         )
-      case 6:
-        return (
-          <div>
-            <TextArea
-              label='Today I did: '
-              name='myDay'
-              rows='4'
-              cols='40'
-              onChange={this.handleInputChange}
-            />
-            <Button id='previous' text='Previous' onClick={this.prevStep} />
-            <Button id='next' text='Next' onClick={this.nextStep} />
-          </div>
-        )
-      case 7:
-        return (
-          <div>
-            <BringItems
-              title='Please bring the following tomorrow.'
-              items={this.state.bringItems}
-              onChange={this.handleBringItemsChange}
-            />
-            <SingleInput
-              id='other'
-              type='text'
-              label='Other: '
-              onChange={this.handleInputChange}
-            />
-            <Button id='previous' text='Previous' onClick={this.prevStep} />
-            <Button id='next' text='Next' onClick={this.nextStep} />
-          </div>
-        )
-      case 8:
-        return (
-          <div>
-            <UserInfo
-              onChange={this.handleInputChange}
-            />
-            <Button id='previous' text='Previous' onClick={this.prevStep} />
-            <Button id='next' text='Next' onClick={this.nextStep} />
-          </div>
-        )
-      case 9:
-        return (
-          <button type='submit' />
-        )
-      default:
-        break
-    }
+
+
   }
 
   render () {

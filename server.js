@@ -29,6 +29,7 @@ app.get('/key', (req, res) => {
 })
 
 app.post('/sendmail/infant', (req, res) => {
+  console.log(req.body)
   let transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {

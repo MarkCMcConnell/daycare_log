@@ -18,13 +18,13 @@ const FormsNav = () => {
       <nav>
         <ul className={styles.nav}>
           <li className={styles.navItem}>
-            <Link to='/forms/infants'>
-              <Button text='Infants' />
+            <Link to='/forms/infant'>
+              <Button text='Infant' />
             </Link>
           </li>
           <li className={styles.navItem}>
-            <Link to='/forms/toddlers'>
-              <Button text='Toddlers' />
+            <Link to='/forms/toddler'>
+              <Button text='Toddler' />
             </Link>
           </li>
         </ul>
