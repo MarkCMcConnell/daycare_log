@@ -26,17 +26,15 @@ class TimedMultipleInputs extends Component {
 
   render () {
     const inputItems = this.props.items.map((item, index) => {
-      const { id, selectLabel, optionsArr } = this.props
+      const { id, selectLabel, optionsArr, time } = this.props
 
       return [
         <div key='1'>
           <TimeSlider
             id={id}
             index={index}
-            hour='7'
-            minutes='30'
+            time={time}
             meridiem='AM'
-            time='7:30 AM'
             onTimeChange={this.handleTimeChange}
           />
         </div>,

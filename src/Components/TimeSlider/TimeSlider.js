@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import moment from 'moment'
 
 /* Import custom components */
 import SingleRangeInput from '../SingleRangeInput/SingleRangeInput'
@@ -11,42 +12,37 @@ export default class TimeSlider extends Component {
     super(props)
 
     this.state = {
-      hour: this.props.hour,
-      minutes: this.props.minutes,
-      meridiem: this.props.meridiem,
-      time: this.props.time,
       showModal: false
     }
 
-    this.handleChange = this.handleChange.bind(this)
     this.handleTimeChange = this.handleTimeChange.bind(this)
+    this.hideModal = this.hideModal.bind(this)
     this.showModal = this.showModal.bind(this)
   }
 
-  handleChange (e) {
+  handleTimeChange (e) {
+    const { index, id } = this.props
     const key = e.target.name
     let value = e.target.value
-    /* If key is minute, convert any value less than 10 to 'mm' format  */
-    if (key === 'minutes' && value < 10) {
-      value = `0${value}`
+    let time = ''
+
+    if (key === 'hour') {
+      time = moment().set('hour', value).format('h:mm A')
     }
-    /* Update state by computing the key returned by e.target.name that is passed
-       as key and assign it the value of e.target.value passed in as value.
-       Use setState callback to trigger a re-render to show selected time accurately
-       on screen */
-    this.setState({ [key]: value }, () => {
-      /* Concatenate state into a string for time and update this.state.time */
-      let time = this.state.hour + ':' + this.state.minutes + ' ' + this.state.meridiem
-      this.setState({ time: time })
-    })
+    /* If key is minute, convert any value less than 10 to 'mm' format  */
+    if (key === 'minutes') {
+      time = moment().minute(value).format('h:mm A')
+    }
+
+    if (key === 'meridiem') {
+      time = moment().set('A', value).format('h:mm A')
+    }
+    /* Update onTimeChange prop from parent with current time */
+    this.props.onTimeChange(time, index, id, 'time')
   }
 
-  handleTimeChange () {
-    const { index, id } = this.props
-    /* Set showModal to false to hide the overlay when user selects close */
+  hideModal () {
     this.setState({ showModal: false })
-    /* Update onTimeChange prop from parent with current time */
-    this.props.onTimeChange(this.state.time, index, id, 'time')
   }
 
   showModal () {
@@ -62,11 +58,11 @@ export default class TimeSlider extends Component {
           className={styles.btn}
           onClick={this.showModal}
         >
-          {this.state.time}
+          {this.props.time}
         </h3>
         { this.state.showModal &&
           <div className={styles.modal}>
-            <h2 className={styles.time}>{this.state.time}</h2>
+            <h2 className={styles.time}>{this.props.time}</h2>
             <div className={styles.hourSlider}>
               <SingleRangeInput
                 id='hour'
@@ -75,8 +71,7 @@ export default class TimeSlider extends Component {
                 min={1}
                 max={12}
                 step={1}
-                defaultValue={7}
-                onChange={this.handleChange}
+                onChange={this.handleTimeChange}
               />
             </div>
             <div className={styles.minuteSlider}>
@@ -87,8 +82,7 @@ export default class TimeSlider extends Component {
                 min={0}
                 max={55}
                 step={5}
-                defaultValue={30}
-                onChange={this.handleChange}
+                onChange={this.handleTimeChange}
               />
             </div>
             <div className={styles.meridiem}>
@@ -96,10 +90,10 @@ export default class TimeSlider extends Component {
                 firstId='AM'
                 secondId='PM'
                 name='meridiem'
-                onChange={this.handleChange}
+                onChange={this.handleTimeChange}
               />
             </div>
-            <h3 className={styles.closeBtn} onClick={this.handleTimeChange}>Close</h3>
+            <h3 className={styles.closeBtn} onClick={this.hideModal}>Close</h3>
           </div>
         }
       </div>

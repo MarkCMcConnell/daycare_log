@@ -1,6 +1,6 @@
 /* Base imports */
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Route } from 'react-router-dom'
 import moment from 'moment'
 import axios from 'axios'
 
@@ -25,6 +25,7 @@ class Form extends Component {
     this.state = {
       age: props.match.params.type,
       today: moment().format('MM-DD-YYYY'),
+      time: moment().format('h:mm A'),
       name: '',
       day: '',
       bathroom: {
@@ -87,10 +88,11 @@ class Form extends Component {
     }
 
     this.handleDateChange = this.handleDateChange.bind(this)
+    this.handleInputChange = this.handleInputChange.bind(this)
     this.handleMultipleChange = this.handleMultipleChange.bind(this)
     this.handleSuppliesListChange = this.handleSuppliesListChange.bind(this)
-    this.handleInputChange = this.handleInputChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleTimeChange = this.handleTimeChange.bind(this)
     this.prevStep = this.prevStep.bind(this)
     this.nextStep = this.nextStep.bind(this)
     this.formStep = this.formStep.bind(this)
@@ -114,6 +116,14 @@ class Form extends Component {
     let newState = [ ...this.state.suppliesList ]
     newState[index] = { ...newState[index], type: item, isChecked: isChecked }
     this.setState({suppliesList: newState})
+  }
+
+  handleTimeChange (time, index, id, key) {
+    let newState = [ ...this.state[id] ]
+    newState[index] = { ...newState[index], [key]: time }
+    this.setState({ [id]: newState })
+
+    this.setState({ time: time })
   }
 
   handleSubmit (event) {
@@ -203,10 +213,11 @@ class Form extends Component {
               id='bottles'
               rows={6}
               selectLabel='Amount'
+              time={this.state.time}
               items={this.state.bottles}
               optionsArr={this.state.bottlesOptions}
               onChange={this.handleMultipleChange}
-              onChangeTime={this.handleMultipleChange}
+              onChangeTime={this.handleTimeChange}
             />,
             nav
           ]
@@ -216,7 +227,7 @@ class Form extends Component {
               title='Meals'
               label='food'
               items={this.state.meals}
-              onChange={this.handleMultipleChange}
+              onChange={this.handleTimeChange}
             />,
             nav
           ]
@@ -232,7 +243,7 @@ class Form extends Component {
               items={this.state.diapers}
               optionsArr={this.state.diapersOptions}
               onChange={this.handleMultipleChange}
-              onChangeTime={this.handleMultipleChange}
+              onChangeTime={this.handleTimeChange}
             />,
             nav
           ]
@@ -255,7 +266,7 @@ class Form extends Component {
               items={this.state.infantNaps}
               optionsArr={this.state.napsOptions}
               onChange={this.handleMultipleChange}
-              onChangeTime={this.handleMultipleChange}
+              onChangeTime={this.handleTimeChange}
             />,
             nav
           ]
@@ -269,7 +280,7 @@ class Form extends Component {
               items={this.state.toddlerNaps}
               optionsArr={this.state.napsOptions}
               onChange={this.handleMultipleChange}
-              onChangeTime={this.handleMultipleChange}
+              onChangeTime={this.handleTimeChange}
             />,
             nav
           ]
