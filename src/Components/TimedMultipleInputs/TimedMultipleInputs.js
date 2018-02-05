@@ -17,24 +17,24 @@ class TimedMultipleInputs extends Component {
     this.props.onChangeTime(time, index, id, key)
   }
 
-  handleChange (e, index, id, key) {
+  handleChange (e, index) {
     /* Convert key to lowercase to match form state key */
-    key = key.toLowerCase()
+    let key = this.props.selectLabel.toLowerCase()
+    let id = this.props.id
     /* Update onChange prop to pass to parent component */
     this.props.onChange(e.target.value, index, id, key)
   }
 
   render () {
     const inputItems = this.props.items.map((item, index) => {
-      const { id, selectLabel, optionsArr, time } = this.props
+      const { id, selectLabel, optionsArr } = this.props
 
       return [
         <div key='1'>
           <TimeSlider
             id={id}
             index={index}
-            time={time}
-            meridiem='AM'
+            time={item.time}
             onTimeChange={this.handleTimeChange}
           />
         </div>,

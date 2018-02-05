@@ -23,10 +23,14 @@
   grid-template-rows: 10vh repeat(3, 1fr);
   grid-gap: 5px 5px;
   align-items: center;
-  justify-items: center;
-  /* position: relative; */
+  /* justify-items: center; */
+  position: relative;
   height: 100%;
   width: 100%;
+
+  @mixin atMedium {
+    margin: 0 auto;
+  }
 }
 
 .formsHeader {
@@ -34,7 +38,7 @@
   grid-column: 2 / 10;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 3rem 1.5rem auto 4rem;
+  grid-template-rows: 3rem 1.5rem auto;
   grid-row-gap: .25em;
   align-items: center;
   justify-items: center;
@@ -74,6 +78,7 @@
   align-items: center;
   justify-items: center;
   margin-top: .75rem;
+  margin-bottom: 0.5rem;
 }
 
 .gridContainer1x2 {
@@ -89,6 +94,9 @@
 .gridContainerEven2x1 {
   composes: gridContainer1x1;
   grid-template-columns: 1fr 1fr;
+  grid-gap: 10px 5px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .gridContainer2x4 {
@@ -100,17 +108,11 @@
 }
 
 .gridContainer2x6 {
-  display: grid;
-  grid-gap: 10px 15px;
-  align-items: center;
-  grid-template-columns: 1.5fr 1fr;
+  composes: gridContainer2x4;
   grid-template-rows: repeat(6, 1fr);
 }
 
 .gridContainer2x8 {
-  display: grid;
-  grid-gap: 10px 15px;
-  align-items: center;
-  grid-template-columns: 1.5fr 1fr;
+  composes: gridContainer2x4;
   grid-template-rows: repeat(8, 1fr);
 }

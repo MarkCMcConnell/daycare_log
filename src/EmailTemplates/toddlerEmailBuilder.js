@@ -1,22 +1,38 @@
 module.exports = function (data) {
-  console.log(data)
-  let itemsToBring = []
-  let itemsToBringHtml = ''
+  let mealsEaten = ''
+  let napsTaken = ''
+  let suppliesList = ''
+  let bathroomTimes = 'times'
 
-  data.bringItems.map((item) => {
-    if (item.isChecked) {
-      itemsToBring.push(item.type)
+  if (data.bathroom.times === '1') {
+    bathroomTimes = 'time'
+  }
+
+  data.meals.map((meal, index) => {
+    if (meal.food) {
+      mealsEaten += `<tr><td>Bottle #${index + 1}: ${meal.time} - ${meal.food}</td></tr>`
     }
   })
 
-  for (let i = 0; i < itemsToBring.length; i++) {
-    itemsToBringHtml += '<span> -' + itemsToBring[i] + '</span>'
+  data.toddlerNaps.map((nap, index) => {
+    if (nap.time && nap.length) {
+      napsTaken += `<tr><td>Nap #${(index + 1)}: ${nap.time} - ${nap.length}</td></tr>`
+    }
+  })
+
+  data.suppliesList.map(item => {
+    if (item.isChecked) {
+      suppliesList += `<span> - ${item.type}</span>`
+    }
+  })
+
+  if (suppliesList.length <= 0) {
+    suppliesList += '<span> None</span>'
   }
 
   if (data.other) {
-    itemsToBringHtml += '</tr><tr><td>Other: ' + data.other + '</td></tr>'
+    suppliesList += `<p>Other: ${data.other}</p>`
   }
-
   return (
     `
     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -68,7 +84,7 @@ module.exports = function (data) {
                             <tr>
                               <td style="padding: 0px 0px 0px 10px;">
                                 <h3>Bathroom use</h3>
-                                <p>${bathroomUse}</p>
+                                <p>${data.bathroom.times} ${bathroomTimes} - ${data.bathroom.types}</p>
                               </td>
                             </tr>
                           </table>

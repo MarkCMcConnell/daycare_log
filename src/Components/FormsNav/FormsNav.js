@@ -19,12 +19,12 @@ const FormsNav = () => {
         <ul className={styles.nav}>
           <li className={styles.navItem}>
             <Link to='/forms/infant'>
-              <Button text='Infant' />
+              <Button className={styles.navButton} text='Infant' />
             </Link>
           </li>
           <li className={styles.navItem}>
             <Link to='/forms/toddler'>
-              <Button text='Toddler' />
+              <Button className={styles.navButton} text='Toddler' />
             </Link>
           </li>
         </ul>

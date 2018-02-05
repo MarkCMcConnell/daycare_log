@@ -1,6 +1,6 @@
 /* Base imports */
 import React, { Component } from 'react'
-import { Link, Route } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import moment from 'moment'
 import axios from 'axios'
 
@@ -25,7 +25,6 @@ class Form extends Component {
     this.state = {
       age: props.match.params.type,
       today: moment().format('MM-DD-YYYY'),
-      time: moment().format('h:mm A'),
       name: '',
       day: '',
       bathroom: {
@@ -33,27 +32,27 @@ class Form extends Component {
         type: ''
       },
       bottles: [
-        { time: '', amount: '' },
-        { time: '', amount: '' },
-        { time: '', amount: '' },
-        { time: '', amount: '' },
-        { time: '', amount: '' },
-        { time: '', amount: '' }
+        { time: moment('12:30 pm', 'h:mm a'), amount: '' },
+        { time: moment('12:30 pm', 'h:mm a'), amount: '' },
+        { time: moment('12:30 pm', 'h:mm a'), amount: '' },
+        { time: moment('12:30 pm', 'h:mm a'), amount: '' },
+        { time: moment('12:30 pm', 'h:mm a'), amount: '' },
+        { time: moment('12:30 pm', 'h:mm a'), amount: '' }
       ],
       bottlesOptions: ['', '0.5oz', '1oz', '1.5oz', '2oz', '2.5oz', '3oz', '3.5oz',
         '4oz', '4.5oz', '5oz', '5.5oz', '6oz', '6.5oz', '7oz', '7.5oz', '8oz',
         '8.5oz', '9oz', '9.5oz', '10oz'],
       diapers: [
-        { time: '', type: '' },
-        { time: '', type: '' },
-        { time: '', type: '' },
-        { time: '', type: '' },
-        { time: '', type: '' },
-        { time: '', type: '' },
-        { time: '', type: '' },
-        { time: '', type: '' }
+        { time: moment('12:30 pm', 'h:mm a'), type: '' },
+        { time: moment('12:30 pm', 'h:mm a'), type: '' },
+        { time: moment('12:30 pm', 'h:mm a'), type: '' },
+        { time: moment('12:30 pm', 'h:mm a'), type: '' },
+        { time: moment('12:30 pm', 'h:mm a'), type: '' },
+        { time: moment('12:30 pm', 'h:mm a'), type: '' },
+        { time: moment('12:30 pm', 'h:mm a'), type: '' },
+        { time: moment('12:30 pm', 'h:mm a'), type: '' }
       ],
-      diapersOptions: ['', 'wet', 'dirty'],
+      diapersOptions: ['', 'Wet', 'Dirty'],
       meals: [
         {id: 'breakfast', time: 'Breakfast', food: ''},
         {id: 'amSnack', time: 'AM Snack', food: ''},
@@ -61,14 +60,14 @@ class Form extends Component {
         {id: 'pmSnack', time: 'PM Snack', food: ''}
       ],
       infantNaps: [
-        { time: '', length: '' },
-        { time: '', length: '' },
-        { time: '', length: '' },
-        { time: '', length: '' }
+        { time: moment('12:30 pm', 'h:mm a'), length: '' },
+        { time: moment('12:30 pm', 'h:mm a'), length: '' },
+        { time: moment('12:30 pm', 'h:mm a'), length: '' },
+        { time: moment('12:30 pm', 'h:mm a'), length: '' }
       ],
       toddlerNaps: [
-        {time: '', length: ''},
-        {time: '', length: ''}
+        {time: moment('12:30 pm', 'h:mm a'), length: ''},
+        {time: moment('12:30 pm', 'h:mm a'), length: ''}
       ],
       napsOptions: ['', '30 mins', '45 mins', '1 hour', '1.25 hours', '1.5 hours',
         '1.75 hours', '2 hours', '2.25 hours', '2.5 hours', '2.75 hours', '3 hours'],
@@ -122,8 +121,6 @@ class Form extends Component {
     let newState = [ ...this.state[id] ]
     newState[index] = { ...newState[index], [key]: time }
     this.setState({ [id]: newState })
-
-    this.setState({ time: time })
   }
 
   handleSubmit (event) {
@@ -194,6 +191,8 @@ class Form extends Component {
             date={this.state.today}
             onChange={this.handleInputChange}
             onDateChange={this.handleDateChange}
+            onPrevClick={this.prevStep}
+            onNextClick={this.nextStep}
           />,
           nav
         ]
@@ -213,7 +212,6 @@ class Form extends Component {
               id='bottles'
               rows={6}
               selectLabel='Amount'
-              time={this.state.time}
               items={this.state.bottles}
               optionsArr={this.state.bottlesOptions}
               onChange={this.handleMultipleChange}

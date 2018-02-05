@@ -11,7 +11,6 @@ body {
   font-weight: 400;
   /* Designed for mobile use only */
   max-width: 600px;
-  margin: 0 auto;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -48,9 +47,10 @@ input {
   }
 }
 
+#root {
+  margin: 0 auto;
+}
+
 .card {
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.12), 0 0 4px 0 rgba(0, 0, 0, 0.08);
 }
-/* .isHidden {
-  display: none;
-} */

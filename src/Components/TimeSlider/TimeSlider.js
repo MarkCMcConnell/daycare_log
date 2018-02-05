@@ -3,7 +3,6 @@ import moment from 'moment'
 
 /* Import custom components */
 import SingleRangeInput from '../SingleRangeInput/SingleRangeInput'
-import TwoRadioButtons from '../TwoRadioButtons/TwoRadioButtons'
 /* Import CSS styles */
 import styles from './TimeSlider.css'
 
@@ -24,18 +23,16 @@ export default class TimeSlider extends Component {
     const { index, id } = this.props
     const key = e.target.name
     let value = e.target.value
-    let time = ''
+    let time
 
+    /* Determine whether the input is for hours and minutes.
+       Update time accordingly. */
     if (key === 'hour') {
-      time = moment().set('hour', value).format('h:mm A')
-    }
-    /* If key is minute, convert any value less than 10 to 'mm' format  */
-    if (key === 'minutes') {
-      time = moment().minute(value).format('h:mm A')
+      time = moment(this.props.time).hour(value)
     }
 
-    if (key === 'meridiem') {
-      time = moment().set('A', value).format('h:mm A')
+    if (key === 'minutes') {
+      time = moment(this.props.time).minute(value)
     }
     /* Update onTimeChange prop from parent with current time */
     this.props.onTimeChange(time, index, id, 'time')
@@ -52,25 +49,27 @@ export default class TimeSlider extends Component {
   }
 
   render () {
+    const time = moment(this.props.time).format('h:mm a').toString()
     return (
       <div className={styles.container}>
         <h3
           className={styles.btn}
           onClick={this.showModal}
         >
-          {this.props.time}
+          {time}
         </h3>
         { this.state.showModal &&
           <div className={styles.modal}>
-            <h2 className={styles.time}>{this.props.time}</h2>
+            <h2 className={styles.time}>{time}</h2>
             <div className={styles.hourSlider}>
               <SingleRangeInput
                 id='hour'
                 name='hour'
                 label='Hour'
-                min={1}
-                max={12}
+                min={7}
+                max={18}
                 step={1}
+                defaultValue={12}
                 onChange={this.handleTimeChange}
               />
             </div>
@@ -82,14 +81,7 @@ export default class TimeSlider extends Component {
                 min={0}
                 max={55}
                 step={5}
-                onChange={this.handleTimeChange}
-              />
-            </div>
-            <div className={styles.meridiem}>
-              <TwoRadioButtons
-                firstId='AM'
-                secondId='PM'
-                name='meridiem'
+                defaultValue={30}
                 onChange={this.handleTimeChange}
               />
             </div>
