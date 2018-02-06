@@ -12,7 +12,6 @@ const EmailPreview = ({today, name, parentEmail, day, bottles, diapers, infantNa
   let diapersList = []
   let napsList = []
   let mealsList = []
-  let bathroomList = []
 
   if (bottles) {
     bottlesList = bottles.filter(bottle => bottle.time && bottle.amount)
@@ -48,7 +47,7 @@ const EmailPreview = ({today, name, parentEmail, day, bottles, diapers, infantNa
       {diapersList.length > 0 ? <h3 className={styles.subheading}>Diapers: </h3> : null}
       <List data={diapersList} />
       {bathroom ? <h3 className={styles.subheading}>Bathroom use: </h3> : null}
-      {bathroom
+      {bathroom.times && bathroom.type
         ? <li className={styles.item}>{bathroom.times} - {bathroom.type}</li>
         : null}
       {napsList.length > 0 ? <h3 className={styles.subheading}>Naps: </h3> : null}
