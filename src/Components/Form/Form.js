@@ -27,10 +27,9 @@ class Form extends Component {
       today: moment().format('MM-DD-YYYY'),
       name: '',
       day: '',
-      bathroom: {
-        times: '',
-        type: ''
-      },
+      bathroom: [
+        { times: '', type: '' }
+      ],
       bottles: [
         { time: moment('12:30', 'HH:mm'), amount: '' },
         { time: moment('12:30', 'HH:mm'), amount: '' },
@@ -86,7 +85,6 @@ class Form extends Component {
       step: 1
     }
 
-    this.handleDateChange = this.handleDateChange.bind(this)
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleMultipleChange = this.handleMultipleChange.bind(this)
     this.handleSuppliesListChange = this.handleSuppliesListChange.bind(this)
@@ -97,12 +95,8 @@ class Form extends Component {
     this.formStep = this.formStep.bind(this)
   }
 
-  handleDateChange (selectedDate) {
-    this.setState({today: selectedDate})
-  }
-
-  handleInputChange (event) {
-    this.setState({ [event.target.name]: event.target.value })
+  handleInputChange (e) {
+    this.setState({ [e.target.name]: e.target.value })
   }
 
   handleMultipleChange (item, index, id, key) {
@@ -124,8 +118,8 @@ class Form extends Component {
     this.setState({ [id]: newState })
   }
 
-  handleSubmit (event) {
-    event.preventDefault()
+  handleSubmit (e) {
+    e.preventDefault()
 
     /* Route the POST to the appropriate email template */
     if (this.state.age === 'infant') {
@@ -191,7 +185,6 @@ class Form extends Component {
           <GeneralInfo
             date={this.state.today}
             onChange={this.handleInputChange}
-            onDateChange={this.handleDateChange}
             onPrevClick={this.prevStep}
             onNextClick={this.nextStep}
           />,
@@ -224,9 +217,10 @@ class Form extends Component {
           return [
             <MultipleInputs
               title='Meals'
+              id='meals'
               label='food'
               items={this.state.meals}
-              onChange={this.handleTimeChange}
+              onChange={this.handleMultipleChange}
             />,
             nav
           ]
@@ -249,7 +243,8 @@ class Form extends Component {
         } else {
           return [
             <TwoSelectOptions
-              onChange={this.handleInputChange}
+              id='bathroom'
+              onSelect={this.handleMultipleChange}
             />,
             nav
           ]
@@ -304,11 +299,12 @@ class Form extends Component {
       case 8:
         if (age === 'infant') {
           const {
-            today, name, parentEmail, day, bottles, diapers, infantNaps, suppliesList, other
+            age, today, name, parentEmail, day, bottles, diapers, infantNaps, suppliesList, other
           } = this.state
 
           return [
             <EmailPreview
+              age={age}
               today={today}
               name={name}
               parentEmail={parentEmail}
@@ -326,11 +322,12 @@ class Form extends Component {
           ]
         } else {
           const {
-            today, name, parentEmail, day, meals, bathroom, toddlerNaps, suppliesList, other
+            age, today, name, parentEmail, day, meals, bathroom, toddlerNaps, suppliesList, other
           } = this.state
 
           return [
             <EmailPreview
+              age={age}
               today={today}
               name={name}
               parentEmail={parentEmail}
