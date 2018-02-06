@@ -17,17 +17,14 @@ class TimedMultipleInputs extends Component {
     this.props.onChangeTime(time, index, id, key)
   }
 
-  handleChange (e, index) {
-    /* Convert key to lowercase to match form state key */
-    let key = this.props.selectLabel.toLowerCase()
-    let id = this.props.id
+  handleChange (option, index, id, key) {
     /* Update onChange prop to pass to parent component */
-    this.props.onChange(e.target.value, index, id, key)
+    this.props.onSelect(option, index, id, key)
   }
 
   render () {
     const inputItems = this.props.items.map((item, index) => {
-      const { id, selectLabel, optionsArr } = this.props
+      const { id, selectLabel, optionsArr, onSelect } = this.props
 
       return [
         <div key='1'>
@@ -40,9 +37,11 @@ class TimedMultipleInputs extends Component {
         </div>,
         <div key='2'>
           <SelectOptions
+            id={id}
+            index={index}
             options={optionsArr}
             name={selectLabel}
-            onChange={(e) => this.handleChange(e, index, id, selectLabel)}
+            onChange={onSelect}
           />
         </div>
       ]
@@ -50,7 +49,6 @@ class TimedMultipleInputs extends Component {
 
     return (
       <section className={styles.mainContainer}>
-
         <h2 className={styles.heading}>{this.props.title}</h2>
         <div className={styles.gridContainerEven2x1}>
           <h3 className={styles.heading}>Time</h3>

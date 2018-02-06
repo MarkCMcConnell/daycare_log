@@ -32,25 +32,25 @@ class Form extends Component {
         type: ''
       },
       bottles: [
-        { time: moment('12:30 pm', 'h:mm a'), amount: '' },
-        { time: moment('12:30 pm', 'h:mm a'), amount: '' },
-        { time: moment('12:30 pm', 'h:mm a'), amount: '' },
-        { time: moment('12:30 pm', 'h:mm a'), amount: '' },
-        { time: moment('12:30 pm', 'h:mm a'), amount: '' },
-        { time: moment('12:30 pm', 'h:mm a'), amount: '' }
+        { time: moment('12:30', 'HH:mm'), amount: '' },
+        { time: moment('12:30', 'HH:mm'), amount: '' },
+        { time: moment('12:30', 'HH:mm'), amount: '' },
+        { time: moment('12:30', 'HH:mm'), amount: '' },
+        { time: moment('12:30', 'HH:mm'), amount: '' },
+        { time: moment('12:30', 'HH:mm'), amount: '' }
       ],
       bottlesOptions: ['', '0.5oz', '1oz', '1.5oz', '2oz', '2.5oz', '3oz', '3.5oz',
         '4oz', '4.5oz', '5oz', '5.5oz', '6oz', '6.5oz', '7oz', '7.5oz', '8oz',
         '8.5oz', '9oz', '9.5oz', '10oz'],
       diapers: [
-        { time: moment('12:30 pm', 'h:mm a'), type: '' },
-        { time: moment('12:30 pm', 'h:mm a'), type: '' },
-        { time: moment('12:30 pm', 'h:mm a'), type: '' },
-        { time: moment('12:30 pm', 'h:mm a'), type: '' },
-        { time: moment('12:30 pm', 'h:mm a'), type: '' },
-        { time: moment('12:30 pm', 'h:mm a'), type: '' },
-        { time: moment('12:30 pm', 'h:mm a'), type: '' },
-        { time: moment('12:30 pm', 'h:mm a'), type: '' }
+        { time: moment('12:30', 'HH:mm'), type: '' },
+        { time: moment('12:30', 'HH:mm'), type: '' },
+        { time: moment('12:30', 'HH:mm'), type: '' },
+        { time: moment('12:30', 'HH:mm'), type: '' },
+        { time: moment('12:30', 'HH:mm'), type: '' },
+        { time: moment('12:30', 'HH:mm'), type: '' },
+        { time: moment('12:30', 'HH:mm'), type: '' },
+        { time: moment('12:30', 'HH:mm'), type: '' }
       ],
       diapersOptions: ['', 'Wet', 'Dirty'],
       meals: [
@@ -60,14 +60,14 @@ class Form extends Component {
         {id: 'pmSnack', time: 'PM Snack', food: ''}
       ],
       infantNaps: [
-        { time: moment('12:30 pm', 'h:mm a'), length: '' },
-        { time: moment('12:30 pm', 'h:mm a'), length: '' },
-        { time: moment('12:30 pm', 'h:mm a'), length: '' },
-        { time: moment('12:30 pm', 'h:mm a'), length: '' }
+        { time: moment('12:30', 'HH:mm'), length: '' },
+        { time: moment('12:30', 'HH:mm'), length: '' },
+        { time: moment('12:30', 'HH:mm'), length: '' },
+        { time: moment('12:30', 'HH:mm'), length: '' }
       ],
       toddlerNaps: [
-        {time: moment('12:30 pm', 'h:mm a'), length: ''},
-        {time: moment('12:30 pm', 'h:mm a'), length: ''}
+        {time: moment('12:30', 'HH:mm'), length: ''},
+        {time: moment('12:30', 'HH:mm'), length: ''}
       ],
       napsOptions: ['', '30 mins', '45 mins', '1 hour', '1.25 hours', '1.5 hours',
         '1.75 hours', '2 hours', '2.25 hours', '2.5 hours', '2.75 hours', '3 hours'],
@@ -106,6 +106,7 @@ class Form extends Component {
   }
 
   handleMultipleChange (item, index, id, key) {
+    /* Clone state into a new object then use spread operator to merge in changes */
     let newState = [ ...this.state[id] ]
     newState[index] = { ...newState[index], [key]: item }
     this.setState({ [id]: newState })
@@ -214,7 +215,7 @@ class Form extends Component {
               selectLabel='Amount'
               items={this.state.bottles}
               optionsArr={this.state.bottlesOptions}
-              onChange={this.handleMultipleChange}
+              onSelect={this.handleMultipleChange}
               onChangeTime={this.handleTimeChange}
             />,
             nav
@@ -240,7 +241,7 @@ class Form extends Component {
               selectLabel='Type'
               items={this.state.diapers}
               optionsArr={this.state.diapersOptions}
-              onChange={this.handleMultipleChange}
+              onSelect={this.handleMultipleChange}
               onChangeTime={this.handleTimeChange}
             />,
             nav
@@ -263,7 +264,7 @@ class Form extends Component {
               selectLabel='Length'
               items={this.state.infantNaps}
               optionsArr={this.state.napsOptions}
-              onChange={this.handleMultipleChange}
+              onSelect={this.handleMultipleChange}
               onChangeTime={this.handleTimeChange}
             />,
             nav
@@ -277,7 +278,7 @@ class Form extends Component {
               selectLabel='Length'
               items={this.state.toddlerNaps}
               optionsArr={this.state.napsOptions}
-              onChange={this.handleMultipleChange}
+              onSelect={this.handleMultipleChange}
               onChangeTime={this.handleTimeChange}
             />,
             nav

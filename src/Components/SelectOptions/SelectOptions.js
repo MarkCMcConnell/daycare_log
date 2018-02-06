@@ -1,39 +1,53 @@
-import React from 'react'
+import React, { Component } from 'react'
 
 import styles from './SelectOptions.css'
 
-const SelectOptions = ({ options, name, onChange }) => {
-  let selectOptions = options.map((option, index) => {
-    /* Set default value as an empty string choice */
-    if (option === '') {
-      return (
-        <option
-          className={styles.optionText}
-          key={index}
-          value={option}
-          defaultValue
-        >
-          {option}
-        </option>
-      )
-    } else {
-      return (
-        <option
-          className={styles.optionText}
-          key={index}
-          value={option}
-        >
-          {option}
-        </option>
-      )
-    }
-  })
+class SelectOptions extends Component {
+  constructor (props) {
+    super(props)
 
-  return (
-    <select className={styles.selectBox} name={name} onChange={onChange}>
-      {selectOptions}
-    </select>
-  )
+    this.handleChange = this.handleChange.bind(this)
+  }
+
+  handleChange (e) {
+    const { index, id, name } = this.props
+    const option = e.target.value
+    let key = name.toLowerCase()
+
+    this.props.onChange(option, index, id, key)
+  }
+
+  render () {
+    return (
+      <select className={styles.selectBox} name={this.props.name} onChange={this.handleChange}>
+        {this.props.options.map((option, index) => {
+          /* Set default value as an empty string choice */
+          if (option === '') {
+            return (
+              <option
+                className={styles.optionText}
+                key={index}
+                value={option}
+                defaultValue
+              >
+                {option}
+              </option>
+            )
+          } else {
+            return (
+              <option
+                className={styles.optionText}
+                key={index}
+                value={option}
+              >
+                {option}
+              </option>
+            )
+          }
+        })}
+      </select>
+    )
+  }
 }
 
 export default SelectOptions

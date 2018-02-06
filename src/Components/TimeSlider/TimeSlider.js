@@ -11,11 +11,13 @@ export default class TimeSlider extends Component {
     super(props)
 
     this.state = {
+      hour: '',
+      minutes: '',
       showModal: false
     }
 
     this.handleTimeChange = this.handleTimeChange.bind(this)
-    this.hideModal = this.hideModal.bind(this)
+    this.closeModal = this.closeModal.bind(this)
     this.showModal = this.showModal.bind(this)
   }
 
@@ -28,17 +30,19 @@ export default class TimeSlider extends Component {
     /* Determine whether the input is for hours and minutes.
        Update time accordingly. */
     if (key === 'hour') {
-      time = moment(this.props.time).hour(value)
+      time = moment(this.props.time).set('hour', value)
+      this.setState({hour: value})
     }
 
     if (key === 'minutes') {
+      this.setState({minutes: value})
       time = moment(this.props.time).minute(value)
     }
     /* Update onTimeChange prop from parent with current time */
     this.props.onTimeChange(time, index, id, 'time')
   }
 
-  hideModal () {
+  closeModal () {
     this.setState({ showModal: false })
   }
 
@@ -49,7 +53,7 @@ export default class TimeSlider extends Component {
   }
 
   render () {
-    const time = moment(this.props.time).format('h:mm a').toString()
+    const time = moment(this.props.time).format('h:mm a')
     return (
       <div className={styles.container}>
         <h3
@@ -70,7 +74,7 @@ export default class TimeSlider extends Component {
                 max={18}
                 step={1}
                 defaultValue={12}
-                onChange={this.handleTimeChange}
+                onChange={(e) => this.handleTimeChange(e)}
               />
             </div>
             <div className={styles.minuteSlider}>
@@ -82,10 +86,10 @@ export default class TimeSlider extends Component {
                 max={55}
                 step={5}
                 defaultValue={30}
-                onChange={this.handleTimeChange}
+                onChange={(e) => this.handleTimeChange(e)}
               />
             </div>
-            <h3 className={styles.closeBtn} onClick={this.hideModal}>Close</h3>
+            <h3 className={styles.closeBtn} onClick={this.closeModal}>Close</h3>
           </div>
         }
       </div>
