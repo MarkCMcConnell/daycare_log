@@ -12,9 +12,10 @@ class SelectOptions extends Component {
   handleChange (e) {
     const { index, id, name } = this.props
     const option = e.target.value
+    /* Convert the label name to lowercase to match state key in parent */
     let key = name.toLowerCase()
 
-    this.props.onChange(option, index, id, key)
+    this.props.onSelect(option, index, id, key)
   }
 
   render () {

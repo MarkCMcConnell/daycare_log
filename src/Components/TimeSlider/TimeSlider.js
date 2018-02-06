@@ -39,7 +39,7 @@ export default class TimeSlider extends Component {
       time = moment(this.props.time).minute(value)
     }
     /* Update onTimeChange prop from parent with current time */
-    this.props.onTimeChange(time, index, id, 'time')
+    this.props.onChangeTime(time, index, id, 'time')
   }
 
   closeModal () {
