@@ -1,6 +1,5 @@
 import React from 'react'
-/* Used to change moment objects stored in app state to readable strings */
-import moment from 'moment'
+
 /* Import custom component */
 import List from '../List/List'
 
@@ -11,6 +10,7 @@ const EmailPreview = (props) => {
   let bottlesList = []
   let diapersList = []
   let napsList = []
+  let bathroomList = []
   let mealsList = []
   let supplyItems
 
@@ -29,7 +29,6 @@ const EmailPreview = (props) => {
 
     if (bottles) {
       bottlesList = bottles.filter(bottle => bottle.time && bottle.amount)
-      console.log(bottlesList)
     }
 
     if (diapers) {
@@ -49,8 +48,6 @@ const EmailPreview = (props) => {
         }
         {bottlesList.length > 0 ? <h3 className={styles.subheading}>Bottles: </h3> : null}
         {bottlesList.length > 0 ? <List data={bottlesList} /> : null }
-        {mealsList.length > 0 ? <h3 className={styles.subheading}>Meals: </h3> : null}
-        {mealsList.length > 0 ? <List data={mealsList} /> : null}
         {diapersList.length > 0 ? <h3 className={styles.subheading}>Diapers: </h3> : null}
         {diapersList.length > 0 ? <List data={diapersList} /> : null}
         {napsList.length > 0 ? <h3 className={styles.subheading}>Naps: </h3> : null}
@@ -66,9 +63,15 @@ const EmailPreview = (props) => {
     )
   } else {
     const { today, name, parentEmail, day, meals, bathroom, other } = props
-    console.log(bathroom)
+
     if (meals) {
-      mealsList = meals.filter(meal => meal.food)
+      mealsList = meals.filter(meal => meal.food).map(meal => {
+        return <li key={meal} className={styles.item}>{`${meal.time} - ${meal.food}`}</li>
+      })
+    }
+
+    if (bathroom) {
+      bathroomList = bathroom.filter(use => use.times && use.type)
     }
 
     return (
@@ -82,16 +85,10 @@ const EmailPreview = (props) => {
             <span className={styles.details}>{day}</span>
           </div> : null
         }
-        {bottlesList.length > 0 ? <h3 className={styles.subheading}>Bottles: </h3> : null}
-        {bottlesList.length > 0 ? <List data={bottlesList} /> : null }
         {mealsList.length > 0 ? <h3 className={styles.subheading}>Meals: </h3> : null}
-        {mealsList.length > 0 ? <List data={mealsList} /> : null}
-        {diapersList.length > 0 ? <h3 className={styles.subheading}>Diapers: </h3> : null}
-        {diapersList.length > 0 ? <List data={diapersList} /> : null}
-        {bathroom ? <h3 className={styles.subheading}>Bathroom use: </h3> : null}
-        {bathroom.times && bathroom.type
-          ? <li className={styles.item}>{bathroom.times} - {bathroom.type}</li>
-          : null}
+        {mealsList.length > 0 ? mealsList : null}
+        {bathroomList.length > 0 ? <h3 className={styles.subheading}>Bathroom use: </h3> : null}
+        {bathroom.length > 0 ? <List data={bathroomList} /> : null}
         {napsList.length > 0 ? <h3 className={styles.subheading}>Naps: </h3> : null}
         {napsList.length > 0 ? <List data={napsList} /> : null}
         {supplyItems.length > 0 ? <h3 className={styles.subheading}>Items to bring: </h3> : null}

@@ -1,4 +1,5 @@
 import React from 'react'
+import moment from 'moment'
 
 import styles from './List.css'
 
@@ -8,7 +9,7 @@ const List = ({ data }) => {
       {data.map((item, index) => {
         return (
           <li key={index} className={styles.item}>
-            {item.time} - {item.amount || item.type || item.length || item.food}
+            {moment(item.time).format('h:mm a')} - {item.amount || item.type || item.length || item.food}
           </li>
         )
       })}
