@@ -4,7 +4,7 @@
 .backButton {
   position: absolute;
   top: .5rem;
-  left: .5rem;
+  right: .5rem;
   z-index: 5;
   color: #fff;
 }

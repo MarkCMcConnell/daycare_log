@@ -352,7 +352,7 @@ class Form extends Component {
   render () {
     return (
       <div className={styles.formsContainer}>
-        <Link className={styles.backButton} to='/'>&larr;</Link>
+        <Link className={styles.backButton} to='/'>Back</Link>
         <div className={styles.borderTop} />
         <div className={styles.borderTopThin} />
         <section className={styles.formsHeader}>

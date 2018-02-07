@@ -1,4 +1,5 @@
 module.exports = function (data) {
+  const moment = require('moment')
   let bottlesUsed = ''
   let diapersUsed = ''
   let napsTaken = ''
@@ -8,25 +9,25 @@ module.exports = function (data) {
   // Refactor code to OOP
   data.bottles.map((bottle, index) => {
     if (bottle.time && bottle.amount) {
-      bottlesUsed += `<tr><td>Bottle #${index + 1}: ${bottle.time} - ${bottle.amount}</td></tr>`
+      bottlesUsed += `<tr><td>${moment(bottle.time).format('h:mm a')} - ${bottle.amount}</td></tr>`
     }
   })
 
   data.diapers.map((diaper, index) => {
     if (diaper.time && diaper.type) {
-      diapersUsed += `<tr><td>Diaper #${index + 1}: ${diaper.time} - ${diaper.type}</td></tr>`
+      diapersUsed += `<tr><td>${moment(diaper.time).format('h:mm a')} - ${diaper.type}</td></tr>`
     }
   })
 
   data.infantNaps.map((nap, index) => {
     if (nap.time && nap.length) {
-      napsTaken += `<tr><td>Nap #${(index + 1)}: ${nap.time} - ${nap.length}</td></tr>`
+      napsTaken += `<tr><td>${moment(nap.time).format('h:mm a')} - ${nap.length}</td></tr>`
     }
   })
 
   data.suppliesList.map(item => {
     if (item.isChecked) {
-      suppliesList += `<span> - ${item.type}</span>`
+      suppliesList += `<span>${item.type}   </span>`
     }
   })
 
@@ -48,7 +49,7 @@ module.exports = function (data) {
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     </head>
     <body style="margin: 0; padding: 0;">
-      <table border="1" cellpadding="0" cellspacing="0" width="100%">
+      <table border="0" cellpadding="0" cellspacing="0" width="100%">
         <table align="center" border="1" cellpadding="0" cellspacing="0" width="600" style="border-collapse: collapse">
           <tr>
             <td align="center" bgcolor="#d57500" style="padding: 30px 30px 30px 30px; color: #ffffff;">
@@ -58,51 +59,53 @@ module.exports = function (data) {
           </tr>
           <tr>
             <td bgcolor="#ffffff" style="padding: 40px 30px 40px 30px;">
-              <table border="1" cellpadding="0" cellspacing="0" width="100%">
+              <table border="0" cellpadding="0" cellspacing="0" width="100%">
                 <tr>
-                  <td style="padding: 20px 0 20px 10px;">
-                    <h3>My day was:</h3>
-                    <p>${data.day}</p>
+                  <td width="300" valign="top">
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                      <tr>
+                        <td style="padding: 0px 10px 0px 10px;">
+                          <h3>Daily Activities</h3>
+                          <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                            ${data.day}
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                  <td width="300" valign="top">
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                      <tr>
+                        <td style="padding: 0px 0px 0px 10px;">
+                          <h3>Bottles Drank</h3>
+                          <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                            ${bottlesUsed}
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
                   </td>
                 </tr>
                 <tr>
-                  <td>
+                  <td width="300" valign="top">
                     <table border="0" cellpadding="0" cellspacing="0" width="100%">
                       <tr>
-                        <td width="110" valign="top">
+                        <td style="padding: 0px 10px 0px 10px;">
+                          <h3>Diapers Used</h3>
                           <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                            <tr>
-                              <td style="padding: 0px 0px 0px 10px;">
-                                <h3>Bottles Drank</h3>
-                                <p>${bottlesUsed}</p>
-                              </td>
-                            </tr>
+                            ${diapersUsed}
                           </table>
                         </td>
-                        <td width="10" style="font-size: 0; line-height: 0;">
-                          &nbsp;
-                        </td>
-                        <td width="110" valign="top">
+                      </tr>
+                    </table>
+                  </td>
+                  <td width="300" valign="top">
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                      <tr>
+                        <td style="padding: 0px 0px 0px 10px;">
+                          <h3>Naps Taken</h3>
                           <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                            <tr>
-                              <td style="padding: 0px 0px 0px 10px;">
-                                <h3>Diaper Changes</h3>
-                                <p>${diapersUsed}</p>
-                              </td>
-                            </tr>
-                          </table>
-                        </td>
-                        <td width="10" style="font-size: 0; line-height: 0;">
-                          &nbsp;
-                        </td>
-                        <td width="110" valign="top">
-                          <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                            <tr>
-                              <td style="padding: 0px 0px 0px 10px;">
-                                <h3>Naps Taken</h3>
-                                <p>${napsTaken}</p>
-                              </td>
-                            </tr>
+                            ${napsTaken}
                           </table>
                         </td>
                       </tr>

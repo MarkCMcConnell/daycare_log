@@ -94,7 +94,7 @@ const EmailPreview = (props) => {
         {supplyItems.length > 0 ? <h3 className={styles.subheading}>Items to bring: </h3> : null}
         {supplyItems.length > 0
           ? <ul>
-            {supplyItems.map((item, index) => <li key={index} className={styles.details}>{item.type}</li>)}
+            {supplyItems.map((item, index) => <li key={item + index} className={styles.details}>{item.type}</li>)}
             {other && <li className={styles.details}>Other - {other}</li>}
           </ul>
           : null}
