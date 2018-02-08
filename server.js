@@ -6,7 +6,7 @@ const nodemailer = require('nodemailer')
 const helmet = require('helmet')
 const toddlerEmailBuilder = require('./src/EmailTemplates/toddlerEmailBuilder')
 const infantEmailBuilder = require('./src/EmailTemplates/infantEmailBuilder')
-const port = process.env.PORT || 3000
+const port = process.env.PORT
 
 require('dotenv').config()
 
