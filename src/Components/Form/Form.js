@@ -130,7 +130,7 @@ class Form extends Component {
         .catch(function (error) {
           console.log(error)
         })
-      // this.props.history.push('/')
+      this.props.history.push('/')
     } else {
       axios.post('http://localhost:3000/sendmail/toddler', this.state)
         .then(function (response) {
@@ -139,7 +139,7 @@ class Form extends Component {
         .catch(function (error) {
           console.log(error)
         })
-      // this.props.history.push('/')
+      this.props.history.push('/')
     }
   }
   /* nextStep and prevStep changes this.state.step, which gets passed to
