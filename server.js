@@ -6,7 +6,7 @@ const nodemailer = require('nodemailer')
 const helmet = require('helmet')
 const toddlerEmailBuilder = require('./src/EmailTemplates/toddlerEmailBuilder')
 const infantEmailBuilder = require('./src/EmailTemplates/infantEmailBuilder')
-const port = process.env.PORT
+const PORT = process.env.PORT || 3000
 
 require('dotenv').config()
 
@@ -78,10 +78,9 @@ app.post('/sendmail/toddler', (req, res) => {
       console.log(error)
     } else {
       console.log('Email sent: ' + info.response)
+      res.send(200)
     }
   })
 })
 
-app.listen(port, function () {
-  console.log('Server started on port: ' + port)
-})
+app.listen(PORT)

@@ -3,13 +3,17 @@
   "version": "1.0.0",
   "description": "Daycare log form that allows the daycare provider to e-mail parents with their child's activities, food consumption, diaper/bathroom use, and specified needs.",
   "main": "index.js",
+  "engines": {
+    "node": "8.7.0",
+    "npm": "5.6.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack-dev-server --config './webpack/webpack.config.js'",
     "link": "eslint '**/*.{js, jsx}' --quiet",
     "build": "webpack -p --env production --progress --colors",
-    "start": "webpack-dev-server --env development --progress --colors",
-    "server-start": "node server.js"
+    "app-start": "webpack-dev-server --env development --progress --colors",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
