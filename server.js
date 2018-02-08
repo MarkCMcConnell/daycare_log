@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+const path = require('path')
 const bodyParser = require('body-parser')
 const nodemailer = require('nodemailer')
 const helmet = require('helmet')
@@ -16,17 +17,15 @@ const allowCrossDomain = function (req, res, next) {
   next()
 }
 
-app.use(express.static(__dirname + '/public'))
+app.use(bodyParser.urlencoded({extended: true}))
+app.use(express.static(__dirname + '/dist'))
+app.set('view engine', 'html')
 app.use(allowCrossDomain)
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use(helmet())
 
-app.get('/key', (req, res) => {
-  res.send({
-    apiKey: process.env.API_KEY
-  })
-})
+app.use('/', express.static(path.join(__dirname, 'index')))
 
 app.post('/sendmail/infant', (req, res) => {
   console.log(req.body)
