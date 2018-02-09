@@ -7,6 +7,7 @@ const helmet = require('helmet')
 const toddlerEmailBuilder = require('./src/EmailTemplates/toddlerEmailBuilder')
 const infantEmailBuilder = require('./src/EmailTemplates/infantEmailBuilder')
 const PORT = process.env.PORT || 3000
+const IP = process.env.IP
 
 require('dotenv').config()
 
@@ -83,4 +84,4 @@ app.post('/sendmail/toddler', (req, res) => {
   })
 })
 
-app.listen(PORT)
+app.listen(PORT, IP)
