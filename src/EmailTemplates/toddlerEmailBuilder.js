@@ -5,6 +5,8 @@ module.exports = function (data) {
   let suppliesList = ''
   let bathroomTimes = ''
 
+  console.log(data)
+
   data.meals.map((meal, index) => {
     if (meal.food) {
       mealsEaten += `<tr><td>${index + 1}: ${meal.time} - ${meal.food}</td></tr>`

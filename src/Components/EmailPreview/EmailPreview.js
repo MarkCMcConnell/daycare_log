@@ -65,8 +65,8 @@ const EmailPreview = (props) => {
     const { today, name, parentEmail, day, meals, bathroom, other } = props
 
     if (meals) {
-      mealsList = meals.filter(meal => meal.food).map(meal => {
-        return <li key={meal} className={styles.item}>{`${meal.time} - ${meal.food}`}</li>
+      mealsList = meals.filter(meal => meal.food).map((meal, index) => {
+        return <li key={`meal${index}`} className={styles.item}>{`${meal.time} - ${meal.food}`}</li>
       })
     }
 
