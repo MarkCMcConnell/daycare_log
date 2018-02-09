@@ -11,6 +11,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack-dev-server --env development --progress --colors",
     "link": "eslint '**/*.{js, jsx}' --quiet",
+    "build": "webpack -p --env production --progress --colors",
     "start": "NODE_ENV=production node server.js"
   },
   "repository": {
