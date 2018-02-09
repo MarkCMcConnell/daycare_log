@@ -9,11 +9,11 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack-dev-server --config './webpack/webpack.config.js'",
+    "dev": "webpack-dev-server --env development --progress --colors",
     "link": "eslint '**/*.{js, jsx}' --quiet",
     "build": "webpack -p --env production --progress --colors",
-    "app-start": "webpack-dev-server --env development --progress --colors",
-    "start": "NODE_ENV=production node server.js"
+    "start": "NODE_ENV=production node server.js",
+    "heroku-postbuild": "npm run build"
   },
   "repository": {
     "type": "git",

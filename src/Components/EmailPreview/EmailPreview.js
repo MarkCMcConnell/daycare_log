@@ -71,7 +71,9 @@ const EmailPreview = (props) => {
     }
 
     if (bathroom) {
-      bathroomList = bathroom.filter(use => use.times && use.type)
+      bathroomList = bathroom.filter(use => use.times && use.type).map((use, index) => {
+        return <li key={`bathroom${index}`} className={styles.details}>{use.times} - {use.type}</li>
+      })
     }
 
     return (
@@ -88,7 +90,7 @@ const EmailPreview = (props) => {
         {mealsList.length > 0 ? <h3 className={styles.subheading}>Meals: </h3> : null}
         {mealsList.length > 0 ? mealsList : null}
         {bathroomList.length > 0 ? <h3 className={styles.subheading}>Bathroom use: </h3> : null}
-        {bathroom.length > 0 ? <List data={bathroomList} /> : null}
+        {bathroomList}
         {napsList.length > 0 ? <h3 className={styles.subheading}>Naps: </h3> : null}
         {napsList.length > 0 ? <List data={napsList} /> : null}
         {supplyItems.length > 0 ? <h3 className={styles.subheading}>Items to bring: </h3> : null}
