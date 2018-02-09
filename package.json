@@ -11,8 +11,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack-dev-server --env development --progress --colors",
     "link": "eslint '**/*.{js, jsx}' --quiet",
-    "start": "node server.js",
-    "heroku-postbuild": "webpack -p --progress"
+    "start": "NODE_ENV=production node server.js"
   },
   "repository": {
     "type": "git",
