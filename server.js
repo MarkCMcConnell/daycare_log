@@ -28,8 +28,9 @@ app.use(helmet())
 
 app.use('/', express.static(path.join(__dirname, 'index')))
 
-app.post('/sendmail/infant', (req, res) => {
-  console.log(req.body)
+app.post('/sendmail/:age', (req, res) => {
+  let htmlEmail
+
   let transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -38,7 +39,11 @@ app.post('/sendmail/infant', (req, res) => {
     }
   })
 
-  let htmlEmail = infantEmailBuilder(req.body)
+  if (req.body.age === 'infant') {
+    htmlEmail = infantEmailBuilder(req.body)
+  } else {
+    htmlEmail = toddlerEmailBuilder(req.body)
+  }
 
   let mailOptions = {
     from: req.body.providerEmail,
@@ -52,34 +57,6 @@ app.post('/sendmail/infant', (req, res) => {
       console.log(error)
     } else {
       console.log('Email sent: ' + info.response)
-    }
-  })
-})
-
-app.post('/sendmail/toddler', (req, res) => {
-  let transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: req.body.providerEmail,
-      pass: req.body.providerPassword
-    }
-  })
-
-  let htmlEmail = toddlerEmailBuilder(req.body)
-
-  let mailOptions = {
-    from: req.body.providerEmail,
-    to: req.body.parentEmail,
-    subject: req.body.name + ' - ' + req.body.today,
-    html: htmlEmail
-  }
-
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      console.log(error)
-    } else {
-      console.log('Email sent: ' + info.response)
-      res.send(200)
     }
   })
 })
