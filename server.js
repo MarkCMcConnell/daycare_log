@@ -4,7 +4,6 @@ const path = require('path')
 const bodyParser = require('body-parser')
 const nodemailer = require('nodemailer')
 const helmet = require('helmet')
-const RateLimit = require('express-rate-limit')
 const toddlerEmailBuilder = require('./src/EmailTemplates/toddlerEmailBuilder')
 const infantEmailBuilder = require('./src/EmailTemplates/infantEmailBuilder')
 const PORT = process.env.PORT || 3000
@@ -25,15 +24,6 @@ app.set('view engine', 'html')
 app.use(allowCrossDomain)
 /* Security package for most vulneratbilities */
 app.use(helmet())
-/* Rate limiter to prevent abuse of email services */
-app.enable('trust proxy')
-
-const limiter = new RateLimit({
-  windowsMS: 10 * 60 * 1000,
-  max: 100,
-  delayMS: 0
-})
-app.use(limiter)
 
 app.use('/', express.static(path.join(__dirname, 'index')))
 
