@@ -12,8 +12,7 @@
     "dev": "webpack-dev-server --env development --progress --colors",
     "link": "eslint '**/*.{js, jsx}' --quiet",
     "build": "webpack -p --env production --progress --colors",
-    "start": "NODE_ENV=production node server.js",
-    "heroku-postbuild": "npm run build"
+    "start": "NODE_ENV=production node server.js"
   },
   "repository": {
     "type": "git",
