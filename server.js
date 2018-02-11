@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const path = require('path')
+const cors = require('cors')
 const bodyParser = require('body-parser')
 const nodemailer = require('nodemailer')
 const helmet = require('helmet')
@@ -12,12 +13,14 @@ const IP = process.env.IP
 require('dotenv').config()
 
 const allowCrossDomain = function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*')
-  res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE')
-  res.header('Access-Control-Allow-Headers', 'Content-Type')
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  res.setHeader('Access-Control-Allow-Credentials', 'true')
+  res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT,DELETE')
+  res.setHeader('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers')
   next()
 }
 
+app.use(cors())
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(express.static(path.join(__dirname, '/dist')))
 app.set('view engine', 'html')
@@ -28,6 +31,7 @@ app.use(helmet())
 app.use('/', express.static(path.join(__dirname, 'index')))
 
 app.post('/sendmail/:age', (req, res) => {
+  console.log(req.body)
   let htmlEmail
 
   let transporter = nodemailer.createTransport({
