@@ -1,7 +1,6 @@
 const express = require('express')
 const app = express()
 const path = require('path')
-const cors = require('cors')
 const bodyParser = require('body-parser')
 const nodemailer = require('nodemailer')
 const helmet = require('helmet')
@@ -20,7 +19,6 @@ const allowCrossDomain = function (req, res, next) {
   next()
 }
 
-app.use(cors())
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(express.static(path.join(__dirname, '/dist')))
 app.set('view engine', 'html')
