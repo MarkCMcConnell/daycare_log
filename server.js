@@ -7,7 +7,6 @@ const helmet = require('helmet')
 const toddlerEmailBuilder = require('./src/EmailTemplates/toddlerEmailBuilder')
 const infantEmailBuilder = require('./src/EmailTemplates/infantEmailBuilder')
 const PORT = process.env.PORT || 3000
-const IP = process.env.IP
 
 require('dotenv').config()
 
@@ -28,7 +27,7 @@ app.use(helmet())
 
 app.use('/', express.static(path.join(__dirname, 'index')))
 
-app.post('/sendmail/:age', (req, res) => {
+app.post('/api/sendmail/infant', (req, res) => {
   console.log(req.body)
   let htmlEmail
 
@@ -40,11 +39,7 @@ app.post('/sendmail/:age', (req, res) => {
     }
   })
 
-  if (req.body.age === 'infant') {
-    htmlEmail = infantEmailBuilder(req.body)
-  } else {
-    htmlEmail = toddlerEmailBuilder(req.body)
-  }
+  htmlEmail = infantEmailBuilder(req.body)
 
   let mailOptions = {
     from: req.body.providerEmail,
@@ -62,6 +57,36 @@ app.post('/sendmail/:age', (req, res) => {
   })
 })
 
-app.listen(PORT, IP, function () {
-  console.log('Server running on port', app.get('port'))
+app.post('/api/sendmail/toddler', (req, res) => {
+  console.log(req.body)
+  let htmlEmail
+
+  let transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: req.body.providerEmail,
+      pass: req.body.providerPassword
+    }
+  })
+
+  htmlEmail = toddlerEmailBuilder(req.body)
+
+  let mailOptions = {
+    from: req.body.providerEmail,
+    to: req.body.parentEmail,
+    subject: req.body.name + ' - ' + req.body.today,
+    html: htmlEmail
+  }
+
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.log(error)
+    } else {
+      console.log('Email sent: ' + info.response)
+    }
+  })
+})
+
+app.listen(PORT, function () {
+  console.log('Server running on port: ', PORT)
 })

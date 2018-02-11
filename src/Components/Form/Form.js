@@ -123,7 +123,7 @@ class Form extends Component {
 
     /* Route the POST to the appropriate email template */
     if (this.state.age === 'infant') {
-      axios.post('/sendmail/infant', this.state)
+      axios.post('https://daycare-log.herokuapp.com/api/sendmail/infant', this.state)
         .then(function (response) {
           console.log(response)
         })
@@ -132,14 +132,14 @@ class Form extends Component {
         })
       this.props.history.push('/')
     } else {
-      axios.post('/sendmail/toddler', this.state)
+      axios.post('https://daycare-log.herokuapp.com/api/sendmail/toddler', this.state)
         .then(function (response) {
           console.log(response)
         })
         .catch(function (error) {
           console.log(error)
         })
-      this.props.history.push('/')
+      // this.props.history.push('/')
     }
   }
   /* nextStep and prevStep changes this.state.step, which gets passed to
