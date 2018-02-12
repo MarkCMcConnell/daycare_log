@@ -19,7 +19,7 @@ const allowCrossDomain = function (req, res, next) {
 }
 
 app.use(bodyParser.urlencoded({extended: true}))
-app.use(express.static(path.join(__dirname, '/dist')))
+app.use(express.static(path.join(__dirname, '/src/dist')))
 app.set('view engine', 'html')
 app.use(allowCrossDomain)
 /* Security package for most vulneratbilities */
