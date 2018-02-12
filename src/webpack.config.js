@@ -7,7 +7,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 module.exports = {
   entry: [
     'react-hot-loader/patch',
-    './src/Main.js'
+    './Main.js'
   ],
   output: {
     publicPath: '/',
@@ -20,7 +20,7 @@ module.exports = {
   devServer: {
     hot: true,
     historyApiFallback: true,
-    contentBase: path.join(__dirname, 'dist')
+    contentBase: path.join(__dirname, 'src')
   },
   module: {
     rules: [
@@ -69,7 +69,14 @@ module.exports = {
                     localIdentName: '[name]__[local]__[hash:base64:5]'
                   }
                 },
-                'postcss-loader'
+                {
+                  loader: 'postcss-loader',
+                  options: {
+                    config: {
+                      path: path.resolve(__dirname, 'postcss.config.js')
+                    }
+                  }
+                }
               ]
             }))
           }
@@ -83,7 +90,7 @@ module.exports = {
             loader: 'url-loader',
             options: {
               limit: 8000, // Convert images < 8kb to base64 string
-              name: 'public/assets/images/[hash]-[name].[ext]'
+              name: '../public/assets/images/[hash]-[name].[ext]'
             }
           },
           {
@@ -113,7 +120,7 @@ module.exports = {
     new webpack.NamedModulesPlugin(),
     new HtmlWebpackPlugin({
       hash: true,
-      template: './src/index.html',
+      template: './index.html',
       filename: './index.html'
     }),
     // ExtractTextPlugin pulls CSS out of the bundle and saves to styles.css
@@ -121,7 +128,7 @@ module.exports = {
       filename: 'styles.css'
     }),
     new CopyWebpackPlugin([
-      { from: 'public/assets/images', to: 'images' }
+      { from: '../public/assets/images', to: 'images' }
     ])
   ]
 }

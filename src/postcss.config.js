@@ -1,8 +1,6 @@
 module.exports = {
   plugins: {
-    'postcss-import': {
-      path: '/public/assets/stylesheets'
-    },
+    'postcss-import': {},
     'postcss-mixins': {},
     'postcss-simple-vars': {},
     'postcss-nested': {},
