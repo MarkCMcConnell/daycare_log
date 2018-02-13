@@ -120,23 +120,24 @@ class Form extends Component {
 
   handleSubmit (e) {
     e.preventDefault()
-
+    const data = this.state
     /* Route the POST to the appropriate email template */
     if (this.state.age === 'infant') {
-      axios.post('/api/sendmail/infant', this.state)
-        .then(function (response) {
+      axios.post('/api/sendmail/infant', data)
+        .then(response => {
           console.log(response)
         })
-        .catch(function (error) {
+        .catch(error => {
           console.log(error)
         })
       this.props.history.push('/')
     } else {
-      axios.post('/api/sendmail/toddler', this.state)
-        .then(function (response) {
+      console.log(this.state)
+      axios.post('/api/sendmail/toddler', data)
+        .then(response => {
           console.log(response)
         })
-        .catch(function (error) {
+        .catch(error => {
           console.log(error)
         })
       // this.props.history.push('/')
@@ -358,7 +359,7 @@ class Form extends Component {
         <section className={styles.formsHeader}>
           <h2 className={styles.titleText}>{this.state.age[0].toUpperCase() + this.state.age.slice(1)}</h2>
           <h4 className={styles.stepText}>{this.state.step} / 8</h4>
-          <form className={styles.formField} onSubmit={this.handleSubmit}>
+          <form className={styles.formField} onSubmit={this.handleSubmit} encType='application/x-www-form-urlencoded'>
             {this.formStep(this.state.step)}
           </form>
         </section>

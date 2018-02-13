@@ -5,36 +5,42 @@ module.exports = function (data) {
   let suppliesList = ''
   let bathroomTimes = ''
 
-  console.log(data)
-
-  data.meals.map((meal, index) => {
-    if (meal.food) {
-      mealsEaten += `<tr><td>${index + 1}: ${meal.time} - ${meal.food}</td></tr>`
-    }
-  })
-
-  data.bathroom.map((use, index) => {
-    let amount = 'times'
-
-    if (use.times && use.type) {
-      if (use.times === 1) {
-        amount = 'time'
+  if (data.meals) {
+    data.meals.map((meal, index) => {
+      if (meal.food) {
+        mealsEaten += `<tr><td>${index + 1}: ${meal.time} - ${meal.food}</td></tr>`
       }
-      bathroomTimes += `<tr><td>${use.times} ${amount} - ${use.type} consistency</td></tr>`
-    }
-  })
+    })
+  }
 
-  data.toddlerNaps.map((nap, index) => {
-    if (nap.time && nap.length) {
-      napsTaken += `<tr><td>${moment(nap.time).format('h:mm a')} - ${nap.length}</td></tr>`
-    }
-  })
+  if (data.bathroom) {
+    data.bathroom.map((use, index) => {
+      let amount = 'times'
 
-  data.suppliesList.map(item => {
-    if (item.isChecked) {
-      suppliesList += `<span> - ${item.type}</span>`
-    }
-  })
+      if (use.times && use.type) {
+        if (use.times === 1) {
+          amount = 'time'
+        }
+        bathroomTimes += `<tr><td>${use.times} ${amount} - ${use.type} consistency</td></tr>`
+      }
+    })
+  }
+
+  if (data.toddlerNaps) {
+    data.toddlerNaps.map((nap, index) => {
+      if (nap.time && nap.length) {
+        napsTaken += `<tr><td>${moment(nap.time).format('h:mm a')} - ${nap.length}</td></tr>`
+      }
+    })
+  }
+
+  if (data.suppliesList) {
+    data.suppliesList.map(item => {
+      if (item.isChecked) {
+        suppliesList += `<span> - ${item.type}</span>`
+      }
+    })
+  }
 
   if (suppliesList.length <= 0) {
     suppliesList += '<span> None</span>'

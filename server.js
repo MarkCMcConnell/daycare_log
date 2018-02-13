@@ -18,58 +18,34 @@ const allowCrossDomain = function (req, res, next) {
   next()
 }
 
-app.use(bodyParser.urlencoded({extended: true}))
 app.use(express.static(path.join(__dirname, '/src/dist')))
 app.set('view engine', 'html')
 app.use(allowCrossDomain)
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: true}))
 /* Security package for most vulneratbilities */
 app.use(helmet())
 
-app.use('/', express.static(path.join(__dirname, 'index')))
-
-app.post('/api/sendmail/infant', (req, res) => {
-  console.log(req.body)
-  let htmlEmail
-
-  let transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: req.body.providerEmail,
-      pass: req.body.providerPassword
-    }
-  })
-
-  htmlEmail = infantEmailBuilder(req.body)
-
-  let mailOptions = {
-    from: req.body.providerEmail,
-    to: req.body.parentEmail,
-    subject: req.body.name + ' - ' + req.body.today,
-    html: htmlEmail
-  }
-
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      console.log(error)
-    } else {
-      console.log('Email sent: ' + info.response)
-    }
-  })
+app.get('/', (req, res) => {
+  res.render('index')
 })
 
-app.post('/api/sendmail/toddler', (req, res) => {
-  console.log(req.body)
+app.post('/api/sendmail/:age', (req, res) => {
   let htmlEmail
 
   let transporter = nodemailer.createTransport({
-    service: 'gmail',
+    service: 'Gmail',
     auth: {
       user: req.body.providerEmail,
       pass: req.body.providerPassword
     }
   })
 
-  htmlEmail = toddlerEmailBuilder(req.body)
+  if (req.body.age === 'infant') {
+    htmlEmail = infantEmailBuilder(req.body)
+  } else {
+    htmlEmail = toddlerEmailBuilder(req.body)
+  }
 
   let mailOptions = {
     from: req.body.providerEmail,
