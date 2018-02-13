@@ -140,7 +140,7 @@ class Form extends Component {
         .catch(error => {
           console.log(error)
         })
-      // this.props.history.push('/')
+      this.props.history.push('/')
     }
   }
   /* nextStep and prevStep changes this.state.step, which gets passed to
