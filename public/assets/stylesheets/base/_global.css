@@ -9,8 +9,6 @@ body {
   background-color: #f7f7f7;
   line-height: 1.5;
   font-weight: 400;
-  /* Designed for mobile use only */
-  max-width: 600px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -45,10 +43,6 @@ input {
     outline: none;
     border-bottom: 2px solid var(--primaryColor);
   }
-}
-
-#root {
-  margin: 0 auto;
 }
 
 .card {

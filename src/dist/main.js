@@ -61,7 +61,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "d665cb780fe2bca71998"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "ee17e50f41654be66a58"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -733,7 +733,7 @@
 // removed by extract-text-webpack-plugin
 module.exports = {"root":"App__root__yzgp7","card":"App__card__3J37D"};
     if(true) {
-      // 1518404910562
+      // 1520809183485
       var cssReload = __webpack_require__("./node_modules/css-hot-loader/hotModuleReplacement.js")(module.i, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -811,7 +811,7 @@ var _temp = function () {
 // removed by extract-text-webpack-plugin
 module.exports = {"root":"Button__root__wAVVO","card":"Button__card___Sv8-","container":"Button__container__3ojl1","header":"Button__header__AiI6F","textContainer":"Button__textContainer__1XOyQ","titleText":"Button__titleText__1DF-v","nav":"Button__nav__2fVIr","navItem":"Button__navItem__29m9x","borderTop":"Button__borderTop__5qFgm","borderTopThin":"Button__borderTopThin__U_wvh","backButton":"Button__backButton__SIg7H","formsContainer":"Button__formsContainer__5grcB","formsHeader":"Button__formsHeader__1zzbv","stepText":"Button__stepText__37l2S","formField":"Button__formField__3M2RH","navControl":"Button__navControl__LUZWT","gridContainer1x1":"Button__gridContainer1x1__3X_CF","gridContainer1x2":"Button__gridContainer1x2__3ONvq Button__gridContainer1x1__3X_CF","gridContainer2x1":"Button__gridContainer2x1__1PBJb Button__gridContainer1x1__3X_CF","gridContainerEven2x1":"Button__gridContainerEven2x1__vPp3U Button__gridContainer1x1__3X_CF","gridContainer2x4":"Button__gridContainer2x4__R4aQ2","gridContainer2x6":"Button__gridContainer2x6__AWXfz Button__gridContainer2x4__R4aQ2","gridContainer2x8":"Button__gridContainer2x8__2b7eS Button__gridContainer2x4__R4aQ2","btn":"Button__btn__3PbFG"};
     if(true) {
-      // 1518404910973
+      // 1520809183818
       var cssReload = __webpack_require__("./node_modules/css-hot-loader/hotModuleReplacement.js")(module.i, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -880,7 +880,7 @@ var _temp = function () {
 // removed by extract-text-webpack-plugin
 module.exports = {"gridItem0":"Checkbox__gridItem0__1j_Qx","gridItem1":"Checkbox__gridItem1__yAmvP Checkbox__gridItem0__1j_Qx","gridItem2":"Checkbox__gridItem2__2ihMX Checkbox__gridItem0__1j_Qx","gridItem3":"Checkbox__gridItem3__3SSZF Checkbox__gridItem1__yAmvP Checkbox__gridItem0__1j_Qx","gridItem4":"Checkbox__gridItem4__23hmW Checkbox__gridItem0__1j_Qx","checkboxInput":"Checkbox__checkboxInput__29khT","checkboxLabel":"Checkbox__checkboxLabel__3iLeT","isChecked":"Checkbox__isChecked__2MR3k"};
     if(true) {
-      // 1518404910416
+      // 1520809183333
       var cssReload = __webpack_require__("./node_modules/css-hot-loader/hotModuleReplacement.js")(module.i, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -1053,7 +1053,7 @@ var _temp = function () {
 // removed by extract-text-webpack-plugin
 module.exports = {"root":"DayPicker__root__1kdSJ","card":"DayPicker__card__3oKg-","container":"DayPicker__container__3wQQV","header":"DayPicker__header__BXy9o","textContainer":"DayPicker__textContainer__nXFHB","titleText":"DayPicker__titleText__1eTIx","nav":"DayPicker__nav__2hzMG","navItem":"DayPicker__navItem__1H-nx","borderTop":"DayPicker__borderTop__1VnJP","borderTopThin":"DayPicker__borderTopThin__Juli4","backButton":"DayPicker__backButton__3ExpL","formsContainer":"DayPicker__formsContainer__MO-Ez","formsHeader":"DayPicker__formsHeader__3P6ES","stepText":"DayPicker__stepText__2C_g7","formField":"DayPicker__formField__XP4fF","navControl":"DayPicker__navControl__16wfs","gridContainer1x1":"DayPicker__gridContainer1x1__qjPMT","gridContainer1x2":"DayPicker__gridContainer1x2__UtCyr DayPicker__gridContainer1x1__qjPMT","gridContainer2x1":"DayPicker__gridContainer2x1__1meGo DayPicker__gridContainer1x1__qjPMT","gridContainerEven2x1":"DayPicker__gridContainerEven2x1__3pX6o DayPicker__gridContainer1x1__qjPMT","gridContainer2x4":"DayPicker__gridContainer2x4__afUUO","gridContainer2x6":"DayPicker__gridContainer2x6__2nFP5 DayPicker__gridContainer2x4__afUUO","gridContainer2x8":"DayPicker__gridContainer2x8__13-I9 DayPicker__gridContainer2x4__afUUO","inputItem":"DayPicker__inputItem__1cRj_"};
     if(true) {
-      // 1518404911035
+      // 1520809183939
       var cssReload = __webpack_require__("./node_modules/css-hot-loader/hotModuleReplacement.js")(module.i, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -1168,7 +1168,7 @@ var _temp = function () {
 // removed by extract-text-webpack-plugin
 module.exports = {"container":"EmailPreview__container__3m5fK","details":"EmailPreview__details__1tqwG","item":"EmailPreview__item__33LoK","subheading":"EmailPreview__subheading__3caYY"};
     if(true) {
-      // 1518404910256
+      // 1520809183203
       var cssReload = __webpack_require__("./node_modules/css-hot-loader/hotModuleReplacement.js")(module.i, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -1460,7 +1460,7 @@ var _temp = function () {
 // removed by extract-text-webpack-plugin
 module.exports = {"root":"Form__root__1AsUf","card":"Form__card__QhKL4","container":"Form__container__2iXfr","header":"Form__header__31dKv","textContainer":"Form__textContainer__3gdRc","titleText":"Form__titleText__20IiG","nav":"Form__nav__1vBMC","navItem":"Form__navItem__3SDWg","borderTop":"Form__borderTop__2ulNS","borderTopThin":"Form__borderTopThin__3_CCl","backButton":"Form__backButton__3njDo","formsContainer":"Form__formsContainer__2dDbH","formsHeader":"Form__formsHeader__3DdjQ","stepText":"Form__stepText__225YI","formField":"Form__formField__15Ey1","navControl":"Form__navControl__CZ8cu","gridContainer1x1":"Form__gridContainer1x1__2eK_G","gridContainer1x2":"Form__gridContainer1x2__fFH4f Form__gridContainer1x1__2eK_G","gridContainer2x1":"Form__gridContainer2x1__1TKLJ Form__gridContainer1x1__2eK_G","gridContainerEven2x1":"Form__gridContainerEven2x1__14ak- Form__gridContainer1x1__2eK_G","gridContainer2x4":"Form__gridContainer2x4__1khu6","gridContainer2x6":"Form__gridContainer2x6__fM3g1 Form__gridContainer2x4__1khu6","gridContainer2x8":"Form__gridContainer2x8__30AEM Form__gridContainer2x4__1khu6"};
     if(true) {
-      // 1518404910761
+      // 1520809183671
       var cssReload = __webpack_require__("./node_modules/css-hot-loader/hotModuleReplacement.js")(module.i, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -1629,22 +1629,23 @@ var Form = function (_Component) {
     key: 'handleSubmit',
     value: function handleSubmit(e) {
       e.preventDefault();
-
+      var data = this.state;
       /* Route the POST to the appropriate email template */
       if (this.state.age === 'infant') {
-        _axios2.default.post('/api/sendmail/infant', this.state).then(function (response) {
+        _axios2.default.post('/api/sendmail/infant', data).then(function (response) {
           console.log(response);
         }).catch(function (error) {
           console.log(error);
         });
         this.props.history.push('/');
       } else {
-        _axios2.default.post('/api/sendmail/toddler', this.state).then(function (response) {
+        console.log(this.state);
+        _axios2.default.post('/api/sendmail/toddler', data).then(function (response) {
           console.log(response);
         }).catch(function (error) {
           console.log(error);
         });
-        // this.props.history.push('/')
+        this.props.history.push('/');
       }
     }
     /* nextStep and prevStep changes this.state.step, which gets passed to
@@ -1880,7 +1881,7 @@ var Form = function (_Component) {
           ),
           _react2.default.createElement(
             'form',
-            { className: _Form2.default.formField, onSubmit: this.handleSubmit },
+            { className: _Form2.default.formField, onSubmit: this.handleSubmit, encType: 'application/x-www-form-urlencoded' },
             this.formStep(this.state.step)
           )
         )
@@ -1915,7 +1916,7 @@ var _temp = function () {
 // removed by extract-text-webpack-plugin
 module.exports = {"root":"FormsNav__root__ACmcG","card":"FormsNav__card__19Izg","container":"FormsNav__container__2uoMf","header":"FormsNav__header__3PHa1","textContainer":"FormsNav__textContainer__dvttI","titleText":"FormsNav__titleText__g81Yk","nav":"FormsNav__nav__3OPuN","navItem":"FormsNav__navItem__2fj3l","borderTop":"FormsNav__borderTop__1VY0D","borderTopThin":"FormsNav__borderTopThin__2mMiE"};
     if(true) {
-      // 1518404910614
+      // 1520809183599
       var cssReload = __webpack_require__("./node_modules/css-hot-loader/hotModuleReplacement.js")(module.i, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -2027,7 +2028,7 @@ var _temp = function () {
 // removed by extract-text-webpack-plugin
 module.exports = {"gridContainer1x1":"GeneralInfo__gridContainer1x1__1YGcG","gridItem":"GeneralInfo__gridItem__1eyfp"};
     if(true) {
-      // 1518404910463
+      // 1520809183403
       var cssReload = __webpack_require__("./node_modules/css-hot-loader/hotModuleReplacement.js")(module.i, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -2125,7 +2126,7 @@ var _temp = function () {
 // removed by extract-text-webpack-plugin
 module.exports = {"item":"List__item__2I7P6"};
     if(true) {
-      // 1518404910287
+      // 1520809183183
       var cssReload = __webpack_require__("./node_modules/css-hot-loader/hotModuleReplacement.js")(module.i, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -2210,7 +2211,7 @@ var _temp = function () {
 // removed by extract-text-webpack-plugin
 module.exports = {"gridContainer1x1":"MultipleInputs__gridContainer1x1__1W7dZ","gridItem":"MultipleInputs__gridItem__4teLo","heading":"MultipleInputs__heading__2hbU2"};
     if(true) {
-      // 1518404910499
+      // 1520809183438
       var cssReload = __webpack_require__("./node_modules/css-hot-loader/hotModuleReplacement.js")(module.i, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -2330,7 +2331,7 @@ var _temp = function () {
 // removed by extract-text-webpack-plugin
 module.exports = {"selectBox":"SelectOptions__selectBox__2cKf0","optionText":"SelectOptions__optionText___b-h0"};
     if(true) {
-      // 1518404910334
+      // 1520809183235
       var cssReload = __webpack_require__("./node_modules/css-hot-loader/hotModuleReplacement.js")(module.i, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -2455,7 +2456,7 @@ var _temp = function () {
 // removed by extract-text-webpack-plugin
 module.exports = {"inputLabel":"SingleInput__inputLabel__1AFkr","inputField":"SingleInput__inputField__1fafP"};
     if(true) {
-      // 1518404910318
+      // 1520809183250
       var cssReload = __webpack_require__("./node_modules/css-hot-loader/hotModuleReplacement.js")(module.i, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -2531,7 +2532,7 @@ var _temp = function () {
 // removed by extract-text-webpack-plugin
 module.exports = {"root":"SingleRangeInput__root__Zf4Xs","card":"SingleRangeInput__card__1TCjt","sliderContainer":"SingleRangeInput__sliderContainer__3zDtv","slider":"SingleRangeInput__slider__3orYr"};
     if(true) {
-      // 1518404910661
+      // 1520809183552
       var cssReload = __webpack_require__("./node_modules/css-hot-loader/hotModuleReplacement.js")(module.i, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -2616,7 +2617,7 @@ var _temp = function () {
 // removed by extract-text-webpack-plugin
 module.exports = {"container":"SuppliesList__container__3knqd","titleText":"SuppliesList__titleText__2PXYi"};
     if(true) {
-      // 1518404910385
+      // 1520809183349
       var cssReload = __webpack_require__("./node_modules/css-hot-loader/hotModuleReplacement.js")(module.i, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -2730,7 +2731,7 @@ var _temp = function () {
 // removed by extract-text-webpack-plugin
 module.exports = {"gridContainer1x1":"SuppliesRequest__gridContainer1x1__2fmI8"};
     if(true) {
-      // 1518404910349
+      // 1520809183297
       var cssReload = __webpack_require__("./node_modules/css-hot-loader/hotModuleReplacement.js")(module.i, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -2820,7 +2821,7 @@ var _temp = function () {
 // removed by extract-text-webpack-plugin
 module.exports = {"gridItem":"TextArea__gridItem__36iHk","sizing":"TextArea__sizing__TWvVn"};
     if(true) {
-      // 1518404910448
+      // 1520809183364
       var cssReload = __webpack_require__("./node_modules/css-hot-loader/hotModuleReplacement.js")(module.i, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -2892,9 +2893,9 @@ var _temp = function () {
 /***/ (function(module, exports, __webpack_require__) {
 
 // removed by extract-text-webpack-plugin
-module.exports = {"btn":"TimeSlider__btn__3H_ja Button__btn__3PbFG","modal":"TimeSlider__modal__267PR","time":"TimeSlider__time__UsB5p","hourSlider":"TimeSlider__hourSlider__16KXZ","minuteSlider":"TimeSlider__minuteSlider__2zyru","meridiem":"TimeSlider__meridiem__2-euK","closeBtn":"TimeSlider__closeBtn__1yjHu"};
+module.exports = {"btn":"TimeSlider__btn__3H_ja","modal":"TimeSlider__modal__267PR","time":"TimeSlider__time__UsB5p","hourSlider":"TimeSlider__hourSlider__16KXZ","minuteSlider":"TimeSlider__minuteSlider__2zyru","meridiem":"TimeSlider__meridiem__2-euK","closeBtn":"TimeSlider__closeBtn__1yjHu"};
     if(true) {
-      // 1518404911186
+      // 1520809183282
       var cssReload = __webpack_require__("./node_modules/css-hot-loader/hotModuleReplacement.js")(module.i, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -3095,7 +3096,7 @@ var _temp = function () {
 // removed by extract-text-webpack-plugin
 module.exports = {"root":"TimedMultipleInputs__root__36Ax1","card":"TimedMultipleInputs__card__FfL9U","container":"TimedMultipleInputs__container__1Joop","header":"TimedMultipleInputs__header__3X8Q0","textContainer":"TimedMultipleInputs__textContainer__gI41o","titleText":"TimedMultipleInputs__titleText__2jqIz","nav":"TimedMultipleInputs__nav__RvIO8","navItem":"TimedMultipleInputs__navItem__1nEHE","borderTop":"TimedMultipleInputs__borderTop__3z784","borderTopThin":"TimedMultipleInputs__borderTopThin__hrzQk","backButton":"TimedMultipleInputs__backButton__3W6-c","formsContainer":"TimedMultipleInputs__formsContainer__PRF8z","formsHeader":"TimedMultipleInputs__formsHeader__1Nqiv","stepText":"TimedMultipleInputs__stepText__1T9TR","formField":"TimedMultipleInputs__formField__3w1dS","navControl":"TimedMultipleInputs__navControl__1mP4z","gridContainer1x1":"TimedMultipleInputs__gridContainer1x1__mk4MW","gridContainer1x2":"TimedMultipleInputs__gridContainer1x2__1eyyE TimedMultipleInputs__gridContainer1x1__mk4MW","gridContainer2x1":"TimedMultipleInputs__gridContainer2x1__bOmA3 TimedMultipleInputs__gridContainer1x1__mk4MW","gridContainerEven2x1":"TimedMultipleInputs__gridContainerEven2x1__3R28q TimedMultipleInputs__gridContainer1x1__mk4MW","gridContainer2x4":"TimedMultipleInputs__gridContainer2x4__3HSQJ","gridContainer2x6":"TimedMultipleInputs__gridContainer2x6__a60sA TimedMultipleInputs__gridContainer2x4__3HSQJ","gridContainer2x8":"TimedMultipleInputs__gridContainer2x8__2do9g TimedMultipleInputs__gridContainer2x4__3HSQJ","mainContainer":"TimedMultipleInputs__mainContainer__j9bVr","heading":"TimedMultipleInputs__heading__2kj7Q"};
     if(true) {
-      // 1518404910890
+      // 1520809183888
       var cssReload = __webpack_require__("./node_modules/css-hot-loader/hotModuleReplacement.js")(module.i, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -3227,7 +3228,7 @@ var _temp = function () {
 // removed by extract-text-webpack-plugin
 module.exports = {"selectBox":"TwoSelectOptions__selectBox__2Y2_Q","optionText":"TwoSelectOptions__optionText__1PqmE","container":"TwoSelectOptions__container__1Sn_I","gridContainer2x1":"TwoSelectOptions__gridContainer2x1__1z8Mw"};
     if(true) {
-      // 1518404910484
+      // 1520809183423
       var cssReload = __webpack_require__("./node_modules/css-hot-loader/hotModuleReplacement.js")(module.i, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -3384,7 +3385,7 @@ var _temp = function () {
 // removed by extract-text-webpack-plugin
 module.exports = {"root":"UserInfo__root__VexuE","card":"UserInfo__card__3vTto","container":"UserInfo__container__2z5ZM","header":"UserInfo__header__3rslp","textContainer":"UserInfo__textContainer__33EDC","titleText":"UserInfo__titleText__DJ-c1","nav":"UserInfo__nav__3OFXP","navItem":"UserInfo__navItem__3HBmR","borderTop":"UserInfo__borderTop__3Den3","borderTopThin":"UserInfo__borderTopThin__2MprC","backButton":"UserInfo__backButton__2UuYe","formsContainer":"UserInfo__formsContainer__10maX","formsHeader":"UserInfo__formsHeader__15TPz","stepText":"UserInfo__stepText__1LxL_","formField":"UserInfo__formField__1GVQq","navControl":"UserInfo__navControl__2iwTU","gridContainer1x1":"UserInfo__gridContainer1x1__3Xcry","gridContainer1x2":"UserInfo__gridContainer1x2__1VzLS UserInfo__gridContainer1x1__3Xcry","gridContainer2x1":"UserInfo__gridContainer2x1__2-GyB UserInfo__gridContainer1x1__3Xcry","gridContainerEven2x1":"UserInfo__gridContainerEven2x1__1ZZy- UserInfo__gridContainer1x1__3Xcry","gridContainer2x4":"UserInfo__gridContainer2x4__3PDEh","gridContainer2x6":"UserInfo__gridContainer2x6__1JBGI UserInfo__gridContainer2x4__3PDEh","gridContainer2x8":"UserInfo__gridContainer2x8__3Mkz8 UserInfo__gridContainer2x4__3PDEh"};
     if(true) {
-      // 1518404910828
+      // 1520809183739
       var cssReload = __webpack_require__("./node_modules/css-hot-loader/hotModuleReplacement.js")(module.i, {"fileMap":"{fileName}"});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -57034,7 +57035,7 @@ module.exports = function(module) {
 
 __webpack_require__("./node_modules/react-hot-loader/patch.js");
 __webpack_require__("./Main.js");
-module.exports = __webpack_require__("./App.js");
+module.exports = __webpack_require__("./Main.js");
 
 
 /***/ })
